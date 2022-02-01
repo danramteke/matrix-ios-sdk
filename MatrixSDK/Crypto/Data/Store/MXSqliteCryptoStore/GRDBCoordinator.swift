@@ -19,6 +19,14 @@ import GRDB
 
 @objcMembers public class GRDBCoordinator: NSObject {
   
-  
-  
+  public class func fileName(withUserId userId: String, andDeviceId deviceId: String) -> String {
+    
+    if MXTools.isRunningUnitTests() {
+      //        Append the device id for unit tests so that we can run e2e tests
+      //        with users with several devices
+      return "\(userId)-\(deviceId)"
+    } else {
+      return userId
+    }
+  }
 }

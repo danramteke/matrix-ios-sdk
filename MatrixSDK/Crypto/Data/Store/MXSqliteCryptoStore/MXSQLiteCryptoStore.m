@@ -38,4 +38,10 @@
 + (BOOL)hasDataForCredentials:(MXCredentials*)credentials {
   return false;
 }
+
+//+ (instancetype)createStoreWithCredentials:(MXCredentials*)credentials {
+//  NSString* fileName = [GRDBCoordinator fileNameWithUserId:credentials.userId andDeviceId:credentials.deviceId];
+//  
+//}
+
 @end

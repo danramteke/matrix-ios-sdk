@@ -30,9 +30,13 @@
 
 }
 
-- (void)testExample {
+- (void)test_hasDataForCredentials_falseInitially {
   BOOL result = [MXSQLiteCryptoStore hasDataForCredentials:[MXCredentials new]];
   XCTAssertFalse(result);
+}
+
+- (void)testS {
+  
 }
 
 @end
