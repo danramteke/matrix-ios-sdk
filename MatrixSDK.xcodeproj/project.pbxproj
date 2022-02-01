@@ -697,6 +697,14 @@
 		3AF85F9226FC7AE800A9E67B /* MXSpaceNotificationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF85F9126FC7AE800A9E67B /* MXSpaceNotificationState.swift */; };
 		3AF85F9326FC7AE800A9E67B /* MXSpaceNotificationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF85F9126FC7AE800A9E67B /* MXSpaceNotificationState.swift */; };
 		3B60DCAB92D470B91262BF0C /* libPods-MatrixSDKTests-macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15D7F292D95EB58AEE801C4E /* libPods-MatrixSDKTests-macOS.a */; };
+		651609EA27A8827B00D48B6B /* MXSQLiteCryptoStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 651609E927A8827B00D48B6B /* MXSQLiteCryptoStore.m */; };
+		651609EB27A8827B00D48B6B /* MXSQLiteCryptoStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 651609E927A8827B00D48B6B /* MXSQLiteCryptoStore.m */; };
+		651609ED27A8829200D48B6B /* MXSQLiteCryptoStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 651609EC27A8829200D48B6B /* MXSQLiteCryptoStore.h */; };
+		651609EE27A8829200D48B6B /* MXSQLiteCryptoStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 651609EC27A8829200D48B6B /* MXSQLiteCryptoStore.h */; };
+		651609F027A8848500D48B6B /* GRDBCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651609EF27A8848500D48B6B /* GRDBCoordinator.swift */; };
+		651609F127A8848500D48B6B /* GRDBCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651609EF27A8848500D48B6B /* GRDBCoordinator.swift */; };
+		651609F427A8C48F00D48B6B /* MXSQLiteCryptoStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 651609F327A8C48F00D48B6B /* MXSQLiteCryptoStoreTests.m */; };
+		651609F527A8C48F00D48B6B /* MXSQLiteCryptoStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 651609F327A8C48F00D48B6B /* MXSQLiteCryptoStoreTests.m */; };
 		71DE22E01BC7C51200284153 /* MXReceiptData.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DE22DC1BC7C51200284153 /* MXReceiptData.m */; };
 		71DE22E11BC7C51200284153 /* MXReceiptData.h in Headers */ = {isa = PBXBuildFile; fileRef = 71DE22DD1BC7C51200284153 /* MXReceiptData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8EC511042568216B00EC4E5B /* MXTaggedEventInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EC511022568216B00EC4E5B /* MXTaggedEventInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -2201,6 +2209,10 @@
 		3AF85F9126FC7AE800A9E67B /* MXSpaceNotificationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXSpaceNotificationState.swift; sourceTree = "<group>"; };
 		492C3485159D57C2116EDCBD /* Pods-SDK-MatrixSDK-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDK-MatrixSDK-macOS.debug.xcconfig"; path = "Target Support Files/Pods-SDK-MatrixSDK-macOS/Pods-SDK-MatrixSDK-macOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6257D945D115DA658F44E8D4 /* Pods-SDK-MatrixSDK-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDK-MatrixSDK-macOS.release.xcconfig"; path = "Target Support Files/Pods-SDK-MatrixSDK-macOS/Pods-SDK-MatrixSDK-macOS.release.xcconfig"; sourceTree = "<group>"; };
+		651609E927A8827B00D48B6B /* MXSQLiteCryptoStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MXSQLiteCryptoStore.m; sourceTree = "<group>"; };
+		651609EC27A8829200D48B6B /* MXSQLiteCryptoStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MXSQLiteCryptoStore.h; sourceTree = "<group>"; };
+		651609EF27A8848500D48B6B /* GRDBCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRDBCoordinator.swift; sourceTree = "<group>"; };
+		651609F327A8C48F00D48B6B /* MXSQLiteCryptoStoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MXSQLiteCryptoStoreTests.m; sourceTree = "<group>"; };
 		6869D206EA7C7FB05EAB75B0 /* Pods-MatrixSDKTests-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MatrixSDKTests-iOS.release.xcconfig"; path = "Target Support Files/Pods-MatrixSDKTests-iOS/Pods-MatrixSDKTests-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		71DE22DC1BC7C51200284153 /* MXReceiptData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXReceiptData.m; sourceTree = "<group>"; };
 		71DE22DD1BC7C51200284153 /* MXReceiptData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXReceiptData.h; sourceTree = "<group>"; };
@@ -3335,6 +3347,7 @@
 			isa = PBXGroup;
 			children = (
 				3284A59D1DB7C00600A09972 /* MXCryptoStore.h */,
+				651609E227A881F700D48B6B /* MXSqliteCryptoStore */,
 				3259CD4C1DF85F6D00186944 /* MXRealmCryptoStore */,
 			);
 			path = Store;
@@ -3603,6 +3616,7 @@
 		32C6F93919DD814400EA4E9C /* MatrixSDKTests */ = {
 			isa = PBXGroup;
 			children = (
+				651609F227A8C46D00D48B6B /* SQLite */,
 				322985C526FA66FD001890BC /* Utils */,
 				3298ABD42637FA3100E40B06 /* TestPlans */,
 				32B477422638128700EA5800 /* MXAggregatedEditsUnitTests.m */,
@@ -3854,6 +3868,24 @@
 				3AC135D82640335100EE1E74 /* MXDehydrationService.m */,
 			);
 			path = Dehydration;
+			sourceTree = "<group>";
+		};
+		651609E227A881F700D48B6B /* MXSqliteCryptoStore */ = {
+			isa = PBXGroup;
+			children = (
+				651609EC27A8829200D48B6B /* MXSQLiteCryptoStore.h */,
+				651609E927A8827B00D48B6B /* MXSQLiteCryptoStore.m */,
+				651609EF27A8848500D48B6B /* GRDBCoordinator.swift */,
+			);
+			path = MXSqliteCryptoStore;
+			sourceTree = "<group>";
+		};
+		651609F227A8C46D00D48B6B /* SQLite */ = {
+			isa = PBXGroup;
+			children = (
+				651609F327A8C48F00D48B6B /* MXSQLiteCryptoStoreTests.m */,
+			);
+			path = SQLite;
 			sourceTree = "<group>";
 		};
 		916911E77039455CC9D0900C /* Pods */ = {
@@ -4737,6 +4769,7 @@
 				326056851C76FDF2009D44AD /* MXEventTimeline.h in Headers */,
 				3A59A49D25A7A16F00DDA1FC /* MXOlmOutboundGroupSession.h in Headers */,
 				32AF927F240EA0190008A0FD /* MXSecretShareManager.h in Headers */,
+				651609ED27A8829200D48B6B /* MXSQLiteCryptoStore.h in Headers */,
 				321CFDEE225264C4004D31DF /* NSArray+MatrixSDK.h in Headers */,
 				1838928827031D1D003F0C4F /* MXSendReplyEventStringLocalizerProtocol.h in Headers */,
 				B11BD44822CB56790064D8B0 /* MXReplyEventParser.h in Headers */,
@@ -5129,6 +5162,7 @@
 				B14EF3632397E90400758AF0 /* MXScanRealmFileProvider.h in Headers */,
 				18C26C54273C16C800805154 /* MXEventContentPollStart.h in Headers */,
 				B14EF3642397E90400758AF0 /* MXRoom.h in Headers */,
+				651609EE27A8829200D48B6B /* MXSQLiteCryptoStore.h in Headers */,
 				B14EF3652397E90400758AF0 /* MXServiceTerms.h in Headers */,
 				EC8A53AC25B1BC77004E0802 /* MXCallRejectReplacementEventContent.h in Headers */,
 				324DD2AD246AEB7B00377005 /* MXSecretStoragePassphrase.h in Headers */,
@@ -5688,6 +5722,7 @@
 				EC8A53DE25B1BCC6004E0802 /* MXThirdpartyProtocolsResponse.m in Sources */,
 				32133022228BF7BC0070BA9B /* MXReactionCountChange.m in Sources */,
 				32A151491DAF7C0C00400192 /* MXKey.m in Sources */,
+				651609F027A8848500D48B6B /* GRDBCoordinator.swift in Sources */,
 				324DD2AE246AEB7B00377005 /* MXSecretStoragePassphrase.m in Sources */,
 				ECB5D98C2552C9B4000AD89C /* MXStopwatch.swift in Sources */,
 				B1136964230AC9D900E2B2FA /* MXIdentityServerRestClient.m in Sources */,
@@ -5728,6 +5763,7 @@
 				EC1848C72686174E00865E16 /* MXiOSAudioOutputRouteType.swift in Sources */,
 				3220093919EFA4C9008DE41D /* MXEventListener.m in Sources */,
 				C6481AF21F1678A9000DB8A0 /* MXSessionEventListener.swift in Sources */,
+				651609EA27A8827B00D48B6B /* MXSQLiteCryptoStore.m in Sources */,
 				32A1514F1DAF897600400192 /* MXOlmSessionResult.m in Sources */,
 				ECF29BD3264194BB0053E6D6 /* MXCallAssertedIdentityEventContent.m in Sources */,
 				EC8A53A725B1BC77004E0802 /* MXCallCapabilitiesModel.m in Sources */,
@@ -5835,6 +5871,7 @@
 				327137241A24BDDE00DB6757 /* MXUserTests.m in Sources */,
 				32B0E3E723A3864C0054FF1A /* MXEventReferenceUnitTests.swift in Sources */,
 				32720DA2222EB5650086FFF5 /* MXAutoDiscoveryTests.m in Sources */,
+				651609F427A8C48F00D48B6B /* MXSQLiteCryptoStoreTests.m in Sources */,
 				327E37B91A977810007F026F /* MXLoggerUnitTests.m in Sources */,
 				18937E7C273A5AE500902626 /* MXPollRelationTests.m in Sources */,
 				32792BE12296C64200F4FC9D /* MXAggregatedEditsTests.m in Sources */,
@@ -6161,6 +6198,7 @@
 				EC383BB22540688E002FBBE6 /* MXBackgroundStore.swift in Sources */,
 				B14EF26E2397E90400758AF0 /* MXFileRoomStore.m in Sources */,
 				EC60ED9D265CFE1700B39A4E /* MXRoomSyncState.m in Sources */,
+				651609F127A8848500D48B6B /* GRDBCoordinator.swift in Sources */,
 				324676ED25C15F4600EA855B /* MXMemory.swift in Sources */,
 				EC60ED6A265CFC7200B39A4E /* MXPresenceSyncResponse.m in Sources */,
 				3A108AA525810FE5005EEBE9 /* MXRawDataKey.m in Sources */,
@@ -6201,6 +6239,7 @@
 				320B3937239FA56900BE2C06 /* MXKeyVerificationByDMRequest.m in Sources */,
 				B14EF2832397E90400758AF0 /* MXRoomCreateContent.m in Sources */,
 				EC8A53B025B1BC77004E0802 /* MXCallAnswerEventContent.m in Sources */,
+				651609EB27A8827B00D48B6B /* MXSQLiteCryptoStore.m in Sources */,
 				EC60ED7E265CFCD100B39A4E /* MXDeviceListResponse.m in Sources */,
 				323F879025553D84009E9E67 /* MXTaskProfile.m in Sources */,
 				B14EF2842397E90400758AF0 /* MXUIKitBackgroundModeHandler.m in Sources */,
@@ -6308,6 +6347,7 @@
 				B1F939F626289F2600D0E525 /* MXSpaceChildContentTests.swift in Sources */,
 				B1E09A412397FD820057C069 /* MXAccountDataTests.m in Sources */,
 				B1E09A2D2397FD750057C069 /* MXRestClientNoAuthAPITests.m in Sources */,
+				651609F527A8C48F00D48B6B /* MXSQLiteCryptoStoreTests.m in Sources */,
 				B1E09A332397FD750057C069 /* MXRoomStateTests.m in Sources */,
 				18937E7D273A5AE500902626 /* MXPollRelationTests.m in Sources */,
 				B1E09A352397FD7D0057C069 /* MXEventTests.m in Sources */,

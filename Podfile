@@ -12,9 +12,10 @@ abstract_target 'MatrixSDK' do
     
     pod 'Realm', '10.16.0'
     pod 'libbase58', '~> 0.1.4'
+    pod 'GRDB.swift', '~> 5.19.0'
     
     target 'MatrixSDK-iOS' do
-        platform :ios, '9.0'
+        platform :ios, '11.0'
         
         target 'MatrixSDKTests-iOS' do
             inherit! :search_paths
