@@ -19,14 +19,39 @@ import GRDB
 
 @objcMembers public class GRDBCoordinator: NSObject {
   
-  public class func fileName(withUserId userId: String, andDeviceId deviceId: String) -> String {
+  private let pool: DatabasePool
+  
+  public init(url: URL) throws {
     
-    if MXTools.isRunningUnitTests() {
-      //        Append the device id for unit tests so that we can run e2e tests
-      //        with users with several devices
-      return "\(userId)-\(deviceId)"
-    } else {
-      return userId
+    let pool = try DatabasePool(path: url.absoluteString)
+    
+    var migrator = DatabaseMigrator()
+    migrator.registerMigration("createOlmAccount") { db in
+      try db.create(table: "OlmAccount") { t in
+        t.column("userId", .text).notNull()
+        t.column("deviceId", .text).notNull()
+        t.primaryKey(["userId", "deviceId"], onConflict: .rollback)
+      }
+    }
+    
+    try migrator.migrate(pool)
+    self.pool = pool
+  }
+  
+  public func accountIfExists(userId: String) -> MXGrdbOlmAccount? {
+    do {
+      return try self.pool.read { db in
+        return try MXGrdbOlmAccount.filter(MXGrdbOlmAccount.CodingKeys.userId == userId).fetchOne(db)
+      }
+    } catch {
+      return nil
+    }
+  }
+  
+  public func createAccount(userId: String, deviceId: String) throws {
+    let account = MXGrdbOlmAccount(deviceId: deviceId, userId: userId)
+    try self.pool.write { db in
+      try account.save(db)
     }
   }
 }

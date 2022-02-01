@@ -16,20 +16,40 @@
 
 import Foundation
 
-@objcMembers public class MXSQLiteFileUtils {
+@objcMembers public class MXSQLiteFileUtils: NSObject {
   
-  public static let MXSQLiteCryptoStoreFolder = "MXSQLiteCryptoStore"
-  public class func mxStoreFolder(for bundleIndentifier: String?) -> URL {
+  public class func sqliteUrl(for userId: String, deviceId: String) -> URL {
+    Self.mxStoreFolder()
+      .appendingPathComponent(Self.fileName(withUserId: userId, andDeviceId: deviceId))
+  }
+  
+  class func fileName(withUserId userId: String, andDeviceId deviceId: String) -> String {
+    
+    if MXTools.isRunningUnitTests() {
+      //        Append the device id for unit tests so that we can run e2e tests
+      //        with users with several devices
+      return "\(userId)-\(deviceId).sqlite"
+    } else {
+      return "\(userId).sqlite"
+    }
+  }
+  
+  static let MXSQLiteCryptoStoreFolder = "MXSQLiteCryptoStore"
+  public class func mxStoreFolder() -> URL {
     
     if let applicationGroupIdentifier = MXSDKOptions.sharedInstance().applicationGroupIdentifier,
        let sharedContainerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: applicationGroupIdentifier) {
       return sharedContainerURL.appendingPathComponent(Self.MXSQLiteCryptoStoreFolder)
     } else {
-      return MXSQLiteFileUtils.defaultStoreFolder(for: bundleIndentifier).appendingPathComponent(Self.MXSQLiteCryptoStoreFolder)
+      return MXSQLiteFileUtils.defaultStoreFolder().appendingPathComponent(Self.MXSQLiteCryptoStoreFolder)
     }
   }
   
-  public class func defaultStoreFolder(for bundleIdentifier: String?) -> URL {
+  public class func deleteAllStores() {
+    try? FileManager.default.removeItem(at: Self.mxStoreFolder())
+  }
+  
+  class func defaultStoreFolder() -> URL {
 #if TARGET_OS_TV
     return NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!
 #elseif TARGET_OS_IPHONE && !TARGET_OS_MACCATALYST
@@ -44,7 +64,9 @@ import Foundation
       return applicationSupportURL
     }
     
-    return applicationSupportURL.appendingPathComponent(bundleIdentifier ?? Bundle.main.bundleIdentifier ?? Bundle.main.executableURL?.lastPathComponent ?? "")
+    return applicationSupportURL.appendingPathComponent(Bundle.main.bundleIdentifier
+                                                        ?? Bundle.main.executableURL?.lastPathComponent
+                                                        ?? MXSQLiteCryptoStoreFolder)
     
 #endif
   }

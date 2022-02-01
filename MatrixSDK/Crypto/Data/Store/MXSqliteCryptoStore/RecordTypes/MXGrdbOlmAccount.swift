@@ -14,17 +14,28 @@
 // limitations under the License.
 //
 
-import XCTest
-@testable import MatrixSDK
+import Foundation
+import GRDB
 
-class MXSQLiteFileUtilsTests: XCTestCase {
+@objcMembers
+public class MXGrdbOlmAccount: NSObject, Codable, FetchableRecord, PersistableRecord {
   
-  func test_defaultStoreFolder_usesBundleIdFromBundle() {
-    let url = MXSQLiteFileUtils.defaultStoreFolder()
-    XCTAssertEqual(url.lastPathComponent, "com.apple.dt.xctest.tool")
+  public static var databaseTableName: String = "OlmAccount"
+  
+  public var deviceId: String
+  public var userId: String
+  
+  public init(deviceId: String, userId: String) {
+    self.deviceId = deviceId
+    self.userId = userId
   }
   
-  func test_mxStoreFolder_appendsFolderNameInAllCases() {
-    XCTAssertEqual(MXSQLiteFileUtils.mxStoreFolder().lastPathComponent, "MXSQLiteCryptoStore")
+  public required init(row: Row) {
+    deviceId = row[CodingKeys.deviceId]
+    userId = row[CodingKeys.userId]
+  }
+  
+  public enum CodingKeys: String, CodingKey, ColumnExpression {
+    case deviceId, userId
   }
 }

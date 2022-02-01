@@ -20,14 +20,45 @@
 
 @interface MXSQLiteCryptoStore ()
 @property (nonatomic, strong) GRDBCoordinator* grdbCoordinator;
+@property (nonatomic, strong) NSString* userId;
+@property (nonatomic, strong) NSString* deviceId;
 @end
 
 @implementation MXSQLiteCryptoStore
 
-- (instancetype)init {
-  self = [super init];
+- (instancetype)initWithCredentials:(MXCredentials *)credentials { 
+  MXLogDebug(@"[MXSQLiteCryptoStore] initWithCredentials for %@:%@", credentials.userId, credentials.deviceId);
   
-  _grdbCoordinator = [[GRDBCoordinator alloc] init];
+  self = [super init];
+  if (self) {
+    self.userId = credentials.userId;
+    self.deviceId = credentials.deviceId;
+    
+    NSURL* sqliteUrl = [MXSQLiteFileUtils sqliteUrlFor:credentials.userId deviceId:credentials.deviceId];
+    
+    NSError* error = nil;
+    self.grdbCoordinator = [[GRDBCoordinator alloc] initWithUrl:sqliteUrl error:&error];
+    
+    if (error) {
+      MXLogDebug(@"[MXSQLiteCryptoStore] error creating sqlite connection to url: %@, error: %@", sqliteUrl, error);
+      return nil;
+    }
+    
+    MXGrdbOlmAccount *account = [self.grdbCoordinator accountIfExistsWithUserId:credentials.userId];
+  
+    if (!account) {
+      return nil;
+    }  else  {
+      // Make sure the device id corresponds
+      if (account.deviceId && ![account.deviceId isEqualToString:credentials.deviceId]) {
+        MXLogDebug(@"[MXSQLiteCryptoStore] Credentials do not match");
+        [MXSQLiteCryptoStore deleteStoreWithCredentials:credentials];
+        self = [MXSQLiteCryptoStore createStoreWithCredentials:credentials];
+        self.cryptoVersion = MXCryptoVersionLast;
+      }
+    }
+  }
+  
   return self;
 }
 
@@ -36,12 +67,54 @@
 @synthesize globalBlacklistUnverifiedDevices;
 
 + (BOOL)hasDataForCredentials:(MXCredentials*)credentials {
-  return false;
+  NSURL* sqliteUrl = [MXSQLiteFileUtils sqliteUrlFor:credentials.userId deviceId:credentials.deviceId];
+  NSError* error = nil;
+  GRDBCoordinator* grdb = [[GRDBCoordinator alloc] initWithUrl:sqliteUrl error:&error];
+  
+  if (error) {
+    MXLogDebug(@"[MXSQLiteCryptoStore] error opening sqlite db at %@: %@", sqliteUrl, error);
+    return false;
+  }
+  
+  MXGrdbOlmAccount* maybeAccount = [grdb accountIfExistsWithUserId:credentials.userId];
+  if (maybeAccount) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
-//+ (instancetype)createStoreWithCredentials:(MXCredentials*)credentials {
-//  NSString* fileName = [GRDBCoordinator fileNameWithUserId:credentials.userId andDeviceId:credentials.deviceId];
-//  
-//}
++ (instancetype)createStoreWithCredentials:(MXCredentials*)credentials {
+  MXLogDebug(@"[MXSQLiteCryptoStore] createStore for %@:%@", credentials.userId, credentials.deviceId);
+  
+  NSURL* sqliteUrl = [MXSQLiteFileUtils sqliteUrlFor:credentials.userId deviceId:credentials.deviceId];
+  NSURL* sqliteFolderUrl = [sqliteUrl URLByDeletingLastPathComponent];
 
+  NSError* error = nil;
+  
+  [[NSFileManager defaultManager] createDirectoryAtURL:sqliteFolderUrl withIntermediateDirectories:true attributes:@{} error:&error];
+  if (error) {
+    MXLogDebug(@"[MXSQLiteCryptoStore] error creating store directory at url: %@, error: %@", sqliteFolderUrl, error);
+    return nil;
+  }
+
+  
+  GRDBCoordinator* grdb = [[GRDBCoordinator alloc] initWithUrl:sqliteUrl error:&error];
+  if (error) {
+    MXLogDebug(@"[MXSQLiteCryptoStore] error creating sqlite store at url: %@, error: %@", sqliteUrl, error);
+    return nil;
+  }
+  
+  [grdb createAccountWithUserId:credentials.userId deviceId:credentials.deviceId error:&error];
+  if (error) {
+    MXLogDebug(@"[MXSQLiteCryptoStore] error creating account for userId %@ at url: %@, error: %@", credentials.userId, sqliteUrl, error);
+    return nil;
+  }
+  
+  return [[MXSQLiteCryptoStore alloc] initWithCredentials:credentials];
+}
+
++(void)deleteAllStores {
+  [MXSQLiteFileUtils deleteAllStores];
+}
 @end

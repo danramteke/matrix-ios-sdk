@@ -16,27 +16,47 @@
 
 #import <XCTest/XCTest.h>
 #import "MXSQLiteCryptoStore.h"
+#import "MXCredentials.h"
+
+@implementation MXCredentials
+
+-(instancetype)initWithUserId:(NSString *)userId deviceId:(NSString *)deviceId {
+  self = [super init];
+  if (self) {
+    self.userId = userId;
+    self.deviceId = deviceId;
+  }
+  return self;
+}
+
+@end
 
 @interface MXSQLiteCryptoStoreTests : XCTestCase
+
+@property (nonatomic, strong) MXCredentials* credentials;
+
 @end
 
 @implementation MXSQLiteCryptoStoreTests
 
 - (void)setUp {
-
+  self.credentials = [[MXCredentials alloc] initWithUserId:@"exampleUserId" deviceId:@"exampleDeviceId"];
+  [MXSQLiteCryptoStore deleteAllStores];
 }
 
 - (void)tearDown {
-
+  self.credentials = nil;
+  [MXSQLiteCryptoStore deleteAllStores];
 }
 
 - (void)test_hasDataForCredentials_falseInitially {
-  BOOL result = [MXSQLiteCryptoStore hasDataForCredentials:[MXCredentials new]];
+  BOOL result = [MXSQLiteCryptoStore hasDataForCredentials:self.credentials];
   XCTAssertFalse(result);
 }
 
-- (void)testS {
-  
+- (void)testCreateStore {
+  [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
+  XCTAssertTrue([MXSQLiteCryptoStore hasDataForCredentials:self.credentials]);
 }
 
 @end
