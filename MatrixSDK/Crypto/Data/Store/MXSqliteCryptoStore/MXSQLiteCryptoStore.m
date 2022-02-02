@@ -121,9 +121,7 @@
 - (void)storeDeviceId:(NSString*)deviceId
 {
   NSError* error = nil;
-  
   [self.grdbCoordinator storeDeviceId:deviceId for:self.userId error:&error];
-  
   if (error) {
     MXLogDebug(@"[MXSQLiteCryptoStore] error storing device ID for user ID: %@, error: %@", self.userId, error);
   }
@@ -134,10 +132,9 @@
   NSError* error = nil;
   NSString* deviceId = [self.grdbCoordinator retrieveDeviceIdFor:self.userId error:&error];
   if (error) {
-    MXLogDebug(@"[MXSQLiteCryptoStore] error storing device ID for user ID: %@, error: %@", self.userId, error);
+    MXLogDebug(@"[MXSQLiteCryptoStore] error retriecing device ID for user ID: %@, error: %@", self.userId, error);
     return nil;
   }
-  
   return deviceId;
 }
 
@@ -150,7 +147,7 @@
  @param deviceSyncToken the token.
  */
 - (void)storeDeviceSyncToken:(NSString*)deviceSyncToken {
-  
+  [self.grdbCoordinator storeDeviceSyncTokenObjc:deviceSyncToken for:self.userId];
 }
 
 /**
@@ -159,6 +156,6 @@
  @return the token.
  */
 - (NSString*)deviceSyncToken {
-  return nil;
+  return [self.grdbCoordinator retrieveDeviceSyncTokenObjcFor:self.userId];
 }
 @end

@@ -68,4 +68,13 @@
   XCTAssertEqualObjects(@"new-device-id", [store deviceId]);
 }
 
+- (void)testStoreAndRetrieveDeviceSyncToken{
+  MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
+
+  XCTAssertEqualObjects(nil, [store deviceSyncToken]);
+  
+  [store storeDeviceSyncToken:@"newDeviceSyncToken"];
+  XCTAssertEqualObjects(@"newDeviceSyncToken", [store deviceSyncToken]);
+}
+
 @end
