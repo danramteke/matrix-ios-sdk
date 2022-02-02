@@ -148,4 +148,18 @@
 - (NSString*)deviceSyncToken {
   return [self.grdbCoordinator retrieveDeviceSyncTokenObjcFor:self.userId];
 }
+
+- (OLMAccount*)account
+{
+  NSData* data = [self.grdbCoordinator retrieveOlmAccountDataObjcFor:self.userId];
+  if (data) {
+    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+  } else {
+    return nil;
+  }
+}
+
+- (void)setAccount:(OLMAccount*)account {
+  
+}
 @end

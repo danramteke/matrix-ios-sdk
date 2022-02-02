@@ -27,54 +27,35 @@ extension GRDBCoordinator {
     do {
       return try self.retrieveDeviceId(for: userId)
     } catch {
-      MXLog.debug("[\(String(describing: Self.self))] error retrieving device ID for user ID \(userId): \(error)")
+      MXLog.error("[\(String(describing: Self.self))] error retrieving device ID for user ID \(userId): \(error)")
       return nil
     }
   }
   
   func retrieveDeviceId(for userId: String) throws -> String? {
-    try self.pool.read({ db in
-      guard let account = try OlmAccount_DeviceId
-              .filter(OlmAccount_DeviceId.CodingKeys.userId == userId)
-              .fetchOne(db) else {
-                return nil
-              }
-      
-      return account.deviceId
-    })
+    try self.pool.read { db in
+      try MXGrdbOlmAccount
+        .select(MXGrdbOlmAccount.CodingKeys.deviceId)
+        .filter(MXGrdbOlmAccount.CodingKeys.userId == userId)
+        .fetchOne(db)
+    }
   }
   
   public func storeDeviceIdObjc(_ deviceId: String, for userId: String) {
     do {
       try self.storeDeviceId(deviceId, for: userId)
     } catch {
-      MXLog.debug("[\(String(describing: Self.self))] error storing device ID for user ID \(userId): \(error)")
+      MXLog.error("[\(String(describing: Self.self))] error storing device ID for user ID \(userId): \(error)")
     }
   }
   
   func storeDeviceId(_ deviceId: String, for userId: String) throws {
-    
-    try self.pool.write { db in
-      
-      guard var account = try OlmAccount_DeviceId
-              .filter(OlmAccount_DeviceId.CodingKeys.userId == userId)
-              .fetchOne(db) else {
-                throw OlmAccountNotFound(userId: userId)
-              }
-      
-      account.deviceId = deviceId
-      try account.update(db)
+    return try self.pool.write { db in
+      try MXGrdbOlmAccount
+        .filter(MXGrdbOlmAccount.CodingKeys.userId == userId)
+        .updateAll(db, [
+          MXGrdbOlmAccount.CodingKeys.deviceId.set(to: deviceId)
+        ])
     }
-  }
-}
-
-private struct OlmAccount_DeviceId: Codable, PersistableRecord, FetchableRecord {
-  static let databaseTableName: String = MXGrdbOlmAccount.databaseTableName
-  
-  let userId: String
-  var deviceId: String
-  
-  enum CodingKeys: String, CodingKey, ColumnExpression {
-    case deviceId, userId
   }
 }

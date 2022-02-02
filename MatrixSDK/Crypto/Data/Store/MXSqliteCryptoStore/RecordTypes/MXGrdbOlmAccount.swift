@@ -18,7 +18,7 @@ import Foundation
 import GRDB
 
 @objcMembers
-public class MXGrdbOlmAccount: NSObject, Codable, FetchableRecord, PersistableRecord {
+public class MXGrdbOlmAccount: NSObject, Codable, FetchableRecord, PersistableRecord, TableRecord {
   
   public static var databaseTableName: String = "OlmAccount"
   

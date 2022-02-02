@@ -23,7 +23,7 @@ extension GRDBCoordinator {
     do {
       return try self.retrieveDeviceSyncToken(for: userId)
     } catch {
-      MXLog.debug("[\(String(describing: Self.self))] error retrieving device sync token for user ID \(userId): \(error)")
+      MXLog.error("[\(String(describing: Self.self))] error retrieving device sync token for user ID \(userId): \(error)")
       return nil
     }
   }
@@ -32,43 +32,26 @@ extension GRDBCoordinator {
     do {
       try self.storeDeviceSyncToken(deviceSyncToken, for: userId)
     } catch {
-      MXLog.debug("[\(String(describing: Self.self))] error storing device sync token for user ID \(userId): \(error)")
+      MXLog.error("[\(String(describing: Self.self))] error storing device sync token for user ID \(userId): \(error)")
     }
   }
   
   func retrieveDeviceSyncToken(for userId: String) throws -> String? {
-    try self.pool.read({ db in
-      guard let account = try OlmAccount_DeviceSyncToken
-              .filter(OlmAccount_DeviceSyncToken.CodingKeys.userId == userId)
-              .fetchOne(db) else {
-                return nil
-              }
-      
-      return account.deviceSyncToken
-    })
+    try self.pool.read { db in
+      try MXGrdbOlmAccount
+        .select(MXGrdbOlmAccount.CodingKeys.deviceSyncToken)
+        .filter(MXGrdbOlmAccount.CodingKeys.userId == userId)
+        .fetchOne(db)
+    }
   }
   
   func storeDeviceSyncToken(_ deviceSyncToken: String, for userId: String) throws {
-    try self.pool.write { db in
-      guard var account = try OlmAccount_DeviceSyncToken
-              .filter(OlmAccount_DeviceSyncToken.CodingKeys.userId == userId)
-              .fetchOne(db) else {
-                return
-              }
-      
-      account.deviceSyncToken = deviceSyncToken
-      try account.update(db)
+    return try self.pool.write { db in
+      try MXGrdbOlmAccount
+        .filter(MXGrdbOlmAccount.CodingKeys.userId == userId)
+        .updateAll(db, [
+          MXGrdbOlmAccount.CodingKeys.deviceSyncToken.set(to: deviceSyncToken)
+        ])
     }
-  }
-}
-
-private struct OlmAccount_DeviceSyncToken: Codable, PersistableRecord, FetchableRecord {
-  static let databaseTableName: String = MXGrdbOlmAccount.databaseTableName
-  
-  let userId: String
-  var deviceSyncToken: String?
-  
-  enum CodingKeys: String, CodingKey, ColumnExpression {
-    case deviceSyncToken, userId
   }
 }
