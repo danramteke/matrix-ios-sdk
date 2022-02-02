@@ -159,7 +159,10 @@
   }
 }
 
-- (void)setAccount:(OLMAccount*)account {
-  
+- (void)setAccount:(OLMAccount*)olmAccount {
+  NSDate* startDate = [NSDate date];
+  NSData* data = [NSKeyedArchiver archivedDataWithRootObject:olmAccount];
+  [self.grdbCoordinator storeOlmAccountDataObjc:data for:self.userId];
+  MXLogDebug(@"[MXSQLiteCryptoStore] storeAccount in %.3fms", [[NSDate date] timeIntervalSinceDate:startDate] * 1000);
 }
 @end

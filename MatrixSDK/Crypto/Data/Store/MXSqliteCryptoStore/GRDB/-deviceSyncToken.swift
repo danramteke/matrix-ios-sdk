@@ -49,9 +49,7 @@ extension GRDBCoordinator {
     return try self.pool.write { db in
       try MXGrdbOlmAccount
         .filter(MXGrdbOlmAccount.CodingKeys.userId == userId)
-        .updateAll(db, [
-          MXGrdbOlmAccount.CodingKeys.deviceSyncToken.set(to: deviceSyncToken)
-        ])
+        .updateAll(db, MXGrdbOlmAccount.CodingKeys.deviceSyncToken.set(to: deviceSyncToken))
     }
   }
 }

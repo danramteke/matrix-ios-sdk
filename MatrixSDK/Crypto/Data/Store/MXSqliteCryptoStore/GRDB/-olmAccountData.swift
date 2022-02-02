@@ -35,4 +35,20 @@ extension GRDBCoordinator {
                           .filter(MXGrdbOlmAccount.CodingKeys.userId == userId))
     }
   }
+  
+  public func storeOlmAccountDataObjc(_ data: Data, for userId: String) {
+    do {
+      try self.storeOlmAccountData(data, for: userId)
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error storing OLM Account data for user ID \(userId): \(error)")
+    }
+  }
+  
+  func storeOlmAccountData(_ data: Data, for userId: String) throws {
+    return try self.pool.write { db in
+      try MXGrdbOlmAccount
+        .filter(MXGrdbOlmAccount.CodingKeys.userId == userId)
+        .updateAll(db, MXGrdbOlmAccount.CodingKeys.olmAccountData.set(to: data))
+    }
+  }
 }

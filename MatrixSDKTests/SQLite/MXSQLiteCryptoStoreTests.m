@@ -17,6 +17,8 @@
 #import <XCTest/XCTest.h>
 #import "MXSQLiteCryptoStore.h"
 #import "MXCredentials.h"
+#import <OLMKit/OLMKit.h>
+
 
 @implementation MXCredentials
 
@@ -75,6 +77,20 @@
   
   [store storeDeviceSyncToken:@"newDeviceSyncToken"];
   XCTAssertEqualObjects(@"newDeviceSyncToken", [store deviceSyncToken]);
+}
+
+- (void)testStoreAndRetrieveOLMAccount {
+  MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
+  
+  XCTAssertEqualObjects(nil, [store account]);
+  
+  OLMAccount* olmAccount = [[OLMAccount alloc] initNewAccount];
+  [store setAccount:olmAccount];
+  
+  OLMAccount* retrievedAccount = [store account];
+  XCTAssertNotNil(retrievedAccount);
+  XCTAssertEqualObjects(olmAccount.identityKeys, retrievedAccount.identityKeys);
+  XCTAssertEqualObjects(olmAccount.oneTimeKeys, retrievedAccount.oneTimeKeys);
 }
 
 @end
