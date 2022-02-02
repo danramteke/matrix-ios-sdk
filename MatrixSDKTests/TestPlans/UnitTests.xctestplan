@@ -52,6 +52,12 @@
         "MXReplyEventParserUnitTests",
         "MXResponseUnitTests",
         "MXRoomListDataManagerUnitTests",
+        "MXSQLiteCryptoStoreTests\/testCreateStore",
+        "MXSQLiteCryptoStoreTests\/testStoreAndRetrieveDeviceId",
+        "MXSQLiteCryptoStoreTests\/test_hasDataForCredentials_falseInitially",
+        "MXSQLiteFileUtilsTests\/test_defaultStoreFolder_usesBundleIdFromBundle()",
+        "MXSQLiteFileUtilsTests\/test_defaultStoreFolder_usesBundleIdFromParamWhenPresent()",
+        "MXSQLiteFileUtilsTests\/test_mxStoreFolder_appendsFolderNameInAllCases()",
         "MXSyncResponseUnitTests",
         "MXToolsUnitTests"
       ],
