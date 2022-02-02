@@ -30,7 +30,7 @@ import GRDB
       try db.create(table: "OlmAccount") { t in
         t.column("userId", .text).notNull()
         t.column("deviceId", .text).notNull()
-        t.primaryKey(["userId", "deviceId"], onConflict: .rollback)
+        t.primaryKey(["userId"], onConflict: .rollback)
       }
     }
     
@@ -52,6 +52,28 @@ import GRDB
     let account = MXGrdbOlmAccount(deviceId: deviceId, userId: userId)
     try self.pool.write { db in
       try account.save(db)
+    }
+  }
+  
+  public func storeDeviceId(_ deviceId: String, for userId: String) throws {
+    
+    struct OlmAccountUserIdDeviceId: Codable, PersistableRecord, FetchableRecord {
+      static let databaseTableName: String = MXGrdbOlmAccount.databaseTableName
+      var deviceId: String
+      var userId: String
+      enum CodingKeys: String, CodingKey, ColumnExpression {
+        case deviceId, userId
+      }
+    }
+    
+    try self.pool.write { db in
+      
+      guard var account = try? OlmAccountUserIdDeviceId.filter(OlmAccountUserIdDeviceId.CodingKeys.userId == userId).fetchOne(db) else {
+        return
+      }
+      
+      account.deviceId = deviceId
+      try account.update(db)
     }
   }
 }

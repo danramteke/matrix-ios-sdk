@@ -59,4 +59,13 @@
   XCTAssertTrue([MXSQLiteCryptoStore hasDataForCredentials:self.credentials]);
 }
 
+- (void)testStoreAndRetrieveDeviceId {
+  MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
+  XCTAssertTrue([MXSQLiteCryptoStore hasDataForCredentials:self.credentials]);
+  XCTAssertEqualObjects(self.credentials.deviceId, [store deviceId]);
+  
+  [store storeDeviceId:@"new-device-id"];
+  XCTAssertEqualObjects(@"new-device-id", [store deviceId]);
+}
+
 @end

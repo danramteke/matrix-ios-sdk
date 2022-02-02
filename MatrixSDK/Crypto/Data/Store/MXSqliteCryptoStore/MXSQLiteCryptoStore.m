@@ -117,4 +117,20 @@
 +(void)deleteAllStores {
   [MXSQLiteFileUtils deleteAllStores];
 }
+
+- (void)storeDeviceId:(NSString*)deviceId
+{
+  NSError* error = nil;
+  
+  [self.grdbCoordinator storeDeviceId:deviceId for:self.userId error:&error];
+  
+  if (error) {
+    MXLogDebug(@"[MXSQLiteCryptoStore] error storing device ID for user ID: %@, error: %@", self.userId, error);
+  }
+}
+
+- (NSString*)deviceId
+{
+  return [self.grdbCoordinator accountIfExistsWithUserId:self.userId].deviceId;
+}
 @end
