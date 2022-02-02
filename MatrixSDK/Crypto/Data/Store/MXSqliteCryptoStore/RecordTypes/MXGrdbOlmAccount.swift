@@ -24,18 +24,20 @@ public class MXGrdbOlmAccount: NSObject, Codable, FetchableRecord, PersistableRe
   
   public var deviceId: String
   public var userId: String
+  public var deviceSyncToken: String?
+  public var olmAccountData: Data?
+  public var deviceTrackingStatusData: Data?
+  public var globalBlacklistUnverifiedDevices: Bool
+  public var backupVersion: String?
   
   public init(deviceId: String, userId: String) {
     self.deviceId = deviceId
     self.userId = userId
+    self.globalBlacklistUnverifiedDevices = false
   }
-  
-  public required init(row: Row) {
-    deviceId = row[CodingKeys.deviceId]
-    userId = row[CodingKeys.userId]
-  }
-  
+   
   public enum CodingKeys: String, CodingKey, ColumnExpression {
     case deviceId, userId
+    case backupVersion, globalBlacklistUnverifiedDevices, deviceSyncToken, deviceTrackingStatusData, olmAccountData
   }
 }

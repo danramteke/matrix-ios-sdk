@@ -131,6 +131,34 @@
 
 - (NSString*)deviceId
 {
-  return [self.grdbCoordinator accountIfExistsWithUserId:self.userId].deviceId;
+  NSError* error = nil;
+  NSString* deviceId = [self.grdbCoordinator retrieveDeviceIdFor:self.userId error:&error];
+  if (error) {
+    MXLogDebug(@"[MXSQLiteCryptoStore] error storing device ID for user ID: %@, error: %@", self.userId, error);
+    return nil;
+  }
+  
+  return deviceId;
+}
+
+/**
+ Store the sync token corresponding to the device list.
+ 
+ This is used when starting the client, to get a list of the users who
+ have changed their device list since the list time we were running.
+ 
+ @param deviceSyncToken the token.
+ */
+- (void)storeDeviceSyncToken:(NSString*)deviceSyncToken {
+  
+}
+
+/**
+ Get the sync token corresponding to the device list.
+ 
+ @return the token.
+ */
+- (NSString*)deviceSyncToken {
+  return nil;
 }
 @end

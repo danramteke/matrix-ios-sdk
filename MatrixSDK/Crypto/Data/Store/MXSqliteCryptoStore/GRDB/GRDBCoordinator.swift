@@ -19,7 +19,7 @@ import GRDB
 
 @objcMembers public class GRDBCoordinator: NSObject {
   
-  private let pool: DatabasePool
+  internal let pool: DatabasePool
   
   public init(url: URL) throws {
     
@@ -30,6 +30,11 @@ import GRDB
       try db.create(table: "OlmAccount") { t in
         t.column("userId", .text).notNull()
         t.column("deviceId", .text).notNull()
+        t.column("backupVersion", .text)
+        t.column("deviceTrackingStatusData", .blob)
+        t.column("deviceSyncToken", .text)
+        t.column("globalBlacklistUnverifiedDevices", .boolean)
+        t.column("olmAccountData", .blob)
         t.primaryKey(["userId"], onConflict: .rollback)
       }
     }
@@ -55,25 +60,5 @@ import GRDB
     }
   }
   
-  public func storeDeviceId(_ deviceId: String, for userId: String) throws {
-    
-    struct OlmAccountUserIdDeviceId: Codable, PersistableRecord, FetchableRecord {
-      static let databaseTableName: String = MXGrdbOlmAccount.databaseTableName
-      var deviceId: String
-      var userId: String
-      enum CodingKeys: String, CodingKey, ColumnExpression {
-        case deviceId, userId
-      }
-    }
-    
-    try self.pool.write { db in
-      
-      guard var account = try? OlmAccountUserIdDeviceId.filter(OlmAccountUserIdDeviceId.CodingKeys.userId == userId).fetchOne(db) else {
-        return
-      }
-      
-      account.deviceId = deviceId
-      try account.update(db)
-    }
-  }
+  
 }
