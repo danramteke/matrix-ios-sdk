@@ -120,22 +120,12 @@
 
 - (void)storeDeviceId:(NSString*)deviceId
 {
-  NSError* error = nil;
-  [self.grdbCoordinator storeDeviceId:deviceId for:self.userId error:&error];
-  if (error) {
-    MXLogDebug(@"[MXSQLiteCryptoStore] error storing device ID for user ID: %@, error: %@", self.userId, error);
-  }
+  [self.grdbCoordinator storeDeviceIdObjc:deviceId for:self.userId];
 }
 
 - (NSString*)deviceId
 {
-  NSError* error = nil;
-  NSString* deviceId = [self.grdbCoordinator retrieveDeviceIdFor:self.userId error:&error];
-  if (error) {
-    MXLogDebug(@"[MXSQLiteCryptoStore] error retriecing device ID for user ID: %@, error: %@", self.userId, error);
-    return nil;
-  }
-  return deviceId;
+  return [self.grdbCoordinator retrieveDeviceIdObjcFor:self.userId];
 }
 
 /**

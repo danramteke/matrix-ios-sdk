@@ -23,7 +23,7 @@ extension GRDBCoordinator {
     do {
       return try self.retrieveDeviceSyncToken(for: userId)
     } catch {
-      MXLog.debug("[\(String(describing: Self.self))] error retrieving device token for user ID \(userId): \(error)")
+      MXLog.debug("[\(String(describing: Self.self))] error retrieving device sync token for user ID \(userId): \(error)")
       return nil
     }
   }
@@ -32,7 +32,7 @@ extension GRDBCoordinator {
     do {
       try self.storeDeviceSyncToken(deviceSyncToken, for: userId)
     } catch {
-      MXLog.debug("[\(String(describing: Self.self))] error storing device token for user ID \(userId): \(error)")
+      MXLog.debug("[\(String(describing: Self.self))] error storing device sync token for user ID \(userId): \(error)")
     }
   }
   

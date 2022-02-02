@@ -23,19 +23,36 @@ public struct OlmAccountNotFound: Error {
 
 extension GRDBCoordinator {
   
-  public func retrieveDeviceId(for userId: String) throws -> String {
+  public func retrieveDeviceIdObjc(for userId: String) -> String? {
+    do {
+      return try self.retrieveDeviceId(for: userId)
+    } catch {
+      MXLog.debug("[\(String(describing: Self.self))] error retrieving device ID for user ID \(userId): \(error)")
+      return nil
+    }
+  }
+  
+  func retrieveDeviceId(for userId: String) throws -> String? {
     try self.pool.read({ db in
       guard let account = try OlmAccount_DeviceId
               .filter(OlmAccount_DeviceId.CodingKeys.userId == userId)
               .fetchOne(db) else {
-                throw OlmAccountNotFound(userId: userId)
+                return nil
               }
       
       return account.deviceId
     })
   }
   
-  public func storeDeviceId(_ deviceId: String, for userId: String) throws {
+  public func storeDeviceIdObjc(_ deviceId: String, for userId: String) {
+    do {
+      try self.storeDeviceId(deviceId, for: userId)
+    } catch {
+      MXLog.debug("[\(String(describing: Self.self))] error storing device ID for user ID \(userId): \(error)")
+    }
+  }
+  
+  func storeDeviceId(_ deviceId: String, for userId: String) throws {
     
     try self.pool.write { db in
       
