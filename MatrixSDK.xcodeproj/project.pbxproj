@@ -715,6 +715,8 @@
 		65160A1327AB152300D48B6B /* -deviceId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65160A1127AB152300D48B6B /* -deviceId.swift */; };
 		65160A1527AB1A7C00D48B6B /* -deviceSyncToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65160A1427AB1A7C00D48B6B /* -deviceSyncToken.swift */; };
 		65160A1627AB1A7C00D48B6B /* -deviceSyncToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65160A1427AB1A7C00D48B6B /* -deviceSyncToken.swift */; };
+		65160A1827AB2E1000D48B6B /* GRDBCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65160A1727AB2E1000D48B6B /* GRDBCoordinatorTests.swift */; };
+		65160A1927AB2E1000D48B6B /* GRDBCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65160A1727AB2E1000D48B6B /* GRDBCoordinatorTests.swift */; };
 		71DE22E01BC7C51200284153 /* MXReceiptData.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DE22DC1BC7C51200284153 /* MXReceiptData.m */; };
 		71DE22E11BC7C51200284153 /* MXReceiptData.h in Headers */ = {isa = PBXBuildFile; fileRef = 71DE22DD1BC7C51200284153 /* MXReceiptData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8EC511042568216B00EC4E5B /* MXTaggedEventInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EC511022568216B00EC4E5B /* MXTaggedEventInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -2228,6 +2230,7 @@
 		65160A0D27A9E64A00D48B6B /* MXGrdbOlmAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXGrdbOlmAccount.swift; sourceTree = "<group>"; };
 		65160A1127AB152300D48B6B /* -deviceId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "-deviceId.swift"; sourceTree = "<group>"; };
 		65160A1427AB1A7C00D48B6B /* -deviceSyncToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "-deviceSyncToken.swift"; sourceTree = "<group>"; };
+		65160A1727AB2E1000D48B6B /* GRDBCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRDBCoordinatorTests.swift; sourceTree = "<group>"; };
 		6869D206EA7C7FB05EAB75B0 /* Pods-MatrixSDKTests-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MatrixSDKTests-iOS.release.xcconfig"; path = "Target Support Files/Pods-MatrixSDKTests-iOS/Pods-MatrixSDKTests-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		71DE22DC1BC7C51200284153 /* MXReceiptData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXReceiptData.m; sourceTree = "<group>"; };
 		71DE22DD1BC7C51200284153 /* MXReceiptData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXReceiptData.h; sourceTree = "<group>"; };
@@ -3902,6 +3905,7 @@
 			children = (
 				651609F327A8C48F00D48B6B /* MXSQLiteCryptoStoreTests.m */,
 				65160A0927A9934B00D48B6B /* MXSQLiteFileUtilsTests.swift */,
+				65160A1727AB2E1000D48B6B /* GRDBCoordinatorTests.swift */,
 			);
 			path = SQLite;
 			sourceTree = "<group>";
@@ -5879,6 +5883,7 @@
 				326D1EF51BFC79300030947B /* MXPushRuleUnitTests.m in Sources */,
 				EC1165CE27107F3E0089FA56 /* MXRoomListDataManagerTests.swift in Sources */,
 				324BE45B1E3FA7A8008D99D4 /* MXMegolmExportEncryptionUnitTests.m in Sources */,
+				65160A1827AB2E1000D48B6B /* GRDBCoordinatorTests.swift in Sources */,
 				327E9ACF2284783E00A98BC1 /* MXEventAnnotationUnitTests.swift in Sources */,
 				32EEA84A2603FDD60041425B /* MXResponseUnitTests.swift in Sources */,
 				32322A481E57264E005DD155 /* MXSelfSignedHomeserverTests.m in Sources */,
@@ -6360,6 +6365,7 @@
 				B1E09A3C2397FD820057C069 /* MXStoreMemoryStoreTests.m in Sources */,
 				EC1165CF27107F3E0089FA56 /* MXRoomListDataManagerTests.swift in Sources */,
 				B1E09A3E2397FD820057C069 /* MXToolsUnitTests.m in Sources */,
+				65160A1927AB2E1000D48B6B /* GRDBCoordinatorTests.swift in Sources */,
 				32B477912638133D00EA5800 /* MXAggregatedEditsUnitTests.m in Sources */,
 				B1E09A1E2397FCE90057C069 /* MXCryptoShareTests.m in Sources */,
 				B1E09A422397FD820057C069 /* MXCryptoTests.m in Sources */,
