@@ -191,8 +191,18 @@
   return [self.grdbCoordinator retrieveGlobalBlacklistUnverifiedDevicesFor:self.userId];
 }
 
-- (void)setGlobalBlacklistUnverifiedDevices:(BOOL)globalBlacklistUnverifiedDevices
-{
+- (void)setGlobalBlacklistUnverifiedDevices:(BOOL)globalBlacklistUnverifiedDevices {
   [self.grdbCoordinator storeGlobalBlacklistUnverifiedDevices:globalBlacklistUnverifiedDevices for:self.userId];
+}
+
+- (void)storeDeviceForUser:(NSString*)userId device:(MXDeviceInfo*)device {
+  NSDate* startDate = [NSDate date];
+  NSData* deviceData = [NSKeyedArchiver archivedDataWithRootObject:device];
+  
+  MXGrdbDevice* grdbDevice = [[MXGrdbDevice alloc] initWithId:device.deviceId userId:userId identityKey:device.identityKey data:deviceData];
+  
+  [self.grdbCoordinator storeDevice:grdbDevice];
+  
+  MXLogDebug(@"[MXSQLiteCryptoStore] storeDeviceForUser in %.3fms", [[NSDate date] timeIntervalSinceDate:startDate] * 1000);
 }
 @end
