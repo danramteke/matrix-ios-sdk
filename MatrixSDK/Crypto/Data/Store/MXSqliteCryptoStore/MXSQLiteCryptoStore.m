@@ -165,4 +165,34 @@
   [self.grdbCoordinator storeOlmAccountDataObjc:data for:self.userId];
   MXLogDebug(@"[MXSQLiteCryptoStore] storeAccount in %.3fms", [[NSDate date] timeIntervalSinceDate:startDate] * 1000);
 }
+
+/**
+ Perform an action that will advance the olm account state.
+ 
+ Some cryptographic operations update the internal state of the olm account. They must be executed
+ into this method to make those operations atomic. This method stores the new olm account state
+ when the block retuns,
+ The implementation must call the block before returning. It must be multi-thread and multi-process safe.
+ 
+ @param block the block where olm operations can be safely made.
+ */
+- (void)performAccountOperationWithBlock:(void (^)(OLMAccount *olmAccount))block {
+  OLMAccount* olmAccount = [self account];
+  if (olmAccount) {
+    block(olmAccount);
+    [self setAccount:olmAccount];
+  } else {
+    MXLogError(@"[MXSQLiteCryptoStore] performAccountOperationWithBlock. Error: Cannot build OLMAccount");
+    block(nil);
+  } 
+}
+
+- (BOOL)globalBlacklistUnverifiedDevices {
+  return [self.grdbCoordinator retrieveGlobalBlacklistUnverifiedDevicesFor:self.userId];
+}
+
+- (void)setGlobalBlacklistUnverifiedDevices:(BOOL)globalBlacklistUnverifiedDevices
+{
+  [self.grdbCoordinator storeGlobalBlacklistUnverifiedDevices:globalBlacklistUnverifiedDevices for:self.userId];
+}
 @end

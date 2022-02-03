@@ -79,6 +79,15 @@
   XCTAssertEqualObjects(@"newDeviceSyncToken", [store deviceSyncToken]);
 }
 
+- (void)testStoreAndRetrieveGlobalBlacklistUnverifiedDevices {
+  MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
+  
+  XCTAssertFalse([store globalBlacklistUnverifiedDevices]);
+  
+  [store setGlobalBlacklistUnverifiedDevices:true];
+  XCTAssertTrue([store globalBlacklistUnverifiedDevices]);
+}
+
 - (void)testStoreAndRetrieveOLMAccount {
   MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
   
