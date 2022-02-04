@@ -22,10 +22,27 @@ extension GRDBCoordinator {
   public func storeDevice(_ device: MXGrdbDevice) {
     do {
       try pool.write { db in
-      
+        
+        let _ = try MXGrdbUser.findOrCreate(id: device.userId, db: db)
+        
+        try device.save(db)
       }
     } catch {
       MXLog.error("[\(String(describing: Self.self))] error storing MXGrdbDevice for user ID \(device.userId): \(error)")
+    }
+  }
+  
+  public func retrieveDeviceBy(deviceId: String, userId: String) -> MXGrdbDevice? {
+    do {
+      return try pool.read { db in
+        return try MXGrdbDevice
+          .filter(MXGrdbDevice.CodingKeys.userId == userId)
+          .filter(MXGrdbDevice.CodingKeys.id == deviceId)
+          .fetchOne(db)
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error retrieving MXGrdbDevice for user ID \(userId): \(error)")
+      return nil
     }
   }
 }

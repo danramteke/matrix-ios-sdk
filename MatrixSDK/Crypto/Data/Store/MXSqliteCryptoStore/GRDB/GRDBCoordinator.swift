@@ -26,7 +26,7 @@ import GRDB
     let pool = try DatabasePool(path: url.absoluteString)
     
     var migrator = DatabaseMigrator()
-    migrator.registerMigration("createOlmAccount") { db in
+    migrator.registerMigration("create:OlmAccount,User,Device") { db in
       try db.create(table: "OlmAccount") { t in
         t.column("userId", .text).notNull()
         t.column("deviceId", .text).notNull()
@@ -37,6 +37,20 @@ import GRDB
         t.column("olmAccountData", .blob)
         t.primaryKey(["userId"], onConflict: .rollback)
       }
+
+      try db.create(table: "Device") { t in
+        t.column("id", .text).notNull()
+        t.column("userId", .text).notNull()
+        t.column("identityKey", .text)
+        t.column("data", .blob)
+        t.primaryKey(["id", "userId"], onConflict: .rollback)
+      }
+      
+      try db.create(table: "User") { t in
+        t.column("id", .text).notNull()
+        t.column("crossSigningKeysData", .blob)
+        t.primaryKey(["id"], onConflict: .rollback)
+      }
     }
     
     try migrator.migrate(pool)
@@ -46,7 +60,9 @@ import GRDB
   public func accountIfExists(userId: String) -> MXGrdbOlmAccount? {
     do {
       return try self.pool.read { db in
-        return try MXGrdbOlmAccount.filter(MXGrdbOlmAccount.CodingKeys.userId == userId).fetchOne(db)
+        return try MXGrdbOlmAccount
+          .filter(MXGrdbOlmAccount.CodingKeys.userId == userId)
+          .fetchOne(db)
       }
     } catch {
       return nil

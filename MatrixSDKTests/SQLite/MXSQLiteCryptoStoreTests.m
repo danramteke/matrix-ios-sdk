@@ -73,7 +73,7 @@
 - (void)testStoreAndRetrieveDeviceSyncToken{
   MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
 
-  XCTAssertEqualObjects(nil, [store deviceSyncToken]);
+  XCTAssertNil([store deviceSyncToken]);
   
   [store storeDeviceSyncToken:@"newDeviceSyncToken"];
   XCTAssertEqualObjects(@"newDeviceSyncToken", [store deviceSyncToken]);
@@ -91,7 +91,7 @@
 - (void)testStoreAndRetrieveOLMAccount {
   MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
   
-  XCTAssertEqualObjects(nil, [store account]);
+  XCTAssertNil([store account]);
   
   OLMAccount* olmAccount = [[OLMAccount alloc] initNewAccount];
   [store setAccount:olmAccount];
@@ -100,6 +100,24 @@
   XCTAssertNotNil(retrievedAccount);
   XCTAssertEqualObjects(olmAccount.identityKeys, retrievedAccount.identityKeys);
   XCTAssertEqualObjects(olmAccount.oneTimeKeys, retrievedAccount.oneTimeKeys);
+}
+
+- (void)testStoreAndRetrieveDevice {
+  MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
+  
+  XCTAssertNil([store account]);
+  XCTAssertNil([store deviceWithDeviceId:@"other device" forUser:@"other user"]);
+  
+  MXDeviceInfo* otherDevice = [[MXDeviceInfo alloc] initWithDeviceId:@"other device"];
+  [store storeDeviceForUser:@"other user" device:otherDevice];
+  
+  
+  MXDeviceInfo* retrievedDevice = [store deviceWithDeviceId:@"other device" forUser:@"other user"];
+  XCTAssertNotNil(retrievedDevice);
+  
+  XCTAssertEqualObjects(retrievedDevice.keys, otherDevice.keys);
+  XCTAssertEqualObjects(retrievedDevice.userId, otherDevice.userId);
+  XCTAssertEqualObjects(retrievedDevice.deviceId, otherDevice.deviceId);
 }
 
 @end

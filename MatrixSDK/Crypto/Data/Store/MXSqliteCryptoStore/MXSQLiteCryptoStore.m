@@ -199,10 +199,23 @@
   NSDate* startDate = [NSDate date];
   NSData* deviceData = [NSKeyedArchiver archivedDataWithRootObject:device];
   
-  MXGrdbDevice* grdbDevice = [[MXGrdbDevice alloc] initWithId:device.deviceId userId:userId identityKey:device.identityKey data:deviceData];
+  MXGrdbDevice* grdbDevice = [[MXGrdbDevice alloc] initWithId:device.deviceId
+                                                       userId:userId
+                                                  identityKey:device.identityKey
+                                                         data:deviceData];
   
   [self.grdbCoordinator storeDevice:grdbDevice];
   
   MXLogDebug(@"[MXSQLiteCryptoStore] storeDeviceForUser in %.3fms", [[NSDate date] timeIntervalSinceDate:startDate] * 1000);
 }
+
+- (MXDeviceInfo*)deviceWithDeviceId:(NSString*)deviceId forUser:(NSString*)userId {
+  MXGrdbDevice* grdbDevice = [self.grdbCoordinator retrieveDeviceByDeviceId:deviceId userId:userId];
+  if (grdbDevice) {
+    return [NSKeyedUnarchiver unarchiveObjectWithData:grdbDevice.data];
+  } else {
+    return nil;
+  }
+}
 @end
+
