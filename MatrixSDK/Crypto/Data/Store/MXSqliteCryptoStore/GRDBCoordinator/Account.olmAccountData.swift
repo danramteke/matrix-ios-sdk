@@ -51,7 +51,7 @@ extension GRDBCoordinator {
           .filter(MXGrdbOlmAccount.CodingKeys.userId == userId)
           .fetchOne(db)
         block(maybeAccount)
-        try maybeAccount?.save(db)
+        try maybeAccount?.update(db)
       }
     } catch {
       MXLog.error("[\(String(describing: Self.self))] error performing OLM account transaction: \(error)")

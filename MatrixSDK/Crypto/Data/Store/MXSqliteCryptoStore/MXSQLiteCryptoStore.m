@@ -356,8 +356,7 @@
   return mxOlmSession;
 }
 
-- (void)performSessionOperationWithDevice:(NSString*)deviceKey andSessionId:(NSString*)sessionId block:(void (^)(MXOlmSession *olmSession))block
-{
+- (void)performSessionOperationWithDevice:(NSString*)deviceKey andSessionId:(NSString*)sessionId block:(void (^)(MXOlmSession *olmSession))block {
   
   [self.grdbCoordinator performOlmSessionTransactionForSessionId:sessionId deviceKey:deviceKey block:^(MXGrdbOlmSession * _Nullable grdbSession) {
     if (grdbSession.olmSessionData) {
@@ -375,4 +374,20 @@
     }
   }];
 }
+
+- (NSArray<MXOlmSession*>*)sessionsWithDevice:(NSString*)deviceKey {
+  NSMutableArray<MXOlmSession*> *sessionsWithDevice = [NSMutableArray array];
+  
+  NSArray<MXGrdbOlmSession*>* retrieved = [self.grdbCoordinator retrieveAllOlmSessionsForDeviceKey:deviceKey];
+  [retrieved enumerateObjectsUsingBlock:^(MXGrdbOlmSession * _Nonnull grdbSession, NSUInteger idx, BOOL * _Nonnull stop) {
+    OLMSession *olmSession = [NSKeyedUnarchiver unarchiveObjectWithData:grdbSession.olmSessionData];
+    
+    MXOlmSession* mxOlmSession = [[MXOlmSession alloc] initWithOlmSession:olmSession];
+    mxOlmSession.lastReceivedMessageTs = grdbSession.lastReceivedMessageTs;
+    [sessionsWithDevice addObject:mxOlmSession];
+  }];
+  
+  return sessionsWithDevice;
+}
+
 @end

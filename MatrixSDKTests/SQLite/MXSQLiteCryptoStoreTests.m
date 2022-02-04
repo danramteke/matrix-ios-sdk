@@ -225,12 +225,18 @@
   XCTAssertEqualObjects(retrievedSession.session.sessionIdentifier, olmSession.sessionIdentifier);
   
   
+  //block
   __block BOOL blockDidRun = false;
   [store performSessionOperationWithDevice:@"device" andSessionId:olmSession.sessionIdentifier block:^(MXOlmSession *blockSession) {
     XCTAssertNotNil(blockSession);
     blockDidRun = true;
   }];
   XCTAssertTrue(blockDidRun);
+  
+  //all
+  NSArray<MXOlmSession*>* sessions = [store sessionsWithDevice:@"device"];
+  XCTAssertEqual(sessions.count, 1);
+  
 }
 
 @end

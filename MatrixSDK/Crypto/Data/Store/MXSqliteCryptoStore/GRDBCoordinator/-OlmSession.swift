@@ -33,6 +33,19 @@ extension GRDBCoordinator {
     }
   }
   
+  public func retrieveAllOlmSessionsForDeviceKey(_ deviceKey: String) -> [MXGrdbOlmSession] {
+    do {
+      return try self.pool.read { db in
+        return try MXGrdbOlmSession
+          .filter(MXGrdbOlmSession.CodingKeys.deviceKey == deviceKey)
+          .fetchAll(db)
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error retrieving OLM sessions for device key: \(error)")
+      return []
+    }
+  }
+  
   public func storeOlmSession(_ olmSession: MXGrdbOlmSession) {
     do {
       try self.pool.write { db in
@@ -51,7 +64,7 @@ extension GRDBCoordinator {
           .filter(MXGrdbOlmSession.CodingKeys.deviceKey == deviceKey)
           .fetchOne(db)
         block(maybeSession)
-        try maybeSession?.save(db)
+        try maybeSession?.update(db)
       }
     } catch {
       MXLog.error("[\(String(describing: Self.self))] error performing OLM session transaction: \(error)")
