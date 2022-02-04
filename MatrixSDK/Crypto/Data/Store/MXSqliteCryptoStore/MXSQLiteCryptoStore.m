@@ -293,4 +293,16 @@
   NSData* data = [NSKeyedArchiver archivedDataWithRootObject:crossSigningInfo];
   [self.grdbCoordinator storeCrossSigningKeysWithData:data for:crossSigningInfo.userId];
 }
+
+- (NSArray<MXCrossSigningInfo *> *)crossSigningKeys
+{
+  NSMutableArray<MXCrossSigningInfo*> *crossSigningKeys = [NSMutableArray array];
+  NSArray<NSData*>* datas = [self.grdbCoordinator retrieveAllCrossSigningKeysData];
+  
+  for (NSData* data in datas) {
+    [crossSigningKeys addObject:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
+  }
+  
+  return crossSigningKeys;
+}
 @end

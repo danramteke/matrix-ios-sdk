@@ -33,6 +33,17 @@ extension GRDBCoordinator {
     }
   }
   
+  public func retrieveAllCrossSigningKeysData() -> [Data] {
+    do {
+      return try self.pool.read() { db in
+        return try Data.fetchAll(db, MXGrdbUser.select(MXGrdbUser.CodingKeys.crossSigningKeysData))
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error retrieving all Cross Signing Keys Data: \(error)")
+      return []
+    }
+  }
+  
   public func storeCrossSigningKeys(data: Data, for userId: String) {
     do {
       return try self.pool.write { db in
