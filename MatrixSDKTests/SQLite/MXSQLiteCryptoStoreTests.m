@@ -208,6 +208,7 @@
   
   OLMAccount* account = [[OLMAccount alloc] initNewAccount];
   OLMSession* olmSession = [[OLMSession alloc] initOutboundSessionWithAccount:account theirIdentityKey:@"YXJzdG5lc3RuaXJudGlzTklybnRpclNUZU5JYQo=" theirOneTimeKey:@"YXJzdG5lc3RuaXJudGlzTklybnRpclNUZU5JYQo=" error:nil];
+  // TODO: how to create a correct an olm session?
   MXOlmSession* mxolmSession = [[MXOlmSession alloc] initWithOlmSession:olmSession];
 
   [store storeSession:mxolmSession forDevice:@"device"];
@@ -215,6 +216,11 @@
   MXOlmSession* retrievedSession = [store sessionWithDevice:@"device" andSessionId:olmSession.sessionIdentifier];
   XCTAssertNotNil(retrievedSession);
   XCTAssertEqualObjects(retrievedSession.session.sessionIdentifier, olmSession.sessionIdentifier);
+  
+  
+  [store performSessionOperationWithDevice:@"device" andSessionId:olmSession.sessionIdentifier block:^(MXOlmSession *blockSession) {
+    XCTAssertNotNil(blockSession);
+  }];
 }
 
 @end

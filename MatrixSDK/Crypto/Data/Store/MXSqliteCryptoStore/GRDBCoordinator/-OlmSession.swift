@@ -42,4 +42,19 @@ extension GRDBCoordinator {
       MXLog.error("[\(String(describing: Self.self))] error storing OLM session: \(error)")
     }
   }
+  
+  public func performOlmSessionTransactionForSessionId(_ sessionId: String, deviceKey: String, block: (MXGrdbOlmSession?)->()) {
+    do {
+      try self.pool.write { db in
+        let maybeSession = try MXGrdbOlmSession
+          .filter(MXGrdbOlmSession.CodingKeys.id == sessionId)
+          .filter(MXGrdbOlmSession.CodingKeys.deviceKey == deviceKey)
+          .fetchOne(db)
+        block(maybeSession)
+        try maybeSession?.save(db)
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error storing OLM session: \(error)")
+    }
+  }
 }

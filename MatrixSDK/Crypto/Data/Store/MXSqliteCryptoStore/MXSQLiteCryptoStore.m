@@ -178,6 +178,7 @@
  
  @param block the block where olm operations can be safely made.
  */
+// TODO: make transactional
 - (void)performAccountOperationWithBlock:(void (^)(OLMAccount *olmAccount))block {
   OLMAccount* olmAccount = [self account];
   if (olmAccount) {
@@ -350,5 +351,26 @@
     mxOlmSession.lastReceivedMessageTs = grdbSession.lastReceivedMessageTs;
   }
   return mxOlmSession;
+}
+
+- (void)performSessionOperationWithDevice:(NSString*)deviceKey andSessionId:(NSString*)sessionId block:(void (^)(MXOlmSession *olmSession))block
+{
+  
+  
+  [self.grdbCoordinator performOlmSessionTransactionForSessionId:sessionId deviceKey:deviceKey block:^(MXGrdbOlmSession * _Nullable grdbSession) {
+    if (grdbSession.olmSessionData) {
+      OLMSession *olmSession = [NSKeyedUnarchiver unarchiveObjectWithData:grdbSession.olmSessionData];
+      
+      MXOlmSession* mxOlmSession = [[MXOlmSession alloc] initWithOlmSession:olmSession];
+      mxOlmSession.lastReceivedMessageTs = grdbSession.lastReceivedMessageTs;
+      
+      block(mxOlmSession);
+      
+      grdbSession.olmSessionData = [NSKeyedArchiver archivedDataWithRootObject:mxOlmSession.session];
+    } else {
+      MXLogError(@"[MXSqliteCryptoStore] performOlmSessionTransactionForSessionId. Error: olm session %@ not found", sessionId);
+      block(nil);
+    }
+  }];
 }
 @end
