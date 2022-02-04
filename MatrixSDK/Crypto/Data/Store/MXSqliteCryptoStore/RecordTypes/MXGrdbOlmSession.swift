@@ -14,18 +14,21 @@
 // limitations under the License.
 //
 
+import Foundation
+import GRDB
 
-
-#import <Foundation/Foundation.h>
-
-#import "MXSDKOptions.h"
-#import "MXCryptoStore.h"
-#import "MXSession.h"
-#import "MXOlmSession.h"
-
-
-@interface MXSQLiteCryptoStore : NSObject <MXCryptoStore>
-
-@end
-
-
+@objcMembers
+public final class MXGrdbOlmSession: NSObject, Codable, FetchableRecord, PersistableRecord, TableRecord {
+  
+  public static let databaseTableName: String = "OlmSession"
+  
+  public var id: String
+  public var deviceKey: String
+  public var lastReceivedMessageTs: TimeInterval
+  public var olmSessionData: Data
+  
+  public enum CodingKeys: String, CodingKey, ColumnExpression {
+    case id
+    case deviceKey, lastReceivedMessageTs, olmSessionData
+  }
+}

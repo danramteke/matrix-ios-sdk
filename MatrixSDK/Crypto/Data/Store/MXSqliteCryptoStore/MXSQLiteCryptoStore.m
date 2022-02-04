@@ -17,6 +17,8 @@
 #import <Foundation/Foundation.h>
 #import "MXSQLiteCryptoStore.h"
 #import <MatrixSDK/MatrixSDK-Swift.h>
+#import "MatrixSDKSwiftHeader.h"
+#import <OLMKit/OLMKit.h>
 
 @interface MXSQLiteCryptoStore ()
 @property (nonatomic, strong) GRDBCoordinator* grdbCoordinator;
@@ -320,5 +322,33 @@
 
 - (void)storeBlacklistUnverifiedDevicesInRoom:(NSString *)roomId blacklist:(BOOL)blacklist {
   [self.grdbCoordinator storeBlacklistUnverifiedDevicesForRoomId:roomId blacklist:blacklist];
+}
+
+- (void)storeSession:(MXOlmSession*)session forDevice:(NSString*)deviceKey {
+  
+  NSDate* startDate = [NSDate date];
+  
+  NSData* olmSessionData = [NSKeyedArchiver archivedDataWithRootObject:session.session];
+  
+  MXGrdbOlmSession* grdbSession = [[MXGrdbOlmSession alloc] init];
+  grdbSession.deviceKey = deviceKey;
+  grdbSession.id = session.session.sessionIdentifier;
+  grdbSession.olmSessionData = olmSessionData;
+  [self.grdbCoordinator storeOlmSession:grdbSession];
+  
+  MXLogDebug(@"[MXRealmCryptoStore] storeSession in %.3fms", [[NSDate date] timeIntervalSinceDate:startDate] * 1000);
+}
+
+- (MXOlmSession*)sessionWithDevice:(NSString*)deviceKey andSessionId:(NSString*)sessionId {
+  MXGrdbOlmSession* grdbSession = [self.grdbCoordinator retrieveOlmSessionForSessionId:sessionId deviceKey:deviceKey];
+  
+  MXOlmSession *mxOlmSession;
+  if (grdbSession.olmSessionData) {
+    OLMSession *olmSession = [NSKeyedUnarchiver unarchiveObjectWithData:grdbSession.olmSessionData];
+    
+    mxOlmSession = [[MXOlmSession alloc] initWithOlmSession:olmSession];
+    mxOlmSession.lastReceivedMessageTs = grdbSession.lastReceivedMessageTs;
+  }
+  return mxOlmSession;
 }
 @end

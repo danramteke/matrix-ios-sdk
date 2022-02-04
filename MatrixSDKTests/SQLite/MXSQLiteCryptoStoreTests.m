@@ -19,6 +19,8 @@
 #import "MXCredentials.h"
 #import <OLMKit/OLMKit.h>
 #import "MXTestDoubles.h"
+#import "MXOlmSession.h"
+#import "MXLog.h"
 
 @interface MXSQLiteCryptoStoreTests : XCTestCase
 @property (nonatomic, strong) MXCredentials* credentials;
@@ -199,6 +201,20 @@
   XCTAssertFalse([store blacklistUnverifiedDevicesInRoom:@"room id"]);
   [store storeBlacklistUnverifiedDevicesInRoom:@"room id" blacklist:true];
   XCTAssertTrue([store blacklistUnverifiedDevicesInRoom:@"room id"]);
+}
+
+-(void)testStoreAndRetrieveOlmSession {
+  MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
+  
+  OLMAccount* account = [[OLMAccount alloc] initNewAccount];
+  OLMSession* olmSession = [[OLMSession alloc] initOutboundSessionWithAccount:account theirIdentityKey:@"YXJzdG5lc3RuaXJudGlzTklybnRpclNUZU5JYQo=" theirOneTimeKey:@"YXJzdG5lc3RuaXJudGlzTklybnRpclNUZU5JYQo=" error:nil];
+  MXOlmSession* mxolmSession = [[MXOlmSession alloc] initWithOlmSession:olmSession];
+
+  [store storeSession:mxolmSession forDevice:@"device"];
+  
+  MXOlmSession* retrievedSession = [store sessionWithDevice:@"device" andSessionId:olmSession.sessionIdentifier];
+  XCTAssertNotNil(retrievedSession);
+  XCTAssertEqualObjects(retrievedSession.session.sessionIdentifier, olmSession.sessionIdentifier);
 }
 
 @end

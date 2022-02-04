@@ -737,6 +737,10 @@
 		653517D327ADA56A00782CEB /* MXGrdbRoomAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517D127ADA56A00782CEB /* MXGrdbRoomAlgorithm.swift */; };
 		653517D527ADA72700782CEB /* -RoomAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517D427ADA72700782CEB /* -RoomAlgorithm.swift */; };
 		653517D627ADA72700782CEB /* -RoomAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517D427ADA72700782CEB /* -RoomAlgorithm.swift */; };
+		653517D827ADAF4F00782CEB /* MXGrdbOlmSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517D727ADAF4F00782CEB /* MXGrdbOlmSession.swift */; };
+		653517D927ADAF4F00782CEB /* MXGrdbOlmSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517D727ADAF4F00782CEB /* MXGrdbOlmSession.swift */; };
+		653517DB27ADB12000782CEB /* -OlmSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517DA27ADB12000782CEB /* -OlmSession.swift */; };
+		653517DC27ADB12000782CEB /* -OlmSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517DA27ADB12000782CEB /* -OlmSession.swift */; };
 		71DE22E01BC7C51200284153 /* MXReceiptData.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DE22DC1BC7C51200284153 /* MXReceiptData.m */; };
 		71DE22E11BC7C51200284153 /* MXReceiptData.h in Headers */ = {isa = PBXBuildFile; fileRef = 71DE22DD1BC7C51200284153 /* MXReceiptData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8EC511042568216B00EC4E5B /* MXTaggedEventInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EC511022568216B00EC4E5B /* MXTaggedEventInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -2262,6 +2266,8 @@
 		653517CE27AD9DF300782CEB /* -User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "-User.swift"; sourceTree = "<group>"; };
 		653517D127ADA56A00782CEB /* MXGrdbRoomAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXGrdbRoomAlgorithm.swift; sourceTree = "<group>"; };
 		653517D427ADA72700782CEB /* -RoomAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "-RoomAlgorithm.swift"; sourceTree = "<group>"; };
+		653517D727ADAF4F00782CEB /* MXGrdbOlmSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXGrdbOlmSession.swift; sourceTree = "<group>"; };
+		653517DA27ADB12000782CEB /* -OlmSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "-OlmSession.swift"; sourceTree = "<group>"; };
 		6869D206EA7C7FB05EAB75B0 /* Pods-MatrixSDKTests-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MatrixSDKTests-iOS.release.xcconfig"; path = "Target Support Files/Pods-MatrixSDKTests-iOS/Pods-MatrixSDKTests-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		71DE22DC1BC7C51200284153 /* MXReceiptData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXReceiptData.m; sourceTree = "<group>"; };
 		71DE22DD1BC7C51200284153 /* MXReceiptData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXReceiptData.h; sourceTree = "<group>"; };
@@ -3922,7 +3928,7 @@
 		651609E227A881F700D48B6B /* MXSqliteCryptoStore */ = {
 			isa = PBXGroup;
 			children = (
-				65160A1027AB150400D48B6B /* GRDB */,
+				65160A1027AB150400D48B6B /* GRDBCoordinator */,
 				65160A0C27A9E62E00D48B6B /* RecordTypes */,
 				651609EC27A8829200D48B6B /* MXSQLiteCryptoStore.h */,
 				651609E927A8827B00D48B6B /* MXSQLiteCryptoStore.m */,
@@ -3950,11 +3956,12 @@
 				653517BE27AB7CF600782CEB /* MXGrdbDevice.swift */,
 				653517C127AD77F300782CEB /* MXGrdbUser.swift */,
 				653517D127ADA56A00782CEB /* MXGrdbRoomAlgorithm.swift */,
+				653517D727ADAF4F00782CEB /* MXGrdbOlmSession.swift */,
 			);
 			path = RecordTypes;
 			sourceTree = "<group>";
 		};
-		65160A1027AB150400D48B6B /* GRDB */ = {
+		65160A1027AB150400D48B6B /* GRDBCoordinator */ = {
 			isa = PBXGroup;
 			children = (
 				651609EF27A8848500D48B6B /* GRDBCoordinator.swift */,
@@ -3966,8 +3973,9 @@
 				653517BB27AB7BD100782CEB /* -Device.swift */,
 				653517CE27AD9DF300782CEB /* -User.swift */,
 				653517D427ADA72700782CEB /* -RoomAlgorithm.swift */,
+				653517DA27ADB12000782CEB /* -OlmSession.swift */,
 			);
-			path = GRDB;
+			path = GRDBCoordinator;
 			sourceTree = "<group>";
 		};
 		916911E77039455CC9D0900C /* Pods */ = {
@@ -5556,6 +5564,7 @@
 				32DC15D51A8CF874006F9AD3 /* MXPushRuleEventMatchConditionChecker.m in Sources */,
 				EC1165B427107E330089FA56 /* MXStoreRoomListDataManager.swift in Sources */,
 				32B94E06228EE90300716A26 /* MXRealmReactionRelation.m in Sources */,
+				653517D827ADAF4F00782CEB /* MXGrdbOlmSession.swift in Sources */,
 				320BBF411D6C81550079890E /* MXEventsByTypesEnumeratorOnArray.m in Sources */,
 				181FD5D62660C791008EC084 /* MXLogObjcWrapper.m in Sources */,
 				653517B927AB772C00782CEB /* Account.globalBlacklistUnverifiedDevices.swift in Sources */,
@@ -5819,6 +5828,7 @@
 				651609F027A8848500D48B6B /* GRDBCoordinator.swift in Sources */,
 				324DD2AE246AEB7B00377005 /* MXSecretStoragePassphrase.m in Sources */,
 				ECB5D98C2552C9B4000AD89C /* MXStopwatch.swift in Sources */,
+				653517DB27ADB12000782CEB /* -OlmSession.swift in Sources */,
 				B1136964230AC9D900E2B2FA /* MXIdentityServerRestClient.m in Sources */,
 				F0C34CBB1C18C93700C36F09 /* MXSDKOptions.m in Sources */,
 				B16F35A225F916A00029AE98 /* MXRoomTypeMapper.swift in Sources */,
@@ -6048,6 +6058,7 @@
 				B14EF1E42397E90400758AF0 /* MXWellknownIntegrations.m in Sources */,
 				EC60EDF5265CFFAC00B39A4E /* MXGroupsSyncResponse.m in Sources */,
 				EC1165B527107E330089FA56 /* MXStoreRoomListDataManager.swift in Sources */,
+				653517D927ADAF4F00782CEB /* MXGrdbOlmSession.swift in Sources */,
 				B14EF1E52397E90400758AF0 /* MXLoginPolicy.m in Sources */,
 				B14EF1E62397E90400758AF0 /* (null) in Sources */,
 				653517BA27AB772C00782CEB /* Account.globalBlacklistUnverifiedDevices.swift in Sources */,
@@ -6311,6 +6322,7 @@
 				651609F127A8848500D48B6B /* GRDBCoordinator.swift in Sources */,
 				324676ED25C15F4600EA855B /* MXMemory.swift in Sources */,
 				EC60ED6A265CFC7200B39A4E /* MXPresenceSyncResponse.m in Sources */,
+				653517DC27ADB12000782CEB /* -OlmSession.swift in Sources */,
 				3A108AA525810FE5005EEBE9 /* MXRawDataKey.m in Sources */,
 				324DD29C246AD2B500377005 /* MXSecretStorage.m in Sources */,
 				EC60EDC9265CFEA800B39A4E /* MXRoomSyncUnreadNotifications.m in Sources */,

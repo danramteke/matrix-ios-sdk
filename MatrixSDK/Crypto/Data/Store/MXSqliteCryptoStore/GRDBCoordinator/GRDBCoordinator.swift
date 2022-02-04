@@ -58,6 +58,13 @@ import GRDB
         t.column("blacklistUnverifiedDevices", .boolean)
         t.primaryKey(["id"], onConflict: .rollback)
       }
+      
+      try db.create(table: "OlmSession") { t in
+        t.column("id", .text).notNull()
+        t.column("deviceKey", .text)
+        t.column("lastReceivedMessageTs", .double)
+        t.column("olmSessionData", .blob)
+      }
     }
     
     try migrator.migrate(pool)
