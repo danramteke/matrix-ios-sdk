@@ -74,7 +74,5 @@ import GRDB
     try self.pool.write { db in
       try account.save(db)
     }
-  }
-  
-  
+  } 
 }

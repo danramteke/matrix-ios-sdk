@@ -32,6 +32,39 @@ extension GRDBCoordinator {
     }
   }
   
+  
+  public func storeDevicesFor(userId: String, devices: Array<MXGrdbDevice>) {
+    do {
+      try pool.write { db in
+        
+        let _ = try MXGrdbUser.findOrCreate(id: userId, db: db)
+        
+        try MXGrdbDevice
+          .filter(MXGrdbDevice.CodingKeys.userId == userId)
+          .deleteAll(db)
+        
+        try devices.forEach { device in
+          try device.save(db)
+        }
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error storing MXGrdbDevices for user ID \(userId): \(error)")
+    }
+  }
+  
+  public func retrieveAllDevicesBy(userId: String) -> [MXGrdbDevice] {
+    do {
+      return try pool.read { db in
+        return try MXGrdbDevice
+          .filter(MXGrdbDevice.CodingKeys.userId == userId)
+          .fetchAll(db)
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error retrieving MXGrdbDevices for user ID \(userId): \(error)")
+      return []
+    }
+  }
+  
   public func retrieveDeviceBy(deviceId: String, userId: String) -> MXGrdbDevice? {
     do {
       return try pool.read { db in
@@ -58,4 +91,5 @@ extension GRDBCoordinator {
       return nil
     }
   }
+
 }

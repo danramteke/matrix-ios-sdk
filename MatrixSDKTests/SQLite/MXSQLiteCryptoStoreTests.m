@@ -134,4 +134,31 @@
   XCTAssertEqualObjects(retrievedDevice.identityKey, @"other identity key");
 }
 
+- (void)testStoreAndRetriveDeviceDictionary {
+
+  MXDeviceInfo* otherDevice = [[MXDeviceInfo alloc] initForTestingWithUserId:@"other user" deviceId:@"other device" identityKey:@"other identity key"];
+  MXDeviceInfo* thirdDevice = [[MXDeviceInfo alloc] initForTestingWithUserId:@"other user" deviceId:@"third device" identityKey:@"third identity key"];
+  
+  NSDictionary* allDevices = @{
+    otherDevice.deviceId: otherDevice,
+    thirdDevice.deviceId: thirdDevice
+  };
+
+  MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
+  XCTAssertNil([store deviceWithIdentityKey:@"other identity key"]);
+  XCTAssertNil([store deviceWithIdentityKey:@"third identity key"]);
+  
+  [store storeDevicesForUser:@"other user" devices:allDevices];
+  
+  XCTAssertNotNil([store deviceWithIdentityKey:@"other identity key"]);
+  XCTAssertNotNil([store deviceWithIdentityKey:@"third identity key"]);
+  XCTAssertNotNil([store deviceWithDeviceId:@"other device" forUser:@"other user"]);
+  XCTAssertNotNil([store deviceWithDeviceId:@"third device" forUser:@"other user"]);
+  
+  NSDictionary* retrievedDevices = [store devicesForUser:@"other user"];
+  XCTAssertNotNil(retrievedDevices);
+  XCTAssertNotNil(retrievedDevices[@"other device"]);
+  XCTAssertNotNil(retrievedDevices[@"third device"]);
+}
+
 @end

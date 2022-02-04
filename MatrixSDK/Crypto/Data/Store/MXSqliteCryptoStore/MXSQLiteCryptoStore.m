@@ -226,5 +226,39 @@
   
   return nil;
 }
+
+- (void)storeDevicesForUser:(NSString*)userId devices:(NSDictionary<NSString*, MXDeviceInfo*>*)devices {
+  NSDate *startDate = [NSDate date];
+  
+  
+  NSMutableArray<MXGrdbDevice*>* grdbDevices = [NSMutableArray array];
+  
+  [devices enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, MXDeviceInfo * _Nonnull obj, BOOL * _Nonnull stop) {
+    NSData* deviceData = [NSKeyedArchiver archivedDataWithRootObject:obj];
+    MXGrdbDevice* grdbDevice = [[MXGrdbDevice alloc] initWithId:obj.deviceId
+                                                         userId:userId
+                                                    identityKey:obj.identityKey
+                                                           data:deviceData];
+    [grdbDevices addObject:grdbDevice];
+  }];
+  
+  [self.grdbCoordinator storeDevicesForUserId:userId devices:grdbDevices];
+  
+  MXLogDebug(@"[MXSQLiteCryptoStore] storeDevicesForUser (count: %tu) in %.3fms", devices.count, [[NSDate date] timeIntervalSinceDate:startDate] * 1000);
+}
+
+- (NSDictionary<NSString*, MXDeviceInfo*>*)devicesForUser:(NSString*)userId {
+  NSMutableDictionary<NSString*, MXDeviceInfo*>* devicesForUser = [NSMutableDictionary dictionary];
+  NSArray<MXGrdbDevice*>* retrieved = [self.grdbCoordinator retrieveAllDevicesByUserId:userId];
+  if (retrieved) {
+    [retrieved enumerateObjectsUsingBlock:^(MXGrdbDevice * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+      
+      MXDeviceInfo* deviceInfo = [NSKeyedUnarchiver unarchiveObjectWithData:obj.data];
+      devicesForUser[deviceInfo.deviceId] = deviceInfo;
+    }];
+  }
+  return devicesForUser;
+}
+
 @end
 
