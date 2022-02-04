@@ -727,6 +727,8 @@
 		653517C027AB7CF600782CEB /* MXGrdbDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517BE27AB7CF600782CEB /* MXGrdbDevice.swift */; };
 		653517C227AD77F300782CEB /* MXGrdbUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517C127AD77F300782CEB /* MXGrdbUser.swift */; };
 		653517C327AD77F300782CEB /* MXGrdbUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517C127AD77F300782CEB /* MXGrdbUser.swift */; };
+		653517C827AD881600782CEB /* MXTestDoubles.m in Sources */ = {isa = PBXBuildFile; fileRef = 653517C727AD881600782CEB /* MXTestDoubles.m */; };
+		653517C927AD881600782CEB /* MXTestDoubles.m in Sources */ = {isa = PBXBuildFile; fileRef = 653517C727AD881600782CEB /* MXTestDoubles.m */; };
 		71DE22E01BC7C51200284153 /* MXReceiptData.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DE22DC1BC7C51200284153 /* MXReceiptData.m */; };
 		71DE22E11BC7C51200284153 /* MXReceiptData.h in Headers */ = {isa = PBXBuildFile; fileRef = 71DE22DD1BC7C51200284153 /* MXReceiptData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8EC511042568216B00EC4E5B /* MXTaggedEventInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EC511022568216B00EC4E5B /* MXTaggedEventInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -2246,6 +2248,8 @@
 		653517BB27AB7BD100782CEB /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		653517BE27AB7CF600782CEB /* MXGrdbDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXGrdbDevice.swift; sourceTree = "<group>"; };
 		653517C127AD77F300782CEB /* MXGrdbUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXGrdbUser.swift; sourceTree = "<group>"; };
+		653517C727AD881600782CEB /* MXTestDoubles.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MXTestDoubles.m; sourceTree = "<group>"; };
+		653517CA27AD88FA00782CEB /* MXTestDoubles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MXTestDoubles.h; sourceTree = "<group>"; };
 		6869D206EA7C7FB05EAB75B0 /* Pods-MatrixSDKTests-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MatrixSDKTests-iOS.release.xcconfig"; path = "Target Support Files/Pods-MatrixSDKTests-iOS/Pods-MatrixSDKTests-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		71DE22DC1BC7C51200284153 /* MXReceiptData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXReceiptData.m; sourceTree = "<group>"; };
 		71DE22DD1BC7C51200284153 /* MXReceiptData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXReceiptData.h; sourceTree = "<group>"; };
@@ -3921,6 +3925,8 @@
 				651609F327A8C48F00D48B6B /* MXSQLiteCryptoStoreTests.m */,
 				65160A0927A9934B00D48B6B /* MXSQLiteFileUtilsTests.swift */,
 				65160A1727AB2E1000D48B6B /* GRDBCoordinatorTests.swift */,
+				653517C727AD881600782CEB /* MXTestDoubles.m */,
+				653517CA27AD88FA00782CEB /* MXTestDoubles.h */,
 			);
 			path = SQLite;
 			sourceTree = "<group>";
@@ -5907,6 +5913,7 @@
 				32CEEF3D23AD134A0039BA98 /* MXCrossSigningTests.m in Sources */,
 				326D1EF51BFC79300030947B /* MXPushRuleUnitTests.m in Sources */,
 				EC1165CE27107F3E0089FA56 /* MXRoomListDataManagerTests.swift in Sources */,
+				653517C827AD881600782CEB /* MXTestDoubles.m in Sources */,
 				324BE45B1E3FA7A8008D99D4 /* MXMegolmExportEncryptionUnitTests.m in Sources */,
 				65160A1827AB2E1000D48B6B /* GRDBCoordinatorTests.swift in Sources */,
 				327E9ACF2284783E00A98BC1 /* MXEventAnnotationUnitTests.swift in Sources */,
@@ -6394,6 +6401,7 @@
 				B1E09A2B2397FD6B0057C069 /* MatrixSDKTestsE2EData.m in Sources */,
 				B1E09A3C2397FD820057C069 /* MXStoreMemoryStoreTests.m in Sources */,
 				EC1165CF27107F3E0089FA56 /* MXRoomListDataManagerTests.swift in Sources */,
+				653517C927AD881600782CEB /* MXTestDoubles.m in Sources */,
 				B1E09A3E2397FD820057C069 /* MXToolsUnitTests.m in Sources */,
 				65160A1927AB2E1000D48B6B /* GRDBCoordinatorTests.swift in Sources */,
 				32B477912638133D00EA5800 /* MXAggregatedEditsUnitTests.m in Sources */,

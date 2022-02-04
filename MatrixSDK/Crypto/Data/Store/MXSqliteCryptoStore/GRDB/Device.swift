@@ -45,4 +45,17 @@ extension GRDBCoordinator {
       return nil
     }
   }
+  
+  public func retrieveDeviceBy(identityKey: String) -> MXGrdbDevice? {
+    do {
+      return try pool.read { db in
+        return try MXGrdbDevice
+          .filter(MXGrdbDevice.CodingKeys.identityKey == identityKey)
+          .fetchOne(db)
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error retrieving MXGrdbDevice for identity key \(identityKey): \(error)")
+      return nil
+    }
+  }
 }

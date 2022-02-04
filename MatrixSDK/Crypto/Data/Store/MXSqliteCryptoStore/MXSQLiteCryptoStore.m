@@ -213,9 +213,18 @@
   MXGrdbDevice* grdbDevice = [self.grdbCoordinator retrieveDeviceByDeviceId:deviceId userId:userId];
   if (grdbDevice) {
     return [NSKeyedUnarchiver unarchiveObjectWithData:grdbDevice.data];
-  } else {
-    return nil;
   }
+  
+  return nil;
+}
+
+- (MXDeviceInfo*)deviceWithIdentityKey:(NSString*)identityKey {
+  MXGrdbDevice* grdbDevice = [self.grdbCoordinator retrieveDeviceByIdentityKey:identityKey];
+  if (grdbDevice)  {
+    return [NSKeyedUnarchiver unarchiveObjectWithData:grdbDevice.data];
+  }
+  
+  return nil;
 }
 @end
 

@@ -18,31 +18,16 @@
 #import "MXSQLiteCryptoStore.h"
 #import "MXCredentials.h"
 #import <OLMKit/OLMKit.h>
-
-
-@implementation MXCredentials
-
--(instancetype)initWithUserId:(NSString *)userId deviceId:(NSString *)deviceId {
-  self = [super init];
-  if (self) {
-    self.userId = userId;
-    self.deviceId = deviceId;
-  }
-  return self;
-}
-
-@end
+#import "MXTestDoubles.h"
 
 @interface MXSQLiteCryptoStoreTests : XCTestCase
-
 @property (nonatomic, strong) MXCredentials* credentials;
-
 @end
 
 @implementation MXSQLiteCryptoStoreTests
 
 - (void)setUp {
-  self.credentials = [[MXCredentials alloc] initWithUserId:@"exampleUserId" deviceId:@"exampleDeviceId"];
+  self.credentials = [[MXCredentials alloc] initForTestingWithUserId:@"exampleUserId" deviceId:@"exampleDeviceId"];
   [MXSQLiteCryptoStore deleteAllStores];
 }
 
@@ -104,20 +89,49 @@
 
 - (void)testStoreAndRetrieveDevice {
   MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
+
+  MXDeviceInfo* otherDevice = [[MXDeviceInfo alloc] initForTestingWithUserId:@"other user" deviceId:@"other device" identityKey:@"other identity key"];
   
   XCTAssertNil([store account]);
   XCTAssertNil([store deviceWithDeviceId:@"other device" forUser:@"other user"]);
   
-  MXDeviceInfo* otherDevice = [[MXDeviceInfo alloc] initWithDeviceId:@"other device"];
+
   [store storeDeviceForUser:@"other user" device:otherDevice];
-  
   
   MXDeviceInfo* retrievedDevice = [store deviceWithDeviceId:@"other device" forUser:@"other user"];
   XCTAssertNotNil(retrievedDevice);
   
   XCTAssertEqualObjects(retrievedDevice.keys, otherDevice.keys);
   XCTAssertEqualObjects(retrievedDevice.userId, otherDevice.userId);
+  XCTAssertEqualObjects(retrievedDevice.userId, @"other user");
   XCTAssertEqualObjects(retrievedDevice.deviceId, otherDevice.deviceId);
+  XCTAssertEqualObjects(retrievedDevice.deviceId, @"other device");
+  XCTAssertEqualObjects(retrievedDevice.identityKey, otherDevice.identityKey);
+  XCTAssertEqualObjects(retrievedDevice.identityKey, @"other identity key");
+}
+
+- (void)testStoreAndRetrieveDeviceWithIdentityKey {
+  MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
+  MXDeviceInfo* otherDevice = [[MXDeviceInfo alloc] initForTestingWithUserId:@"other user" deviceId:@"other device" identityKey:@"other identity key"];
+  
+  XCTAssertNil([store account]);
+  XCTAssertNil([store deviceWithDeviceId:@"other device" forUser:@"other user"]);
+  XCTAssertNil([store deviceWithIdentityKey:@"other identity key"]);
+  
+
+  [store storeDeviceForUser:@"other user" device:otherDevice];
+
+  
+  MXDeviceInfo* retrievedDevice = [store deviceWithIdentityKey:otherDevice.identityKey];
+  XCTAssertNotNil(retrievedDevice);
+  
+  XCTAssertEqualObjects(retrievedDevice.keys, otherDevice.keys);
+  XCTAssertEqualObjects(retrievedDevice.userId, otherDevice.userId);
+  XCTAssertEqualObjects(retrievedDevice.userId, @"other user");
+  XCTAssertEqualObjects(retrievedDevice.deviceId, otherDevice.deviceId);
+  XCTAssertEqualObjects(retrievedDevice.deviceId, @"other device");
+  XCTAssertEqualObjects(retrievedDevice.identityKey, otherDevice.identityKey);
+  XCTAssertEqualObjects(retrievedDevice.identityKey, @"other identity key");
 }
 
 @end
