@@ -91,5 +91,4 @@ extension GRDBCoordinator {
       return nil
     }
   }
-
 }

@@ -262,7 +262,7 @@
 
 - (NSDictionary<NSString*, NSNumber*>*)deviceTrackingStatus
 {
-  NSData* data = [self.grdbCoordinator retrieveDeviceTrackingStatusFor:self.userId];
+  NSData* data = [self.grdbCoordinator retrieveDeviceTrackingStatusDataFor:self.userId];
   if (data) {
     return [NSKeyedUnarchiver unarchiveObjectWithData:data];
   }
@@ -273,8 +273,24 @@
 - (void)storeDeviceTrackingStatus:(NSDictionary<NSString*, NSNumber*>*)statusMap
 {
   NSData* data = [NSKeyedArchiver archivedDataWithRootObject:statusMap];
-  [self.grdbCoordinator storeDeviceTrackingStatus:data for:self.userId];
+  [self.grdbCoordinator storeDeviceTrackingStatusData:data for:self.userId];
 }
 
-@end
+- (MXCrossSigningInfo*)crossSigningKeysForUser:(NSString*)userId
+{
+  MXCrossSigningInfo *crossSigningKeys;
+  
+  NSData* data = [self.grdbCoordinator retrieveCrossSigningKeysDataForUserId:userId];
+  if (data) {
+    crossSigningKeys = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+  }
+  
+  return crossSigningKeys;
+}
 
+- (void)storeCrossSigningKeys:(MXCrossSigningInfo*)crossSigningInfo
+{
+  NSData* data = [NSKeyedArchiver archivedDataWithRootObject:crossSigningInfo];
+  [self.grdbCoordinator storeCrossSigningKeysWithData:data for:crossSigningInfo.userId];
+}
+@end

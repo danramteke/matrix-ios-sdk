@@ -721,8 +721,8 @@
 		65160A1E27AB322600D48B6B /* Account.olmAccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65160A1A27AB312C00D48B6B /* Account.olmAccountData.swift */; };
 		653517B927AB772C00782CEB /* Account.globalBlacklistUnverifiedDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517B827AB772C00782CEB /* Account.globalBlacklistUnverifiedDevices.swift */; };
 		653517BA27AB772C00782CEB /* Account.globalBlacklistUnverifiedDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517B827AB772C00782CEB /* Account.globalBlacklistUnverifiedDevices.swift */; };
-		653517BC27AB7BD100782CEB /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517BB27AB7BD100782CEB /* Device.swift */; };
-		653517BD27AB7BD100782CEB /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517BB27AB7BD100782CEB /* Device.swift */; };
+		653517BC27AB7BD100782CEB /* -Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517BB27AB7BD100782CEB /* -Device.swift */; };
+		653517BD27AB7BD100782CEB /* -Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517BB27AB7BD100782CEB /* -Device.swift */; };
 		653517BF27AB7CF600782CEB /* MXGrdbDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517BE27AB7CF600782CEB /* MXGrdbDevice.swift */; };
 		653517C027AB7CF600782CEB /* MXGrdbDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517BE27AB7CF600782CEB /* MXGrdbDevice.swift */; };
 		653517C227AD77F300782CEB /* MXGrdbUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517C127AD77F300782CEB /* MXGrdbUser.swift */; };
@@ -731,6 +731,8 @@
 		653517C927AD881600782CEB /* MXTestDoubles.m in Sources */ = {isa = PBXBuildFile; fileRef = 653517C727AD881600782CEB /* MXTestDoubles.m */; };
 		653517CC27AD9A9A00782CEB /* Account.deviceTrackingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517CB27AD9A9A00782CEB /* Account.deviceTrackingStatus.swift */; };
 		653517CD27AD9A9A00782CEB /* Account.deviceTrackingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517CB27AD9A9A00782CEB /* Account.deviceTrackingStatus.swift */; };
+		653517CF27AD9DF300782CEB /* -User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517CE27AD9DF300782CEB /* -User.swift */; };
+		653517D027AD9DF300782CEB /* -User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517CE27AD9DF300782CEB /* -User.swift */; };
 		71DE22E01BC7C51200284153 /* MXReceiptData.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DE22DC1BC7C51200284153 /* MXReceiptData.m */; };
 		71DE22E11BC7C51200284153 /* MXReceiptData.h in Headers */ = {isa = PBXBuildFile; fileRef = 71DE22DD1BC7C51200284153 /* MXReceiptData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8EC511042568216B00EC4E5B /* MXTaggedEventInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EC511022568216B00EC4E5B /* MXTaggedEventInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -2247,12 +2249,13 @@
 		65160A1727AB2E1000D48B6B /* GRDBCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRDBCoordinatorTests.swift; sourceTree = "<group>"; };
 		65160A1A27AB312C00D48B6B /* Account.olmAccountData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.olmAccountData.swift; sourceTree = "<group>"; };
 		653517B827AB772C00782CEB /* Account.globalBlacklistUnverifiedDevices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.globalBlacklistUnverifiedDevices.swift; sourceTree = "<group>"; };
-		653517BB27AB7BD100782CEB /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		653517BB27AB7BD100782CEB /* -Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "-Device.swift"; sourceTree = "<group>"; };
 		653517BE27AB7CF600782CEB /* MXGrdbDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXGrdbDevice.swift; sourceTree = "<group>"; };
 		653517C127AD77F300782CEB /* MXGrdbUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXGrdbUser.swift; sourceTree = "<group>"; };
 		653517C727AD881600782CEB /* MXTestDoubles.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MXTestDoubles.m; sourceTree = "<group>"; };
 		653517CA27AD88FA00782CEB /* MXTestDoubles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MXTestDoubles.h; sourceTree = "<group>"; };
 		653517CB27AD9A9A00782CEB /* Account.deviceTrackingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.deviceTrackingStatus.swift; sourceTree = "<group>"; };
+		653517CE27AD9DF300782CEB /* -User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "-User.swift"; sourceTree = "<group>"; };
 		6869D206EA7C7FB05EAB75B0 /* Pods-MatrixSDKTests-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MatrixSDKTests-iOS.release.xcconfig"; path = "Target Support Files/Pods-MatrixSDKTests-iOS/Pods-MatrixSDKTests-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		71DE22DC1BC7C51200284153 /* MXReceiptData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXReceiptData.m; sourceTree = "<group>"; };
 		71DE22DD1BC7C51200284153 /* MXReceiptData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXReceiptData.h; sourceTree = "<group>"; };
@@ -3948,12 +3951,13 @@
 			isa = PBXGroup;
 			children = (
 				651609EF27A8848500D48B6B /* GRDBCoordinator.swift */,
-				653517BB27AB7BD100782CEB /* Device.swift */,
 				65160A1A27AB312C00D48B6B /* Account.olmAccountData.swift */,
 				65160A1127AB152300D48B6B /* Account.deviceId.swift */,
 				65160A1427AB1A7C00D48B6B /* Account.deviceSyncToken.swift */,
 				653517B827AB772C00782CEB /* Account.globalBlacklistUnverifiedDevices.swift */,
 				653517CB27AD9A9A00782CEB /* Account.deviceTrackingStatus.swift */,
+				653517BB27AB7BD100782CEB /* -Device.swift */,
+				653517CE27AD9DF300782CEB /* -User.swift */,
 			);
 			path = GRDB;
 			sourceTree = "<group>";
@@ -5582,6 +5586,7 @@
 				323360701A403A0D0071A488 /* MXFileStore.m in Sources */,
 				B1136967230C1E8600E2B2FA /* MXIdentityService.swift in Sources */,
 				32A9770521626E5C00919CC0 /* MXServerNotices.m in Sources */,
+				653517CF27AD9DF300782CEB /* -User.swift in Sources */,
 				EC1165C827107E330089FA56 /* MXRoomListData.swift in Sources */,
 				323F878F25553D84009E9E67 /* MXTaskProfile.m in Sources */,
 				32D7767E1A27860600FC4AA2 /* MXMemoryStore.m in Sources */,
@@ -5635,7 +5640,7 @@
 				3281E8B819E42DFE00976E1A /* MXJSONModel.m in Sources */,
 				32AF929924115D8B0008A0FD /* MXPendingSecretShareRequest.m in Sources */,
 				327E9AE22285497100A98BC1 /* MXEventContentRelatesTo.m in Sources */,
-				653517BC27AB7BD100782CEB /* Device.swift in Sources */,
+				653517BC27AB7BD100782CEB /* -Device.swift in Sources */,
 				32A1514B1DAF7C0C00400192 /* MXUsersDevicesMap.m in Sources */,
 				328BCB3421947BE200A976D3 /* MXKeyBackupVersionTrust.m in Sources */,
 				324AAC72239913AD00380A66 /* MXKeyVerificationRequestByDMJSONModel.m in Sources */,
@@ -6071,6 +6076,7 @@
 				B14EF1F92397E90400758AF0 /* MXReactionRelation.m in Sources */,
 				B19A30BB2404268600FB6F35 /* MXQRCodeData.m in Sources */,
 				B14EF1FA2397E90400758AF0 /* MXQueuedEncryption.m in Sources */,
+				653517D027AD9DF300782CEB /* -User.swift in Sources */,
 				32B0E33C23A2989A0054FF1A /* MXEventReferenceChunk.m in Sources */,
 				B1798D0924091A0100308A8F /* MXBase64Tools.m in Sources */,
 				EC1165C127107E330089FA56 /* MXSuggestedRoomListDataCache.swift in Sources */,
@@ -6124,7 +6130,7 @@
 				B14EF2142397E90400758AF0 /* MXPeekingRoomSummary.m in Sources */,
 				B14EF2152397E90400758AF0 /* MXRoom.swift in Sources */,
 				B14EF2162397E90400758AF0 /* MXOlmSession.m in Sources */,
-				653517BD27AB7BD100782CEB /* Device.swift in Sources */,
+				653517BD27AB7BD100782CEB /* -Device.swift in Sources */,
 				EC8A53A425B1BC77004E0802 /* MXCallEventContent.m in Sources */,
 				B14EF2172397E90400758AF0 /* MXMegolmDecryption.m in Sources */,
 				3A23A740256D322C00B9D00F /* MXAes.m in Sources */,

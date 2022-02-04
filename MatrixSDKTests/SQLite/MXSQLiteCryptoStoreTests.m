@@ -174,4 +174,15 @@
   XCTAssertNotNil(retrievedDevices[@"third device"]);
 }
 
+-(void)testStoreAndRetrieveCrossSigningKeysData {
+  MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
+//  MXCrossSigningInfo* info = [[MXCrossSigningInfo alloc] init];
+
+//  info.userId = @"abc user";
+  
+//  [store storeCrossSigningKeys:info];
+  
+  // TODO: implement test inits for MXCrossSigningInfo
+}
+
 @end
