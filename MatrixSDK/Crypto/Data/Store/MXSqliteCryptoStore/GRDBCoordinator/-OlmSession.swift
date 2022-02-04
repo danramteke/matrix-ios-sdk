@@ -54,7 +54,7 @@ extension GRDBCoordinator {
         try maybeSession?.save(db)
       }
     } catch {
-      MXLog.error("[\(String(describing: Self.self))] error storing OLM session: \(error)")
+      MXLog.error("[\(String(describing: Self.self))] error performing OLM session transaction: \(error)")
     }
   }
 }

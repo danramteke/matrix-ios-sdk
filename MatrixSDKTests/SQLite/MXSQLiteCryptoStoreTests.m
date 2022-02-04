@@ -87,6 +87,13 @@
   XCTAssertNotNil(retrievedAccount);
   XCTAssertEqualObjects(olmAccount.identityKeys, retrievedAccount.identityKeys);
   XCTAssertEqualObjects(olmAccount.oneTimeKeys, retrievedAccount.oneTimeKeys);
+  
+  __block BOOL blockDidRun = false;
+  [store performAccountOperationWithBlock:^(OLMAccount *olmAccount) {
+    XCTAssertNotNil(olmAccount);
+    blockDidRun = true;
+  }];
+  XCTAssertTrue(blockDidRun);
 }
 
 - (void)testStoreAndRetrieveDeviceTrackingStatus {
@@ -218,9 +225,12 @@
   XCTAssertEqualObjects(retrievedSession.session.sessionIdentifier, olmSession.sessionIdentifier);
   
   
+  __block BOOL blockDidRun = false;
   [store performSessionOperationWithDevice:@"device" andSessionId:olmSession.sessionIdentifier block:^(MXOlmSession *blockSession) {
     XCTAssertNotNil(blockSession);
+    blockDidRun = true;
   }];
+  XCTAssertTrue(blockDidRun);
 }
 
 @end

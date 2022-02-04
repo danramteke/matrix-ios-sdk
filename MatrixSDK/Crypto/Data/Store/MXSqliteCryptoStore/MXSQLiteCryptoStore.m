@@ -178,16 +178,19 @@
  
  @param block the block where olm operations can be safely made.
  */
-// TODO: make transactional
 - (void)performAccountOperationWithBlock:(void (^)(OLMAccount *olmAccount))block {
-  OLMAccount* olmAccount = [self account];
-  if (olmAccount) {
-    block(olmAccount);
-    [self setAccount:olmAccount];
-  } else {
-    MXLogError(@"[MXSQLiteCryptoStore] performAccountOperationWithBlock. Error: Cannot build OLMAccount");
-    block(nil);
-  } 
+  
+  [self.grdbCoordinator performOlmAccountTransactionWithUserId:self.userId block:^(MXGrdbOlmAccount * _Nullable  grdbAccount) {
+    
+    if (grdbAccount.olmAccountData) {
+      OLMAccount *olmAccount = [NSKeyedUnarchiver unarchiveObjectWithData:grdbAccount.olmAccountData];
+      block(olmAccount);
+      grdbAccount.olmAccountData = [NSKeyedArchiver archivedDataWithRootObject:olmAccount];
+    } else {
+      MXLogError(@"[MXSQLiteCryptoStore] performAccountOperationWithBlock. Error: Cannot build OLMAccount");
+      block(nil);
+    }
+  }];
 }
 
 - (BOOL)globalBlacklistUnverifiedDevices {
@@ -355,7 +358,6 @@
 
 - (void)performSessionOperationWithDevice:(NSString*)deviceKey andSessionId:(NSString*)sessionId block:(void (^)(MXOlmSession *olmSession))block
 {
-  
   
   [self.grdbCoordinator performOlmSessionTransactionForSessionId:sessionId deviceKey:deviceKey block:^(MXGrdbOlmSession * _Nullable grdbSession) {
     if (grdbSession.olmSessionData) {

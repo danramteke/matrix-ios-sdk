@@ -43,4 +43,18 @@ extension GRDBCoordinator {
       MXLog.error("[\(String(describing: Self.self))] error storing OLM Account data for user ID \(userId): \(error)")
     }
   }
+  
+  public func performOlmAccountTransaction(userId: String, block: (MXGrdbOlmAccount?)->()) {
+    do {
+      try self.pool.write { db in
+        let maybeAccount = try MXGrdbOlmAccount
+          .filter(MXGrdbOlmAccount.CodingKeys.userId == userId)
+          .fetchOne(db)
+        block(maybeAccount)
+        try maybeAccount?.save(db)
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error performing OLM account transaction: \(error)")
+    }
+  }
 }
