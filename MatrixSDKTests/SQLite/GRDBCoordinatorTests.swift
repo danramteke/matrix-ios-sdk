@@ -34,7 +34,6 @@ class GRDBCoordinatorTests: XCTestCase {
   func testEmptyDatabaseOnCreate() {
     XCTAssertNil(try grdb.retrieveDeviceSyncToken(for: "empty"))
     XCTAssertNil(try grdb.retrieveDeviceId(for: "empty"))
-    XCTAssertNil(try grdb.retrieveOlmAccountData(for: "empty"))
     XCTAssertNil(grdb.accountIfExists(userId: "empty"))
   }
   
@@ -49,7 +48,6 @@ class GRDBCoordinatorTests: XCTestCase {
     XCTAssertNil(try grdb.retrieveDeviceSyncToken(for: "abc"))
     
     XCTAssertNil(account.olmAccountData)
-    XCTAssertNil(try grdb.retrieveOlmAccountData(for: "abc"))
     
     XCTAssertEqual(account.deviceId, "123")
     XCTAssertEqual(try grdb.retrieveDeviceId(for: "abc"), "123")

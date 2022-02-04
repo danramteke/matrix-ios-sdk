@@ -260,5 +260,21 @@
   return devicesForUser;
 }
 
+- (NSDictionary<NSString*, NSNumber*>*)deviceTrackingStatus
+{
+  NSData* data = [self.grdbCoordinator retrieveDeviceTrackingStatusFor:self.userId];
+  if (data) {
+    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+  }
+  
+  return nil;
+}
+
+- (void)storeDeviceTrackingStatus:(NSDictionary<NSString*, NSNumber*>*)statusMap
+{
+  NSData* data = [NSKeyedArchiver archivedDataWithRootObject:statusMap];
+  [self.grdbCoordinator storeDeviceTrackingStatus:data for:self.userId];
+}
+
 @end
 

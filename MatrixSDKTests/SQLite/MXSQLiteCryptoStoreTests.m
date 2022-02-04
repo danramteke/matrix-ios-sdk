@@ -87,6 +87,19 @@
   XCTAssertEqualObjects(olmAccount.oneTimeKeys, retrievedAccount.oneTimeKeys);
 }
 
+- (void)testStoreAndRetrieveDeviceTrackingStatus {
+  MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
+  
+  XCTAssertNil([store account]);
+  
+  NSDictionary* dict = @{@"key": @1};
+  [store storeDeviceTrackingStatus:dict];
+  
+  NSDictionary* retrievedDict = [store deviceTrackingStatus];
+  XCTAssertNotNil(retrievedDict);
+  XCTAssertEqualObjects(retrievedDict, dict);
+}
+
 - (void)testStoreAndRetrieveDevice {
   MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
 

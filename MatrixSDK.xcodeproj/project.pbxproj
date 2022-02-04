@@ -729,6 +729,8 @@
 		653517C327AD77F300782CEB /* MXGrdbUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517C127AD77F300782CEB /* MXGrdbUser.swift */; };
 		653517C827AD881600782CEB /* MXTestDoubles.m in Sources */ = {isa = PBXBuildFile; fileRef = 653517C727AD881600782CEB /* MXTestDoubles.m */; };
 		653517C927AD881600782CEB /* MXTestDoubles.m in Sources */ = {isa = PBXBuildFile; fileRef = 653517C727AD881600782CEB /* MXTestDoubles.m */; };
+		653517CC27AD9A9A00782CEB /* Account.deviceTrackingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517CB27AD9A9A00782CEB /* Account.deviceTrackingStatus.swift */; };
+		653517CD27AD9A9A00782CEB /* Account.deviceTrackingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517CB27AD9A9A00782CEB /* Account.deviceTrackingStatus.swift */; };
 		71DE22E01BC7C51200284153 /* MXReceiptData.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DE22DC1BC7C51200284153 /* MXReceiptData.m */; };
 		71DE22E11BC7C51200284153 /* MXReceiptData.h in Headers */ = {isa = PBXBuildFile; fileRef = 71DE22DD1BC7C51200284153 /* MXReceiptData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8EC511042568216B00EC4E5B /* MXTaggedEventInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EC511022568216B00EC4E5B /* MXTaggedEventInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -2250,6 +2252,7 @@
 		653517C127AD77F300782CEB /* MXGrdbUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXGrdbUser.swift; sourceTree = "<group>"; };
 		653517C727AD881600782CEB /* MXTestDoubles.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MXTestDoubles.m; sourceTree = "<group>"; };
 		653517CA27AD88FA00782CEB /* MXTestDoubles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MXTestDoubles.h; sourceTree = "<group>"; };
+		653517CB27AD9A9A00782CEB /* Account.deviceTrackingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.deviceTrackingStatus.swift; sourceTree = "<group>"; };
 		6869D206EA7C7FB05EAB75B0 /* Pods-MatrixSDKTests-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MatrixSDKTests-iOS.release.xcconfig"; path = "Target Support Files/Pods-MatrixSDKTests-iOS/Pods-MatrixSDKTests-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		71DE22DC1BC7C51200284153 /* MXReceiptData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXReceiptData.m; sourceTree = "<group>"; };
 		71DE22DD1BC7C51200284153 /* MXReceiptData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXReceiptData.h; sourceTree = "<group>"; };
@@ -3950,6 +3953,7 @@
 				65160A1127AB152300D48B6B /* Account.deviceId.swift */,
 				65160A1427AB1A7C00D48B6B /* Account.deviceSyncToken.swift */,
 				653517B827AB772C00782CEB /* Account.globalBlacklistUnverifiedDevices.swift */,
+				653517CB27AD9A9A00782CEB /* Account.deviceTrackingStatus.swift */,
 			);
 			path = GRDB;
 			sourceTree = "<group>";
@@ -5522,6 +5526,7 @@
 				B1710B1F2613D01400A9B429 /* MXSpaceChildrenRequestParameters.swift in Sources */,
 				32CEEF4B23B0A8170039BA98 /* MXCrossSigningTools.m in Sources */,
 				EC8A53A525B1BC77004E0802 /* MXCallInviteEventContent.m in Sources */,
+				653517CC27AD9A9A00782CEB /* Account.deviceTrackingStatus.swift in Sources */,
 				323F877D25546170009E9E67 /* MXBaseProfiler.m in Sources */,
 				320B3936239FA56900BE2C06 /* MXKeyVerificationByDMRequest.m in Sources */,
 				B18B0E4425FB73C300E32151 /* MXSpaceService.swift in Sources */,
@@ -6010,6 +6015,7 @@
 				B14EF1D52397E90400758AF0 /* MXEventAnnotation.m in Sources */,
 				B14EF1D62397E90400758AF0 /* MXPusher.m in Sources */,
 				B14EF1D72397E90400758AF0 /* MXMediaLoader.m in Sources */,
+				653517CD27AD9A9A00782CEB /* Account.deviceTrackingStatus.swift in Sources */,
 				32549AF823F2E2790002576B /* MXKeyVerificationReady.m in Sources */,
 				B14EF1D82397E90400758AF0 /* MXMegolmBackupAuthData.m in Sources */,
 				B14EF1D92397E90400758AF0 /* MXReactionCount.m in Sources */,
