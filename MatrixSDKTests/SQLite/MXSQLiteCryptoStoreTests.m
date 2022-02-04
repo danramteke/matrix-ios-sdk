@@ -185,4 +185,20 @@
   // TODO: implement test inits for MXCrossSigningInfo
 }
 
+-(void)testStoreAndRetrieveRoomAlgorithm {
+  MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
+  
+  XCTAssertNil([store algorithmForRoom:@"room id"]);
+  [store storeAlgorithmForRoom:@"room id" algorithm:@"shortest path"];
+  XCTAssertEqualObjects(@"shortest path", [store algorithmForRoom:@"room id"]);
+}
+
+-(void)testStoreAndRetrieveRoomBlacklist {
+  MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
+  
+  XCTAssertFalse([store blacklistUnverifiedDevicesInRoom:@"room id"]);
+  [store storeBlacklistUnverifiedDevicesInRoom:@"room id" blacklist:true];
+  XCTAssertTrue([store blacklistUnverifiedDevicesInRoom:@"room id"]);
+}
+
 @end

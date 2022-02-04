@@ -26,7 +26,7 @@ import GRDB
     let pool = try DatabasePool(path: url.absoluteString)
     
     var migrator = DatabaseMigrator()
-    migrator.registerMigration("create:OlmAccount,User,Device") { db in
+    migrator.registerMigration("create:OlmAccount,User,Device,RoomAlgorithm") { db in
       try db.create(table: "OlmAccount") { t in
         t.column("userId", .text).notNull()
         t.column("deviceId", .text).notNull()
@@ -49,6 +49,13 @@ import GRDB
       try db.create(table: "User") { t in
         t.column("id", .text).notNull()
         t.column("crossSigningKeysData", .blob)
+        t.primaryKey(["id"], onConflict: .rollback)
+      }
+      
+      try db.create(table: "RoomAlgorithm") { t in
+        t.column("id", .text).notNull()
+        t.column("algorithm", .text)
+        t.column("blacklistUnverifiedDevices", .boolean)
         t.primaryKey(["id"], onConflict: .rollback)
       }
     }

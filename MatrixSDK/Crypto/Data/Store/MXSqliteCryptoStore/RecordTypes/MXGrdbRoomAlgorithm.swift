@@ -17,30 +17,31 @@
 import Foundation
 import GRDB
 
-@objcMembers
-public final class MXGrdbDevice: NSObject, Codable, FetchableRecord, PersistableRecord, TableRecord {
+public final class MXGrdbRoomAlgorithm: NSObject, Codable, FetchableRecord, PersistableRecord, TableRecord {
   
-  public static let databaseTableName: String = "Device"
+  public static let databaseTableName: String = "RoomAlgorithm"
   
   public var id: String
-  public var userId: String
-  public var identityKey: String
-  public var data: Data
-
-  public init(id: String,
-              userId: String,
-              identityKey: String,
-              data: Data) {
+  public var algorithm: String?
+  public var blacklistUnverifiedDevices: Bool
+  
+  public init(id: String, blacklistUnverifiedDevices: Bool) {
     self.id = id
-    self.userId = userId
-    self.identityKey = identityKey
-    self.data = data
+    self.blacklistUnverifiedDevices = blacklistUnverifiedDevices
+  }
+
+  public enum CodingKeys: String, CodingKey, ColumnExpression {
+    case id, algorithm, blacklistUnverifiedDevices
   }
   
-  public enum CodingKeys: String, CodingKey, ColumnExpression {
-    case id
-    case identityKey
-    case data
-    case userId
+  public class func findOrCreate(id: String, db: Database) throws -> Self {
+    if let found = try Self
+        .filter(Self.CodingKeys.id == id)
+        .fetchOne(db) {
+      return found
+    } else {
+      return try Self(id: id, blacklistUnverifiedDevices: false)
+        .saved(db)
+    }
   }
 }

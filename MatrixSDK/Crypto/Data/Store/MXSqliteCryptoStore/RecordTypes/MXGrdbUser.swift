@@ -17,7 +17,7 @@
 import Foundation
 import GRDB
 
-public class MXGrdbUser: NSObject, Codable, FetchableRecord, PersistableRecord, TableRecord {
+public final class MXGrdbUser: NSObject, Codable, FetchableRecord, PersistableRecord, TableRecord {
   
   public static let databaseTableName: String = "User"
   
@@ -34,13 +34,13 @@ public class MXGrdbUser: NSObject, Codable, FetchableRecord, PersistableRecord, 
     case crossSigningKeysData
   }
   
-  public class func findOrCreate(id: String, db: Database) throws -> MXGrdbUser {
+  public class func findOrCreate(id: String, db: Database) throws -> Self {
     if let found = try Self
         .filter(Self.CodingKeys.id == id)
         .fetchOne(db) {
       return found
     } else {
-      return try MXGrdbUser(id: id, crossSigningKeysData: nil)
+      return try Self(id: id, crossSigningKeysData: nil)
         .saved(db)
     }
   }

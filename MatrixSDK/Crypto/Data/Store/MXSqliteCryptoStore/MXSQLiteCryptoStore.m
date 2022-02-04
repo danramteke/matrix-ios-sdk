@@ -305,4 +305,20 @@
   
   return crossSigningKeys;
 }
+
+- (NSString*)algorithmForRoom:(NSString*)roomId {
+  return [self.grdbCoordinator retrieveRoomAlgorithmFor:roomId];
+}
+
+- (BOOL)blacklistUnverifiedDevicesInRoom:(NSString *)roomId {
+  return [self.grdbCoordinator retrieveBlacklistUnverifiedDevicesFor:roomId];
+}
+
+- (void)storeAlgorithmForRoom:(NSString*)roomId algorithm:(NSString*)algorithm {
+  [self.grdbCoordinator storeAlgorithmForRoomId:roomId algorithm:algorithm];
+}
+
+- (void)storeBlacklistUnverifiedDevicesInRoom:(NSString *)roomId blacklist:(BOOL)blacklist {
+  [self.grdbCoordinator storeBlacklistUnverifiedDevicesForRoomId:roomId blacklist:blacklist];
+}
 @end
