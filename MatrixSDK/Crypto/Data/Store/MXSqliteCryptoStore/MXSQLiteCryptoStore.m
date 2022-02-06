@@ -328,6 +328,8 @@
   [self.grdbCoordinator storeBlacklistUnverifiedDevicesForRoomId:roomId blacklist:blacklist];
 }
 
+#pragma mark - OlmSession
+
 - (void)storeSession:(MXOlmSession*)session forDevice:(NSString*)deviceKey {
   
   NSDate* startDate = [NSDate date];
@@ -388,6 +390,29 @@
   }];
   
   return sessionsWithDevice;
+}
+
+
+#pragma mark - InboundGroupSession
+- (NSUInteger)inboundGroupSessionsCount:(BOOL)onlyBackedUp {
+  return [self.grdbCoordinator countInboundGroupSessionsOnlyBackedUp:onlyBackedUp];
+}
+
+- (void)storeInboundGroupSessions:(NSArray<MXOlmInboundGroupSession *>*)sessions {
+  NSDate *startDate = [NSDate date];
+  
+  NSMutableArray* grdbSessions = [NSMutableArray arrayWithCapacity:sessions.count];
+  [sessions enumerateObjectsUsingBlock:^(MXOlmInboundGroupSession * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    MXGrdbOlmInboundGroupSession* grdbSession = [[MXGrdbOlmInboundGroupSession alloc] init];
+    grdbSession.olmInboundGroupSessionData = [NSKeyedArchiver archivedDataWithRootObject:obj];
+    grdbSession.senderKey = obj.senderKey;
+    grdbSession.id = obj.session.sessionIdentifier;
+    [grdbSessions addObject:grdbSession];
+  }];
+  
+  [self.grdbCoordinator storeInboundGroupSessions:grdbSessions];
+  
+  MXLogDebug(@"[MXRealmCryptoStore] storeInboundGroupSessions: store %@ keys in %.3fms", @(sessions.count),  [[NSDate date] timeIntervalSinceDate:startDate] * 1000);
 }
 
 @end

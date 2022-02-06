@@ -1,0 +1,58 @@
+// 
+// Copyright 2021 The Matrix.org Foundation C.I.C
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+import Foundation
+import GRDB
+
+extension GRDBCoordinator {
+  
+  public func countInboundGroupSessionsOnlyBackedUp(_ onlyBackedUp: Bool) -> Int {
+    do {
+      return try self.pool.read { db in
+        return try MXGrdbOlmInboundGroupSession.fetchCount(db)
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error retrieving count of Inbound Group Sessions: \(error)")
+      return 0
+    }
+  }
+  
+  public func storeInboundGroupSessions(_ sessionList: Array<MXGrdbOlmInboundGroupSession>) {
+    do {
+      try self.pool.write { db in
+        try sessionList.forEach { session in
+          try session.save(db)
+        }
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error storing Inbound Group Sessions: \(error)")
+    }
+  }
+  
+  public func retrieveInboundGroupSessionBySessionId(_ sessionId: String, senderKey: String) -> MXGrdbOlmInboundGroupSession? {
+    do {
+      return try self.pool.read { db in
+        return try MXGrdbOlmInboundGroupSession
+          .filter(MXGrdbOlmInboundGroupSession.CodingKeys.id == sessionId)
+          .filter(MXGrdbOlmInboundGroupSession.CodingKeys.senderKey == senderKey)
+          .fetchOne(db)
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error retrieving Inbound Group Session for session ID \(sessionId) and sender key \(senderKey): \(error)")
+      return nil
+    }
+  }
+}

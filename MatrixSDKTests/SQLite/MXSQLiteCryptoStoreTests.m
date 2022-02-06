@@ -239,4 +239,53 @@
   
 }
 
+-(void)testStoreAndRetrieveInboundOlmGroupSession {
+  
+  OLMAccount* aliceAccount = [[OLMAccount alloc] initNewAccount];
+  OLMAccount* bobAccount = [[OLMAccount alloc] initNewAccount];
+
+  NSError *error;
+  
+  OLMOutboundGroupSession *aliceSession = [[OLMOutboundGroupSession alloc] initOutboundGroupSession];
+  XCTAssertGreaterThan(aliceSession.sessionIdentifier.length, 0);
+  XCTAssertGreaterThan(aliceSession.sessionKey.length, 0);
+  XCTAssertEqual(aliceSession.messageIndex, 0);
+
+  NSString *sessionKey = aliceSession.sessionKey;
+  
+  NSString *message = @"Hello!";
+  NSString *aliceToBobMsg = [aliceSession encryptMessage:message error:&error];
+  
+  XCTAssertEqual(aliceSession.messageIndex, 1);
+  XCTAssertGreaterThanOrEqual(aliceToBobMsg.length, 0);
+  XCTAssertNil(error);
+  
+  OLMInboundGroupSession *bobSession = [[OLMInboundGroupSession alloc] initInboundGroupSessionWithSessionKey:sessionKey error:&error];
+  XCTAssertEqualObjects(aliceSession.sessionIdentifier, bobSession.sessionIdentifier);
+  XCTAssertNil(error);
+  
+  
+  MXMegolmSessionData* aliceSessionData = [[MXMegolmSessionData alloc] init];
+  aliceSessionData.senderKey = aliceAccount.identityKeys[@"curve25519"];
+  aliceSessionData.sessionId = aliceSession.sessionIdentifier;
+  aliceSessionData.sessionKey = sessionKey;
+
+
+  MXOlmInboundGroupSession* mxInboundGroupSession1 = [[MXOlmInboundGroupSession alloc]      initWithSessionKey:sessionKey];
+  mxInboundGroupSession1.session = bobSession;
+  mxInboundGroupSession1.senderKey = bobAccount.identityKeys[@"curve25519"];
+  
+  NSArray<MXOlmInboundGroupSession *>* sessions = @[
+    mxInboundGroupSession1,
+  ];
+  
+  MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
+  [store storeInboundGroupSessions:sessions];
+  XCTAssertEqual(sessions.count, 1);
+  XCTAssertEqual([store inboundGroupSessionsCount:false], 1);
+  
+  [store storeInboundGroupSessions:sessions];
+  XCTAssertEqual([store inboundGroupSessionsCount:false], 1, @"saving again should not increase count");
+}
+
 @end

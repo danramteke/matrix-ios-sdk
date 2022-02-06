@@ -44,7 +44,7 @@
 /**
  The associated olm inbound group session.
  */
-@property (nonatomic, readonly) OLMInboundGroupSession *session;
+@property (nonatomic) OLMInboundGroupSession *session;
 
 /**
  The room in which this session is used.

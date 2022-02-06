@@ -65,6 +65,14 @@ import GRDB
         t.column("lastReceivedMessageTs", .double)
         t.column("olmSessionData", .blob)
       }
+      
+      try db.create(table: "OlmInboundGroupSession") { t in
+        t.column("id", .text).notNull()
+        t.column("senderKey", .text)
+        t.column("olmInboundGroupSessionData", .blob)
+        t.column("backedUp", .boolean)
+        t.primaryKey(["id", "senderKey"], onConflict: .rollback)
+      }
     }
     
     try migrator.migrate(pool)
