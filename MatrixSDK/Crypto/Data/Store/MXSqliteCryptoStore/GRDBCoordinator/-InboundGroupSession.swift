@@ -62,4 +62,19 @@ extension GRDBCoordinator {
       return nil
     }
   }
+  
+  public func performOlmInboundGroupSessionTransactionForSessionId(_ sessionId: String, senderKey: String, block: (MXGrdbOlmInboundGroupSession?)->()) {
+    do {
+      try self.pool.write { db in
+        let maybeSession = try MXGrdbOlmInboundGroupSession
+          .filter(MXGrdbOlmInboundGroupSession.CodingKeys.id == sessionId)
+          .filter(MXGrdbOlmInboundGroupSession.CodingKeys.senderKey == senderKey)
+          .fetchOne(db)
+        block(maybeSession)
+        try maybeSession?.update(db)
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error performing OLM inbound group session transaction: \(error)")
+    }
+  }
 }

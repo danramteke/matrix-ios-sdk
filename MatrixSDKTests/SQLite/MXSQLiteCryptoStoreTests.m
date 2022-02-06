@@ -290,6 +290,14 @@
   MXOlmInboundGroupSession* retrievedInboundSession = [store inboundGroupSessionWithId:mxInboundGroupSession1.session.sessionIdentifier andSenderKey:mxInboundGroupSession1.senderKey];
   XCTAssertNotNil(retrievedInboundSession);
   XCTAssertEqualObjects(retrievedInboundSession.senderKey, mxInboundGroupSession1.senderKey);
+  
+  //in transaction
+  __block BOOL blockDidRun = false;
+  [store performSessionOperationWithGroupSessionWithId:mxInboundGroupSession1.session.sessionIdentifier senderKey:mxInboundGroupSession1.senderKey block:^(MXOlmInboundGroupSession *blockSession) {
+    XCTAssertNotNil(blockSession);
+    blockDidRun = true;
+  }];
+  XCTAssertTrue(blockDidRun);
 }
 
 @end

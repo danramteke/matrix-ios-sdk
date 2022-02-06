@@ -429,4 +429,20 @@
   return session;
 }
 
+- (void)performSessionOperationWithGroupSessionWithId:(NSString*)sessionId senderKey:(NSString*)senderKey block:(void (^)(MXOlmInboundGroupSession *inboundGroupSession))block {
+  [self.grdbCoordinator performOlmInboundGroupSessionTransactionForSessionId:sessionId senderKey:senderKey block:^(MXGrdbOlmInboundGroupSession * _Nullable grdbSession) {
+    
+    if (grdbSession.olmInboundGroupSessionData) {
+      MXOlmInboundGroupSession* mxSession = [NSKeyedUnarchiver unarchiveObjectWithData:grdbSession.olmInboundGroupSessionData];
+      
+      block(mxSession);
+      
+      grdbSession.olmInboundGroupSessionData = [NSKeyedArchiver archivedDataWithRootObject:mxSession];
+    } else {
+      MXLogError(@"[MXSqliteCryptoStore] performSessionOperationWithGroupSessionWithId. Error: olm group session %@ not found", sessionId);
+      block(nil);
+    }
+  }];
+}
+
 @end
