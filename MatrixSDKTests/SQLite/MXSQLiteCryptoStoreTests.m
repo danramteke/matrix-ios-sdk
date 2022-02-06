@@ -298,6 +298,11 @@
     blockDidRun = true;
   }];
   XCTAssertTrue(blockDidRun);
+  
+  //all
+  NSArray<MXOlmInboundGroupSession *>* retrievedSessions = [store inboundGroupSessions];
+  XCTAssertEqual(retrievedSessions.count, 1);
+  XCTAssertEqualObjects(retrievedSessions.firstObject.senderKey, mxInboundGroupSession1.senderKey);
 }
 
 @end

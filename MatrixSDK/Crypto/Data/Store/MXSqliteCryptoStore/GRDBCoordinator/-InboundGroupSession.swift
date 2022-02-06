@@ -63,6 +63,18 @@ extension GRDBCoordinator {
     }
   }
   
+  public func retrieveAllInboundGroupSessions() -> [MXGrdbOlmInboundGroupSession]? {
+    do {
+      return try self.pool.read { db in
+        return try MXGrdbOlmInboundGroupSession
+          .fetchAll(db)
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error retrieving all Inbound Group Sessions: \(error)")
+      return nil
+    }
+  }
+  
   public func performOlmInboundGroupSessionTransactionForSessionId(_ sessionId: String, senderKey: String, block: (MXGrdbOlmInboundGroupSession?)->()) {
     do {
       try self.pool.write { db in

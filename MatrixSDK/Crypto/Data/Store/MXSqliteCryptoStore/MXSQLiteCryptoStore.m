@@ -445,4 +445,19 @@
   }];
 }
 
+- (NSArray<MXOlmInboundGroupSession *> *)inboundGroupSessions {
+  NSMutableArray<MXOlmInboundGroupSession*>* results;
+  NSArray<MXGrdbOlmInboundGroupSession*>* retrieved = [self.grdbCoordinator retrieveAllInboundGroupSessions];
+  
+  if (retrieved) {
+    results = [NSMutableArray array];
+    
+    [retrieved enumerateObjectsUsingBlock:^(MXGrdbOlmInboundGroupSession * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+      MXOlmInboundGroupSession* mxSession = [NSKeyedUnarchiver unarchiveObjectWithData:obj.olmInboundGroupSessionData];
+      [results addObject:mxSession];
+    }];
+  }
+  return results;
+}
+
 @end
