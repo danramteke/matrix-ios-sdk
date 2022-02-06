@@ -48,6 +48,19 @@ extension GRDBCoordinator {
       MXLog.error("[\(String(describing: Self.self))] error storing Inbound Group Sessions: \(error)")
     }
   }
+
+  public func deleteInboundGroupSessionBySessionId(_ sessionId: String, senderKey: String) {
+    do {
+      return try self.pool.write { db in
+        try MXGrdbOlmInboundGroupSession
+          .filter(MXGrdbOlmInboundGroupSession.CodingKeys.id == sessionId)
+          .filter(MXGrdbOlmInboundGroupSession.CodingKeys.senderKey == senderKey)
+          .deleteAll(db)
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error deleting Inbound Group Session for session ID \(sessionId) and sender key \(senderKey): \(error)")
+    }
+  }
   
   public func retrieveInboundGroupSessionBySessionId(_ sessionId: String, senderKey: String) -> MXGrdbOlmInboundGroupSession? {
     do {

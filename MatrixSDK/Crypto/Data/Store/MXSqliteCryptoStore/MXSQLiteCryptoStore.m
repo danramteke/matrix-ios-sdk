@@ -460,4 +460,10 @@
   return results;
 }
 
+- (void)removeInboundGroupSessionWithId:(NSString*)sessionId andSenderKey:(NSString*)senderKey {
+  [self.grdbCoordinator deleteInboundGroupSessionBySessionId:sessionId senderKey:senderKey];
+}
+
+#pragma mark - MXRealmOlmOutboundGroupSession
+
 @end
