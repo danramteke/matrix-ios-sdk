@@ -394,6 +394,7 @@
 
 
 #pragma mark - InboundGroupSession
+
 - (NSUInteger)inboundGroupSessionsCount:(BOOL)onlyBackedUp {
   return [self.grdbCoordinator countInboundGroupSessionsOnlyBackedUp:onlyBackedUp];
 }
@@ -465,5 +466,30 @@
 }
 
 #pragma mark - MXRealmOlmOutboundGroupSession
+- (MXOlmOutboundGroupSession *)storeOutboundGroupSession:(OLMOutboundGroupSession *)session withRoomId:(NSString *)roomId {
+  NSData* sessionData = [NSKeyedArchiver archivedDataWithRootObject:session];
+  MXGrdbOlmOutboundGroupSession* grdbSession = [[MXGrdbOlmOutboundGroupSession alloc] initWithRoomId:roomId sessionId: session.sessionIdentifier sessionData:sessionData];
+  [self.grdbCoordinator storeOutboundGroupSession:grdbSession];
+  
+  return [[MXOlmOutboundGroupSession alloc] initWithSession:session roomId:roomId creationTime:grdbSession.creationTime];
+}
+
+- (MXOlmOutboundGroupSession *)outboundGroupSessionWithRoomId:(NSString*)roomId {
+
+  MXGrdbOlmOutboundGroupSession* grdbSession = [self.grdbCoordinator retrieveOutboundGroupSessionWithRoomId:roomId];
+  if (grdbSession == nil) {
+    return nil;
+  }
+  
+  OLMOutboundGroupSession* session = [NSKeyedUnarchiver unarchiveObjectWithData:grdbSession.sessionData];
+  if (!session) {
+    MXLogDebug(@"[MXSQLiteCryptoStore] outboundGroupSessionWithRoomId: ERROR: Failed to create OLMOutboundGroupSession object");
+    return nil;
+  }
+  
+  return [[MXOlmOutboundGroupSession alloc] initWithSession:session
+                                                     roomId:roomId
+                                               creationTime:grdbSession.creationTime];
+}
 
 @end

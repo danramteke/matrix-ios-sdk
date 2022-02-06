@@ -73,6 +73,14 @@ import GRDB
         t.column("backedUp", .boolean)
         t.primaryKey(["id", "senderKey"], onConflict: .rollback)
       }
+      
+      try db.create(table: "OlmOutboundGroupSession") { t in
+        t.column("roomId", .text).notNull()
+        t.column("sessionId", .text)
+        t.column("sessionData", .blob)
+        t.column("creationTime", .double)
+        t.primaryKey(["roomId"], onConflict: .rollback)
+      }
     }
     
     try migrator.migrate(pool)

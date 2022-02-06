@@ -272,7 +272,7 @@
 
 
   MXOlmInboundGroupSession* mxInboundGroupSession1 = [[MXOlmInboundGroupSession alloc]      initWithSessionKey:sessionKey];
-  mxInboundGroupSession1.session = bobSession;
+  mxInboundGroupSession1.session = bobSession; // TODO: make a test init for these properties
   mxInboundGroupSession1.senderKey = bobAccount.identityKeys[@"curve25519"];
   
   NSArray<MXOlmInboundGroupSession *>* sessions = @[
@@ -303,6 +303,24 @@
   NSArray<MXOlmInboundGroupSession *>* retrievedSessions = [store inboundGroupSessions];
   XCTAssertEqual(retrievedSessions.count, 1);
   XCTAssertEqualObjects(retrievedSessions.firstObject.senderKey, mxInboundGroupSession1.senderKey);
+  
+  //remove
+  [store removeInboundGroupSessionWithId:mxInboundGroupSession1.session.sessionIdentifier andSenderKey:mxInboundGroupSession1.senderKey];
+  XCTAssertEqual([store inboundGroupSessionsCount:false], 0);
+}
+
+-(void)testStoreAndRetrieveOutboundOlmGroupSession {
+  OLMOutboundGroupSession *aliceSession = [[OLMOutboundGroupSession alloc] initOutboundGroupSession];
+  XCTAssertGreaterThan(aliceSession.sessionIdentifier.length, 0);
+  XCTAssertGreaterThan(aliceSession.sessionKey.length, 0);
+  XCTAssertEqual(aliceSession.messageIndex, 0);
+  
+  MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
+  MXOlmOutboundGroupSession* mxSession = [store storeOutboundGroupSession:aliceSession withRoomId:@"Alice Room ID"];
+  XCTAssertEqualObjects(mxSession.roomId, @"Alice Room ID");
+  
+  MXOlmOutboundGroupSession* retrievedMxSession = [store outboundGroupSessionWithRoomId:@"Alice Room ID"];
+  XCTAssertEqualObjects(retrievedMxSession.roomId, @"Alice Room ID");
 }
 
 @end

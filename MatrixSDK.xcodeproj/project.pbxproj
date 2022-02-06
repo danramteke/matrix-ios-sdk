@@ -745,6 +745,10 @@
 		653517DF27ADD62600782CEB /* MXGrdbOlmInboundGroupSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517DD27ADD62600782CEB /* MXGrdbOlmInboundGroupSession.swift */; };
 		653DD67527B0262800097AE9 /* -InboundGroupSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653DD67427B0262800097AE9 /* -InboundGroupSession.swift */; };
 		653DD67627B0262800097AE9 /* -InboundGroupSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653DD67427B0262800097AE9 /* -InboundGroupSession.swift */; };
+		653DD67827B0615D00097AE9 /* -OutboundGroupSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653DD67727B0615D00097AE9 /* -OutboundGroupSession.swift */; };
+		653DD67927B0615D00097AE9 /* -OutboundGroupSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653DD67727B0615D00097AE9 /* -OutboundGroupSession.swift */; };
+		653DD67B27B076B100097AE9 /* MXGrdbOlmOutboundGroupSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653DD67A27B076B100097AE9 /* MXGrdbOlmOutboundGroupSession.swift */; };
+		653DD67C27B076B100097AE9 /* MXGrdbOlmOutboundGroupSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653DD67A27B076B100097AE9 /* MXGrdbOlmOutboundGroupSession.swift */; };
 		71DE22E01BC7C51200284153 /* MXReceiptData.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DE22DC1BC7C51200284153 /* MXReceiptData.m */; };
 		71DE22E11BC7C51200284153 /* MXReceiptData.h in Headers */ = {isa = PBXBuildFile; fileRef = 71DE22DD1BC7C51200284153 /* MXReceiptData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8EC511042568216B00EC4E5B /* MXTaggedEventInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EC511022568216B00EC4E5B /* MXTaggedEventInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -2274,6 +2278,8 @@
 		653517DA27ADB12000782CEB /* -OlmSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "-OlmSession.swift"; sourceTree = "<group>"; };
 		653517DD27ADD62600782CEB /* MXGrdbOlmInboundGroupSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXGrdbOlmInboundGroupSession.swift; sourceTree = "<group>"; };
 		653DD67427B0262800097AE9 /* -InboundGroupSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "-InboundGroupSession.swift"; sourceTree = "<group>"; };
+		653DD67727B0615D00097AE9 /* -OutboundGroupSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "-OutboundGroupSession.swift"; sourceTree = "<group>"; };
+		653DD67A27B076B100097AE9 /* MXGrdbOlmOutboundGroupSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXGrdbOlmOutboundGroupSession.swift; sourceTree = "<group>"; };
 		6869D206EA7C7FB05EAB75B0 /* Pods-MatrixSDKTests-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MatrixSDKTests-iOS.release.xcconfig"; path = "Target Support Files/Pods-MatrixSDKTests-iOS/Pods-MatrixSDKTests-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		71DE22DC1BC7C51200284153 /* MXReceiptData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXReceiptData.m; sourceTree = "<group>"; };
 		71DE22DD1BC7C51200284153 /* MXReceiptData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXReceiptData.h; sourceTree = "<group>"; };
@@ -3964,6 +3970,7 @@
 				653517D127ADA56A00782CEB /* MXGrdbRoomAlgorithm.swift */,
 				653517D727ADAF4F00782CEB /* MXGrdbOlmSession.swift */,
 				653517DD27ADD62600782CEB /* MXGrdbOlmInboundGroupSession.swift */,
+				653DD67A27B076B100097AE9 /* MXGrdbOlmOutboundGroupSession.swift */,
 			);
 			path = RecordTypes;
 			sourceTree = "<group>";
@@ -3982,6 +3989,7 @@
 				653517D427ADA72700782CEB /* -RoomAlgorithm.swift */,
 				653517DA27ADB12000782CEB /* -OlmSession.swift */,
 				653DD67427B0262800097AE9 /* -InboundGroupSession.swift */,
+				653DD67727B0615D00097AE9 /* -OutboundGroupSession.swift */,
 			);
 			path = GRDBCoordinator;
 			sourceTree = "<group>";
@@ -5729,6 +5737,7 @@
 				3213301A228B010C0070BA9B /* MXRealmReactionCount.m in Sources */,
 				91CC0FCC26A033AE00C2A387 /* MXURLPreview.m in Sources */,
 				322AB591260CDBC10017E964 /* MXSyncResponseStoreManager.swift in Sources */,
+				653DD67B27B076B100097AE9 /* MXGrdbOlmOutboundGroupSession.swift in Sources */,
 				3250E7CB220C913900736CB5 /* MXCryptoTools.m in Sources */,
 				322691331E5EF77D00966A6E /* MXDeviceListOperation.m in Sources */,
 				ECD2897D26E8F06F00F268CF /* MXStoreRoomListDataFetcher.swift in Sources */,
@@ -5883,6 +5892,7 @@
 				EC8A53A725B1BC77004E0802 /* MXCallCapabilitiesModel.m in Sources */,
 				C6F9357C1E5B39CA00FC34BF /* MXRestClient.swift in Sources */,
 				32BBAE752179CF4000D85F46 /* MXKeyBackup.m in Sources */,
+				653DD67827B0615D00097AE9 /* -OutboundGroupSession.swift in Sources */,
 				EC8A53AD25B1BC77004E0802 /* MXCallNegotiateEventContent.m in Sources */,
 				322A51B71D9AB15900C8536D /* MXCrypto.m in Sources */,
 				B17982FB2119E4A2001FD722 /* MXRoomPredecessorInfo.m in Sources */,
@@ -6225,6 +6235,7 @@
 				91CC0FCD26A033AE00C2A387 /* MXURLPreview.m in Sources */,
 				B14EF2362397E90400758AF0 /* MXAggregations.m in Sources */,
 				B14EF2372397E90400758AF0 /* MXKeyVerificationManager.m in Sources */,
+				653DD67C27B076B100097AE9 /* MXGrdbOlmOutboundGroupSession.swift in Sources */,
 				8EC5110D256822B400EC4E5B /* MXTaggedEvents.m in Sources */,
 				B14EF2382397E90400758AF0 /* MXEvent.m in Sources */,
 				EC8A539225B1BC77004E0802 /* MXCallCandidate.m in Sources */,
@@ -6379,6 +6390,7 @@
 				B14EF2842397E90400758AF0 /* MXUIKitBackgroundModeHandler.m in Sources */,
 				B14EF2852397E90400758AF0 /* (null) in Sources */,
 				32A9F8E1244720B10069C65B /* MXThrottler.m in Sources */,
+				653DD67927B0615D00097AE9 /* -OutboundGroupSession.swift in Sources */,
 				3274538D23FD918800438328 /* MXKeyVerificationByToDeviceRequest.m in Sources */,
 				32CEEF5223B0AB030039BA98 /* MXCrossSigning.m in Sources */,
 				324DD2C8246E638B00377005 /* MXAesHmacSha2.m in Sources */,
