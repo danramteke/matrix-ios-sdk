@@ -492,4 +492,25 @@
                                                creationTime:grdbSession.creationTime];
 }
 
+- (NSArray<MXOlmOutboundGroupSession *> *)outboundGroupSessions {
+  NSArray<MXGrdbOlmOutboundGroupSession*>* retrievedSessions = [self.grdbCoordinator retrieveAllOutboundGroupSessions];
+  if (!retrievedSessions) {
+    return nil;
+  }
+  
+  NSMutableArray<MXOlmOutboundGroupSession*>* mxSessions = [NSMutableArray arrayWithCapacity:retrievedSessions.count];
+  [retrievedSessions enumerateObjectsUsingBlock:^(MXGrdbOlmOutboundGroupSession * _Nonnull grdbSession, NSUInteger idx, BOOL * _Nonnull stop) {
+    OLMOutboundGroupSession* olmSession = [NSKeyedUnarchiver unarchiveObjectWithData:grdbSession.sessionData];
+    MXOlmOutboundGroupSession* mxSession = [[MXOlmOutboundGroupSession alloc] initWithSession:olmSession
+                                                roomId:grdbSession.roomId
+                                          creationTime:grdbSession.creationTime];
+    [mxSessions addObject:mxSession];
+  }];
+  return mxSessions;
+}
+
+- (void)removeOutboundGroupSessionWithRoomId:(NSString*)roomId {
+  [self.grdbCoordinator deleteOutboundGroupSessionsWithRoomId:roomId];
+}
+
 @end

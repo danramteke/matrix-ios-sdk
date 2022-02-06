@@ -41,4 +41,28 @@ extension GRDBCoordinator {
       return nil
     }
   }
+  
+  public func retrieveAllOutboundGroupSessions() -> [MXGrdbOlmOutboundGroupSession]? {
+    do {
+      return try self.pool.read { db in
+        return try MXGrdbOlmOutboundGroupSession
+          .fetchAll(db)
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error retrieving all Outbound Group Sessions: \(error)")
+      return nil
+    }
+  }
+  
+  public func deleteOutboundGroupSessionsWithRoomId(_ roomId: String) {
+    do {
+      return try self.pool.write { db in
+        try MXGrdbOlmOutboundGroupSession
+          .filter(MXGrdbOlmOutboundGroupSession.CodingKeys.roomId == roomId)
+          .deleteAll(db)
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error deleting Outbound Group Session for room ID \(roomId): \(error)")
+    }
+  }
 }

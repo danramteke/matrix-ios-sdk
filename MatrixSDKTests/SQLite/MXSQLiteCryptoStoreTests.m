@@ -321,6 +321,15 @@
   
   MXOlmOutboundGroupSession* retrievedMxSession = [store outboundGroupSessionWithRoomId:@"Alice Room ID"];
   XCTAssertEqualObjects(retrievedMxSession.roomId, @"Alice Room ID");
+  XCTAssertEqualObjects(retrievedMxSession.sessionKey, aliceSession.sessionKey);
+  
+  NSArray<MXOlmOutboundGroupSession*>* retrievedMxSessions = [store outboundGroupSessions];
+  XCTAssertNotNil(retrievedMxSessions);
+  XCTAssertEqualObjects([retrievedMxSessions firstObject].roomId, @"Alice Room ID");
+  XCTAssertEqualObjects([retrievedMxSessions firstObject].sessionKey, aliceSession.sessionKey);
+  
+  [store removeOutboundGroupSessionWithRoomId:@"Alice Room ID"];
+  XCTAssertEqual(0, [store outboundGroupSessions].count);
 }
 
 @end
