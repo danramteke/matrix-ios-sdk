@@ -286,6 +286,10 @@
   
   [store storeInboundGroupSessions:sessions];
   XCTAssertEqual([store inboundGroupSessionsCount:false], 1, @"saving again should not increase count");
+  
+  MXOlmInboundGroupSession* retrievedInboundSession = [store inboundGroupSessionWithId:mxInboundGroupSession1.session.sessionIdentifier andSenderKey:mxInboundGroupSession1.senderKey];
+  XCTAssertNotNil(retrievedInboundSession);
+  XCTAssertEqualObjects(retrievedInboundSession.senderKey, mxInboundGroupSession1.senderKey);
 }
 
 @end

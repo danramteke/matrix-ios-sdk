@@ -401,7 +401,7 @@
 - (void)storeInboundGroupSessions:(NSArray<MXOlmInboundGroupSession *>*)sessions {
   NSDate *startDate = [NSDate date];
   
-  NSMutableArray* grdbSessions = [NSMutableArray arrayWithCapacity:sessions.count];
+  NSMutableArray<MXGrdbOlmInboundGroupSession*>* grdbSessions = [NSMutableArray arrayWithCapacity:sessions.count];
   [sessions enumerateObjectsUsingBlock:^(MXOlmInboundGroupSession * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
     MXGrdbOlmInboundGroupSession* grdbSession = [[MXGrdbOlmInboundGroupSession alloc] init];
     grdbSession.olmInboundGroupSessionData = [NSKeyedArchiver archivedDataWithRootObject:obj];
@@ -412,7 +412,21 @@
   
   [self.grdbCoordinator storeInboundGroupSessions:grdbSessions];
   
-  MXLogDebug(@"[MXRealmCryptoStore] storeInboundGroupSessions: store %@ keys in %.3fms", @(sessions.count),  [[NSDate date] timeIntervalSinceDate:startDate] * 1000);
+  MXLogDebug(@"[MXSQLiteCryptoStore] storeInboundGroupSessions: store %@ keys in %.3fms", @(sessions.count),  [[NSDate date] timeIntervalSinceDate:startDate] * 1000);
+}
+
+- (MXOlmInboundGroupSession*)inboundGroupSessionWithId:(NSString*)sessionId andSenderKey:(NSString*)senderKey {
+  
+  MXOlmInboundGroupSession *session = nil;
+  
+  MXGrdbOlmInboundGroupSession* maybeGrdbSession = [self.grdbCoordinator retrieveInboundGroupSessionBySessionId:sessionId senderKey:senderKey];
+  if (maybeGrdbSession) {
+    session = [NSKeyedUnarchiver unarchiveObjectWithData:maybeGrdbSession.olmInboundGroupSessionData];
+    if (!session) {
+      MXLogDebug(@"[MXSQLiteCryptoStore] inboundGroupSessionWithId: ERROR: Failed to create MXOlmInboundGroupSession object");
+    }
+  }
+  return session;
 }
 
 @end
