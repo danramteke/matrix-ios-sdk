@@ -22,7 +22,14 @@ extension GRDBCoordinator {
   public func countInboundGroupSessionsOnlyBackedUp(_ onlyBackedUp: Bool) -> Int {
     do {
       return try self.pool.read { db in
-        return try MXGrdbOlmInboundGroupSession.fetchCount(db)
+        if onlyBackedUp {
+          return try MXGrdbOlmInboundGroupSession
+            .filter(MXGrdbOlmInboundGroupSession.CodingKeys.backedUp == true)
+            .fetchCount(db)
+        } else {
+          return try MXGrdbOlmInboundGroupSession
+            .fetchCount(db)
+        }
       }
     } catch {
       MXLog.error("[\(String(describing: Self.self))] error retrieving count of Inbound Group Sessions: \(error)")
