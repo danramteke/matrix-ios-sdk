@@ -102,4 +102,44 @@ extension GRDBCoordinator {
       MXLog.error("[\(String(describing: Self.self))] error performing OLM inbound group session transaction: \(error)")
     }
   }
+  
+  public func resetBackupMarkers() {
+    do {
+      return try self.pool.write { db in
+        try MXGrdbOlmInboundGroupSession
+          .updateAll(db, MXGrdbOlmInboundGroupSession.CodingKeys.backedUp.set(to: false))
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error resetting backup markers for OLM inbound group session transaction: \(error)")
+    }
+  }
+  
+  public func markBackupDoneForInboundGroupSessions(_ sessions: [MXOlmInboundGroupSession]) {
+    do {
+      return try self.pool.write { db in
+        for session in sessions {
+          try MXGrdbOlmInboundGroupSession
+            .filter(MXGrdbOlmInboundGroupSession.CodingKeys.senderKey == session.senderKey && MXGrdbOlmInboundGroupSession.CodingKeys.id == session.sessionIdentifier())
+            .updateAll(db, MXGrdbOlmInboundGroupSession.CodingKeys.backedUp
+                        .set(to: true))
+        }
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error marking backup done for OLM inbound group session transaction: \(error)")
+    }
+  }
+  
+  public func retrieveInboundGroupSessionsToBackup(limit: Int) -> [MXGrdbOlmInboundGroupSession]? {
+    do {
+      return try self.pool.read { db in
+        return try MXGrdbOlmInboundGroupSession
+          .filter(MXGrdbOlmInboundGroupSession.CodingKeys.backedUp == false)
+          .limit(limit)
+          .fetchAll(db)
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error retrieving all Inbound Group Sessions: \(error)")
+      return nil
+    }
+  }
 }

@@ -304,6 +304,14 @@
   XCTAssertEqual(retrievedSessions.count, 1);
   XCTAssertEqualObjects(retrievedSessions.firstObject.senderKey, mxInboundGroupSession1.senderKey);
   
+  //backup
+  NSArray<MXOlmInboundGroupSession *>* retrievedInboundSessionNeedingBackup = [store inboundGroupSessionsToBackup:1];
+  XCTAssertEqual(retrievedInboundSessionNeedingBackup.count, 1);
+  [store markBackupDoneForInboundGroupSessions:retrievedInboundSessionNeedingBackup];
+  XCTAssertEqual(0, [store inboundGroupSessionsToBackup:1].count);
+  [store resetBackupMarkers];
+  XCTAssertEqual(1, [store inboundGroupSessionsToBackup:1].count);
+  
   //remove
   [store removeInboundGroupSessionWithId:mxInboundGroupSession1.session.sessionIdentifier andSenderKey:mxInboundGroupSession1.senderKey];
   XCTAssertEqual([store inboundGroupSessionsCount:false], 0);

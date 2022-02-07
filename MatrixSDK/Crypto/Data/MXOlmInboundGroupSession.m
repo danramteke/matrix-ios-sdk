@@ -126,6 +126,9 @@
     [aCoder encodeObject:_forwardingCurve25519KeyChain forKey:@"forwardingCurve25519KeyChain"];
 }
 
+-(NSString*)sessionIdentifier {
+  return self.session.sessionIdentifier;
+}
 @end
 
 #endif

@@ -87,6 +87,7 @@
 - (instancetype)initWithImportedSessionData:(MXMegolmSessionData*)data;
 - (instancetype)initWithImportedSessionKey:(NSString*)sessionKey;
 
+-(NSString*)sessionIdentifier;
 @end
 
 #endif // MX_CRYPTO

@@ -535,4 +535,29 @@
 -(NSString*)backupVersion {
   return [self.grdbCoordinator retrieveBackupVersionFor:self.userId];
 }
+
+- (void)resetBackupMarkers {
+  [self.grdbCoordinator resetBackupMarkers];
+}
+
+- (void)markBackupDoneForInboundGroupSessions:(NSArray<MXOlmInboundGroupSession *>*)sessions {
+  [self.grdbCoordinator markBackupDoneForInboundGroupSessions:sessions];
+}
+
+- (NSArray<MXOlmInboundGroupSession*>*)inboundGroupSessionsToBackup:(NSUInteger)limit {
+  
+  NSMutableArray<MXOlmInboundGroupSession*>* sessions = nil;
+  
+  NSArray<MXGrdbOlmInboundGroupSession*>* maybeGrdbSessions = [self.grdbCoordinator retrieveInboundGroupSessionsToBackupWithLimit:limit];
+  if (maybeGrdbSessions) {
+    sessions = [NSMutableArray array];
+    [maybeGrdbSessions enumerateObjectsUsingBlock:^(MXGrdbOlmInboundGroupSession * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+      MXOlmInboundGroupSession* session = [NSKeyedUnarchiver unarchiveObjectWithData:obj.olmInboundGroupSessionData];
+      if (session) {
+        [sessions addObject:session];
+      }
+    }];
+  }
+  return sessions;
+}
 @end
