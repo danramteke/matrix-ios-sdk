@@ -1,4 +1,4 @@
-// 
+//
 // Copyright 2021 The Matrix.org Foundation C.I.C
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,16 +24,18 @@ public final class MXGrdbSharedOutboundSession: NSObject, Codable, FetchableReco
   public var roomId: String
   public var sessionId: String
   public var deviceId: String
-  public var messageIndex: Int
+  public var userId: String
+  public var messageIndex: UInt
   
-  public init(roomId: String, sessionId: String, deviceId: String, messageIndex: Int) {
+  public init(roomId: String, sessionId: String, deviceId: String, userId: String, messageIndex: UInt) {
     self.roomId = roomId
     self.sessionId = sessionId
     self.deviceId = deviceId
+    self.userId = userId
     self.messageIndex = messageIndex
   }
   
   public enum CodingKeys: String, CodingKey, ColumnExpression {
-    case roomId, sessionId, deviceId, messageIndex
+    case roomId, sessionId, deviceId, userId, messageIndex
   }
 }

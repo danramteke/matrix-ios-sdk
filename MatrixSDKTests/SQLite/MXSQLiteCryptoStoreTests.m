@@ -332,4 +332,31 @@
   XCTAssertEqual(0, [store outboundGroupSessions].count);
 }
 
+-(void)testStoreAndRetrieveUserDeviceMapOfMessageIndex {
+  
+  MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
+  [store storeDeviceForUser:@"user 1" device:[[MXDeviceInfo alloc] initForTestingWithUserId:@"user 1" deviceId:@"device 1-1" identityKey:@"device 1-1 key"]];
+  [store storeDeviceForUser:@"user 1" device:[[MXDeviceInfo alloc] initForTestingWithUserId:@"user 1" deviceId:@"device 1-2" identityKey:@"device 1-2 key"]];
+  [store storeDeviceForUser:@"user 2" device:[[MXDeviceInfo alloc] initForTestingWithUserId:@"user 2" deviceId:@"device 2-1" identityKey:@"device 2-1 key"]];
+
+  MXUsersDevicesMap* map = [[MXUsersDevicesMap alloc] init];
+  [map setObject:@(11) forUser:@"user 1" andDevice:@"device 1-1"];
+  [map setObject:@(12) forUser:@"user 1" andDevice:@"device 1-2"];
+  [map setObject:@(21) forUser:@"user 2" andDevice:@"device 2-1"];
+  
+  [store storeSharedDevices:map messageIndex:95 forOutboundGroupSessionInRoomWithId:@"room id" sessionId:@"session id"];
+  
+  // retrieve full map
+  MXUsersDevicesMap* retrievedMap = [store sharedDevicesForOutboundGroupSessionInRoomWithId:@"room id" sessionId:@"session id"];
+  XCTAssertEqual(retrievedMap.count, map.count);
+  XCTAssertEqualObjects([retrievedMap objectForDevice:@"device 1-1" forUser:@"user 1"], @(95));
+  XCTAssertEqualObjects([retrievedMap objectForDevice:@"device 1-2" forUser:@"user 1"], @(95));
+  XCTAssertEqualObjects([retrievedMap objectForDevice:@"device 2-1" forUser:@"user 2"], @(95));
+  XCTAssertNil([retrievedMap objectForDevice:@"device 99" forUser:@"user 199"]);
+  
+  XCTAssertEqualObjects([store messageIndexForSharedDeviceInRoomWithId:@"room id" sessionId:@"session id" userId:@"user 1" deviceId:@"device 1-1"], @(95));
+  XCTAssertEqualObjects([store messageIndexForSharedDeviceInRoomWithId:@"room id" sessionId:@"session id" userId:@"user 1" deviceId:@"device 1-2"], @(95));
+  XCTAssertEqualObjects([store messageIndexForSharedDeviceInRoomWithId:@"room id" sessionId:@"session id" userId:@"user 2" deviceId:@"device 2-1"], @(95));
+}
+
 @end

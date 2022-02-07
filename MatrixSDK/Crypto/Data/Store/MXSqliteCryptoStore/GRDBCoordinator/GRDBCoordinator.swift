@@ -26,7 +26,7 @@ import GRDB
     let pool = try DatabasePool(path: url.absoluteString)
     
     var migrator = DatabaseMigrator()
-    migrator.registerMigration("create:OlmAccount,User,Device,RoomAlgorithm") { db in
+    migrator.registerMigration("createInitialTables") { db in
       try db.create(table: "OlmAccount") { t in
         t.column("userId", .text).notNull()
         t.column("deviceId", .text).notNull()
@@ -86,6 +86,7 @@ import GRDB
         t.column("roomId", .text).notNull()
         t.column("sessionId", .text)
         t.column("deviceId", .text)
+        t.column("userId", .text)
         t.column("messageIndex", .integer)
       }
     }

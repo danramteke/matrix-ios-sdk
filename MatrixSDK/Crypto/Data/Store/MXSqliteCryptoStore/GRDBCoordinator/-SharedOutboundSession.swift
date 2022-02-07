@@ -18,19 +18,69 @@ import Foundation
 import GRDB
 
 extension GRDBCoordinator {
-  
-  public func retrieveSharedOutboundSessionWithRoomId(_ roomId: String, sessionId: String) -> MXGrdbSharedOutboundSession? {
+   
+  public func retrieveSharedOutboundSessionWithRoomId(_ roomId: String, sessionId: String) -> MXUsersDevicesMap<NSNumber>? {
     do {
       return try self.pool.read { db in
         return try MXGrdbSharedOutboundSession
           .filter(MXGrdbSharedOutboundSession.CodingKeys.roomId == roomId)
           .filter(MXGrdbSharedOutboundSession.CodingKeys.sessionId == sessionId)
-//          ._including(optional: <#T##_SQLAssociation#>)
-          .fetchOne(db)
+          .fetchAll(db)
+          .reduce(MXUsersDevicesMap<NSNumber>(), { partialResult, row in
+            partialResult.setObject(NSNumber(value: row.messageIndex), forUser: row.userId, andDevice: row.deviceId)
+            return partialResult
+          })
       }
     } catch {
       MXLog.error("[\(String(describing: Self.self))] error retrieving Shared Outbound Session for room ID \(roomId): \(error)")
       return nil
+    }
+  }
+  
+  public func retrieveMessageIndexSharedOutboundSessionWithRoomId(_ roomId: String, sessionId: String, userId: String, deviceId: String) -> NSNumber? {
+    do {
+      return try self.pool.read { db in
+        return try MXGrdbSharedOutboundSession
+          .select(MXGrdbSharedOutboundSession.CodingKeys.messageIndex)
+          .filter(MXGrdbSharedOutboundSession.CodingKeys.roomId == roomId)
+          .filter(MXGrdbSharedOutboundSession.CodingKeys.sessionId == sessionId)
+          .filter(MXGrdbSharedOutboundSession.CodingKeys.userId == userId)
+          .filter(MXGrdbSharedOutboundSession.CodingKeys.deviceId == deviceId)
+          .asRequest(of: UInt.self)
+          .fetchOne(db)
+          .map { uint in
+            return NSNumber(value: uint)
+          }
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error retrieving message index of Shared Outbound Session for room ID \(roomId): \(error)")
+      return nil
+    }
+  }
+    
+  public func storeSharedOutboundSession(devices: MXUsersDevicesMap<NSNumber>, messageIndex: UInt, roomId: String, sessionId: String) {
+    do {
+      try self.pool.write { db in
+        for userId in devices.userIds() {
+          for deviceId in devices.deviceIds(forUser: userId) {
+            
+            guard try MXGrdbDevice.filter(MXGrdbDevice.CodingKeys.id == deviceId).fetchCount(db) > 0 else {
+              MXLog.debug("[\(String(describing: Self.self))] storeSharedDevices cannot find device with the ID \(deviceId)")
+              continue
+            }
+            
+            guard try MXGrdbUser.filter(MXGrdbUser.CodingKeys.id == userId).fetchCount(db) > 0 else {
+              MXLog.debug("[\(String(describing: Self.self))] storeSharedDevices cannot find user with the ID \(userId)")
+              continue
+            }
+            
+            try MXGrdbSharedOutboundSession(roomId: roomId, sessionId: sessionId, deviceId: deviceId, userId: userId, messageIndex: messageIndex)
+              .save(db)
+          }
+        }
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error storing devices for Shared Outbound Session for room ID \(roomId): \(error)")
     }
   }
 }

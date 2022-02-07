@@ -514,12 +514,16 @@
 }
 
 #pragma mark - MXUsersDevicesMap
-//- (void)storeSharedDevices:(MXUsersDevicesMap<NSNumber *> *)devices messageIndex:(NSUInteger) messageIndex forOutboundGroupSessionInRoomWithId:(NSString *)roomId sessionId:(NSString *)sessionId {
-//
-//}
-//
-//- (MXUsersDevicesMap<NSNumber *> *)sharedDevicesForOutboundGroupSessionInRoomWithId:(NSString *)roomId sessionId:(NSString *)sessionId {
-//
-//}
+- (void)storeSharedDevices:(MXUsersDevicesMap<NSNumber *> *)devices messageIndex:(NSUInteger) messageIndex forOutboundGroupSessionInRoomWithId:(NSString *)roomId sessionId:(NSString *)sessionId {
+  [self.grdbCoordinator storeSharedOutboundSessionWithDevices:devices messageIndex:messageIndex roomId:roomId sessionId:sessionId];
+}
+
+- (MXUsersDevicesMap<NSNumber *> *)sharedDevicesForOutboundGroupSessionInRoomWithId:(NSString *)roomId sessionId:(NSString *)sessionId {
+  return [self.grdbCoordinator retrieveSharedOutboundSessionWithRoomId:roomId sessionId:sessionId];
+}
+
+- (NSNumber *)messageIndexForSharedDeviceInRoomWithId:(NSString *)roomId sessionId:(NSString *)sessionId userId:(NSString *)userId deviceId:(NSString *)deviceId {
+  return [self.grdbCoordinator retrieveMessageIndexSharedOutboundSessionWithRoomId:roomId sessionId:sessionId userId:userId deviceId:deviceId];
+}
 
 @end
