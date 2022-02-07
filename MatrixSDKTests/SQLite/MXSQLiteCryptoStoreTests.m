@@ -359,4 +359,11 @@
   XCTAssertEqualObjects([store messageIndexForSharedDeviceInRoomWithId:@"room id" sessionId:@"session id" userId:@"user 2" deviceId:@"device 2-1"], @(95));
 }
 
+
+-(void)testStoreAndRetriveBackupVersion {
+  MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
+  XCTAssertNil([store backupVersion]);
+  [store setBackupVersion:@"example"];
+  XCTAssertEqualObjects([store backupVersion], @"example");
+}
 @end

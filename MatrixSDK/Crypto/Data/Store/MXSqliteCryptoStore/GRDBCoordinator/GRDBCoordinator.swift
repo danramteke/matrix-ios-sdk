@@ -22,76 +22,8 @@ import GRDB
   internal let pool: DatabasePool
   
   public init(url: URL) throws {
-    
     let pool = try DatabasePool(path: url.absoluteString)
-    
-    var migrator = DatabaseMigrator()
-    migrator.registerMigration("createInitialTables") { db in
-      try db.create(table: "OlmAccount") { t in
-        t.column("userId", .text).notNull()
-        t.column("deviceId", .text).notNull()
-        t.column("backupVersion", .text)
-        t.column("deviceTrackingStatusData", .blob)
-        t.column("deviceSyncToken", .text)
-        t.column("globalBlacklistUnverifiedDevices", .boolean)
-        t.column("olmAccountData", .blob)
-        t.primaryKey(["userId"], onConflict: .rollback)
-      }
-
-      try db.create(table: "Device") { t in
-        t.column("id", .text).notNull()
-        t.column("userId", .text).notNull()
-        t.column("identityKey", .text)
-        t.column("data", .blob)
-        t.primaryKey(["id", "userId"], onConflict: .rollback)
-      }
-      
-      try db.create(table: "User") { t in
-        t.column("id", .text).notNull()
-        t.column("crossSigningKeysData", .blob)
-        t.primaryKey(["id"], onConflict: .rollback)
-      }
-      
-      try db.create(table: "RoomAlgorithm") { t in
-        t.column("id", .text).notNull()
-        t.column("algorithm", .text)
-        t.column("blacklistUnverifiedDevices", .boolean)
-        t.primaryKey(["id"], onConflict: .rollback)
-      }
-      
-      try db.create(table: "OlmSession") { t in
-        t.column("id", .text).notNull()
-        t.column("deviceKey", .text)
-        t.column("lastReceivedMessageTs", .double)
-        t.column("olmSessionData", .blob)
-      }
-      
-      try db.create(table: "OlmInboundGroupSession") { t in
-        t.column("id", .text).notNull()
-        t.column("senderKey", .text)
-        t.column("olmInboundGroupSessionData", .blob)
-        t.column("backedUp", .boolean)
-        t.primaryKey(["id", "senderKey"], onConflict: .rollback)
-      }
-      
-      try db.create(table: "OlmOutboundGroupSession") { t in
-        t.column("roomId", .text).notNull()
-        t.column("sessionId", .text)
-        t.column("sessionData", .blob)
-        t.column("creationTime", .double)
-        t.primaryKey(["roomId"], onConflict: .rollback)
-      }
-      
-      try db.create(table: "SharedOutboundSession") { t in
-        t.column("roomId", .text).notNull()
-        t.column("sessionId", .text)
-        t.column("deviceId", .text)
-        t.column("userId", .text)
-        t.column("messageIndex", .integer)
-      }
-    }
-    
-    try migrator.migrate(pool)
+    try GRDBSchema().migrator.migrate(pool)
     self.pool = pool
   }
   

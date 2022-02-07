@@ -526,4 +526,13 @@
   return [self.grdbCoordinator retrieveMessageIndexSharedOutboundSessionWithRoomId:roomId sessionId:sessionId userId:userId deviceId:deviceId];
 }
 
+#pragma mark - Key backup
+
+- (void)setBackupVersion:(NSString *)backupVersion {
+  [self.grdbCoordinator storeBackupVersion:backupVersion for:self.userId];
+}
+
+-(NSString*)backupVersion {
+  return [self.grdbCoordinator retrieveBackupVersionFor:self.userId];
+}
 @end
