@@ -749,6 +749,10 @@
 		653DD67927B0615D00097AE9 /* -OutboundGroupSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653DD67727B0615D00097AE9 /* -OutboundGroupSession.swift */; };
 		653DD67B27B076B100097AE9 /* MXGrdbOlmOutboundGroupSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653DD67A27B076B100097AE9 /* MXGrdbOlmOutboundGroupSession.swift */; };
 		653DD67C27B076B100097AE9 /* MXGrdbOlmOutboundGroupSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653DD67A27B076B100097AE9 /* MXGrdbOlmOutboundGroupSession.swift */; };
+		653DD67E27B097B100097AE9 /* MXGrdbSharedOutboundSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653DD67D27B097B100097AE9 /* MXGrdbSharedOutboundSession.swift */; };
+		653DD67F27B097B100097AE9 /* MXGrdbSharedOutboundSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653DD67D27B097B100097AE9 /* MXGrdbSharedOutboundSession.swift */; };
+		653DD68127B0AB7400097AE9 /* -SharedOutboundSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653DD68027B0AB7400097AE9 /* -SharedOutboundSession.swift */; };
+		653DD68227B0AB7400097AE9 /* -SharedOutboundSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653DD68027B0AB7400097AE9 /* -SharedOutboundSession.swift */; };
 		71DE22E01BC7C51200284153 /* MXReceiptData.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DE22DC1BC7C51200284153 /* MXReceiptData.m */; };
 		71DE22E11BC7C51200284153 /* MXReceiptData.h in Headers */ = {isa = PBXBuildFile; fileRef = 71DE22DD1BC7C51200284153 /* MXReceiptData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8EC511042568216B00EC4E5B /* MXTaggedEventInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EC511022568216B00EC4E5B /* MXTaggedEventInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -2280,6 +2284,8 @@
 		653DD67427B0262800097AE9 /* -InboundGroupSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "-InboundGroupSession.swift"; sourceTree = "<group>"; };
 		653DD67727B0615D00097AE9 /* -OutboundGroupSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "-OutboundGroupSession.swift"; sourceTree = "<group>"; };
 		653DD67A27B076B100097AE9 /* MXGrdbOlmOutboundGroupSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXGrdbOlmOutboundGroupSession.swift; sourceTree = "<group>"; };
+		653DD67D27B097B100097AE9 /* MXGrdbSharedOutboundSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXGrdbSharedOutboundSession.swift; sourceTree = "<group>"; };
+		653DD68027B0AB7400097AE9 /* -SharedOutboundSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "-SharedOutboundSession.swift"; sourceTree = "<group>"; };
 		6869D206EA7C7FB05EAB75B0 /* Pods-MatrixSDKTests-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MatrixSDKTests-iOS.release.xcconfig"; path = "Target Support Files/Pods-MatrixSDKTests-iOS/Pods-MatrixSDKTests-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		71DE22DC1BC7C51200284153 /* MXReceiptData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXReceiptData.m; sourceTree = "<group>"; };
 		71DE22DD1BC7C51200284153 /* MXReceiptData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXReceiptData.h; sourceTree = "<group>"; };
@@ -3971,6 +3977,7 @@
 				653517D727ADAF4F00782CEB /* MXGrdbOlmSession.swift */,
 				653517DD27ADD62600782CEB /* MXGrdbOlmInboundGroupSession.swift */,
 				653DD67A27B076B100097AE9 /* MXGrdbOlmOutboundGroupSession.swift */,
+				653DD67D27B097B100097AE9 /* MXGrdbSharedOutboundSession.swift */,
 			);
 			path = RecordTypes;
 			sourceTree = "<group>";
@@ -3990,6 +3997,7 @@
 				653517DA27ADB12000782CEB /* -OlmSession.swift */,
 				653DD67427B0262800097AE9 /* -InboundGroupSession.swift */,
 				653DD67727B0615D00097AE9 /* -OutboundGroupSession.swift */,
+				653DD68027B0AB7400097AE9 /* -SharedOutboundSession.swift */,
 			);
 			path = GRDBCoordinator;
 			sourceTree = "<group>";
@@ -5594,6 +5602,7 @@
 				EC8A53E225B1BCC6004E0802 /* MXThirdPartyUserInstance.m in Sources */,
 				3AB5EBB7270ED1C00058703A /* MXSpaceFileStore.swift in Sources */,
 				321B41401E09937E009EEEC7 /* MXRoomSummary.m in Sources */,
+				653DD67E27B097B100097AE9 /* MXGrdbSharedOutboundSession.swift in Sources */,
 				32CAB1081A91EA34008C5BB9 /* MXPushRuleRoomMemberCountConditionChecker.m in Sources */,
 				3245A7511AF7B2930001D8A7 /* MXCall.m in Sources */,
 				32CF439E2371AF9500907C56 /* MXWellknownIntegrations.m in Sources */,
@@ -5919,6 +5928,7 @@
 				B146D4D821A5A44E00D8C2C6 /* MXScanRealmInMemoryProvider.m in Sources */,
 				324BE46D1E422766008D99D4 /* MXMegolmSessionData.m in Sources */,
 				325AD44123BE3E7500FF5277 /* MXCrossSigningInfo.m in Sources */,
+				653DD68127B0AB7400097AE9 /* -SharedOutboundSession.swift in Sources */,
 				329E8089224E261600A48C3A /* MXKeyVerificationTransaction.m in Sources */,
 				C6F935891E5B3BE600FC34BF /* MXEventTimeline.swift in Sources */,
 				65160A1E27AB322600D48B6B /* Account.olmAccountData.swift in Sources */,
@@ -6092,6 +6102,7 @@
 				B14EF1EA2397E90400758AF0 /* MXRealmMediaScan.m in Sources */,
 				3AB5EBB8270ED1C00058703A /* MXSpaceFileStore.swift in Sources */,
 				B14EF1EB2397E90400758AF0 /* MXRoomOperation.m in Sources */,
+				653DD67F27B097B100097AE9 /* MXGrdbSharedOutboundSession.swift in Sources */,
 				B14EF1EC2397E90400758AF0 /* MXCryptoAlgorithms.m in Sources */,
 				B14EF1ED2397E90400758AF0 /* MXIdentityServerHashDetails.m in Sources */,
 				B14EF1EE2397E90400758AF0 /* MXRoomMember.m in Sources */,
@@ -6417,6 +6428,7 @@
 				EC60EE09265CFFF400B39A4E /* MXGroupSyncProfile.m in Sources */,
 				B14EF28F2397E90400758AF0 /* MXEventTimeline.swift in Sources */,
 				B14EF2902397E90400758AF0 /* MXJSONModels.swift in Sources */,
+				653DD68227B0AB7400097AE9 /* -SharedOutboundSession.swift in Sources */,
 				325AF3E424897D9400EF937D /* MXSecretRecoveryResult.m in Sources */,
 				EC8A53A225B1BC77004E0802 /* MXCallSelectAnswerEventContent.m in Sources */,
 				65160A1D27AB322500D48B6B /* Account.olmAccountData.swift in Sources */,

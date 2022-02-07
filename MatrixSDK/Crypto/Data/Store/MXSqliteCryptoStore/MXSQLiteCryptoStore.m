@@ -513,4 +513,13 @@
   [self.grdbCoordinator deleteOutboundGroupSessionsWithRoomId:roomId];
 }
 
+#pragma mark - MXUsersDevicesMap
+//- (void)storeSharedDevices:(MXUsersDevicesMap<NSNumber *> *)devices messageIndex:(NSUInteger) messageIndex forOutboundGroupSessionInRoomWithId:(NSString *)roomId sessionId:(NSString *)sessionId {
+//
+//}
+//
+//- (MXUsersDevicesMap<NSNumber *> *)sharedDevicesForOutboundGroupSessionInRoomWithId:(NSString *)roomId sessionId:(NSString *)sessionId {
+//
+//}
+
 @end

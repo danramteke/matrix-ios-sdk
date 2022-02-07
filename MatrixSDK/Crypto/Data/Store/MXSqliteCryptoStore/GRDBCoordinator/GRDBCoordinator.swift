@@ -81,6 +81,13 @@ import GRDB
         t.column("creationTime", .double)
         t.primaryKey(["roomId"], onConflict: .rollback)
       }
+      
+      try db.create(table: "SharedOutboundSession") { t in
+        t.column("roomId", .text).notNull()
+        t.column("sessionId", .text)
+        t.column("deviceId", .text)
+        t.column("messageIndex", .integer)
+      }
     }
     
     try migrator.migrate(pool)
