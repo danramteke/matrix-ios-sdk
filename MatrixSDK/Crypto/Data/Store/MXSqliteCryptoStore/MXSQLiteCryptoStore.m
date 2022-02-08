@@ -738,14 +738,22 @@
 
 
 + (void)deleteStoreWithCredentials:(MXCredentials *)credentials {
-  
+  NSURL* sqliteUrl = [MXSQLiteFileUtils sqliteUrlFor:credentials.userId deviceId:credentials.deviceId];
+  NSError* error;
+  [[NSFileManager defaultManager] removeItemAtURL:sqliteUrl error:&error];
+  if (error) {
+    MXLogError(@"[MXSQLiteCryptoStore] error deleting store at %@: %@", sqliteUrl, error);
+  }
 }
-
 
 + (void)deleteReadonlyStoreWithCredentials:(MXCredentials *)credentials {
-  
+  NSURL* sqliteUrl = [MXSQLiteFileUtils sqliteUrlFor:credentials.userId deviceId:credentials.deviceId];
+  NSError* error;
+  [[NSFileManager defaultManager] removeItemAtURL:sqliteUrl error:&error];
+  if (error) {
+    MXLogError(@"[MXSQLiteCryptoStore] error deleting store at %@: %@", sqliteUrl, error);
+  }
 }
-
 
 - (void)open:(void (^)(void))onComplete failure:(void (^)(NSError *))failure {
   onComplete();
