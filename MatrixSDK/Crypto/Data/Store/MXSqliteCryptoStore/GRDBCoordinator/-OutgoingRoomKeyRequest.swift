@@ -24,7 +24,7 @@ extension GRDBCoordinator {
         try request.save(db)
       }
     } catch {
-      MXLog.error("[\(String(describing: Self.self))] error storing Outgoing Room Key Request Sessions: \(error)")
+      MXLog.error("[\(String(describing: Self.self))] error storing Outgoing Room Key Request: \(error)")
     }
   }
   
@@ -66,6 +66,30 @@ extension GRDBCoordinator {
     } catch {
       MXLog.error("[\(String(describing: Self.self))] error retrieving Outgoing Room Key Requests: \(error)")
       return nil
+    }
+  }
+  
+  public func updateOutgoingRoomKeyRequest(id: String, newState: UInt) {
+    do {
+      return try self.pool.write { db in
+        try MXGrdbOutgoingRoomKeyRequest
+          .filter(MXGrdbOutgoingRoomKeyRequest.CodingKeys.id == id)
+          .updateAll(db, MXGrdbOutgoingRoomKeyRequest.CodingKeys.state.set(to: newState))
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error updating state of Outgoing Room Key Request with id \(id): \(error)")
+    }
+  }
+  
+  public func deleteOutgoingRoomKeyRequest(id: String) {
+    do {
+      return try self.pool.write { db in
+        try MXGrdbOutgoingRoomKeyRequest
+          .filter(MXGrdbOutgoingRoomKeyRequest.CodingKeys.id == id)
+          .deleteAll(db)
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error deleting state of Outgoing Room Key Request with id \(id): \(error)")
     }
   }
 }

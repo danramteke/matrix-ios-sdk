@@ -613,7 +613,10 @@
 }
 
 - (void)updateOutgoingRoomKeyRequest:(MXOutgoingRoomKeyRequest*)request {
-  
+  [self.grdbCoordinator updateOutgoingRoomKeyRequestWithId:request.requestId newState:request.state];
 }
 
+- (void)deleteOutgoingRoomKeyRequestWithRequestId:(NSString*)requestId {
+  [self.grdbCoordinator deleteOutgoingRoomKeyRequestWithId:requestId];
+}
 @end

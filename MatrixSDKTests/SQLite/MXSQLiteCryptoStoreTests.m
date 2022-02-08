@@ -411,5 +411,16 @@
   MXOutgoingRoomKeyRequest* retrievedRequestWithBody = [store outgoingRoomKeyRequestWithRequestBody:request.requestBody];
   XCTAssertNotNil(retrievedRequestWithBody);
   XCTAssertEqualObjects(request.recipients, retrievedRequestWithBody.recipients);
+  
+  // update
+  request.state = MXRoomKeyRequestStateSent;
+  [store updateOutgoingRoomKeyRequest:request];
+  XCTAssertEqual(0, [store allOutgoingRoomKeyRequestsWithState:MXRoomKeyRequestStateCancellationPendingAndWillResend].count);
+  XCTAssertEqual(1, [store allOutgoingRoomKeyRequestsWithState:MXRoomKeyRequestStateSent].count);
+  
+  // delete
+  [store deleteOutgoingRoomKeyRequestWithRequestId:request.requestId];
+  XCTAssertEqual(0, [store allOutgoingRoomKeyRequestsWithState:MXRoomKeyRequestStateCancellationPendingAndWillResend].count);
+  XCTAssertEqual(0, [store allOutgoingRoomKeyRequestsWithState:MXRoomKeyRequestStateSent].count);
 }
 @end
