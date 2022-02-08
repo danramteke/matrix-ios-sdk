@@ -669,7 +669,66 @@
 
 #pragma mark - Secret storage
 
-- (void)storeSecret:(NSString*)secret withSecretId:(NSString*)secretId {
+- (NSData *)encryptionKey
+{
+  // It is up to the app to provide a key for additional encryption
+  MXKeyData* keyData = [[MXKeyProvider sharedInstance] keyDataForDataOfType:MXCryptoOlmPickleKeyDataType isMandatory:NO expectedKeyType:kRawData];
+  if (keyData && [keyData isKindOfClass:[MXRawDataKey class]]) {
+    return ((MXRawDataKey *)keyData).key;
+  }
   
+  return nil;
+}
+
+- (void)storeSecret:(NSString*)secret withSecretId:(NSString*)secretId {
+    // Encrypt if enabled
+    NSData *key = self.encryptionKey;
+    if (key)  {
+      NSData *secretData = [secret dataUsingEncoding:NSUTF8StringEncoding];
+      NSData *iv = [MXAes iv];
+      
+      NSError *error;
+      NSData *encryptedSecret = [MXAes encrypt:secretData aesKey:key iv:iv error:&error];
+      if (error)  {
+        MXLogDebug(@"[MXSQLiteCryptoStore] storeSecret: Encryption failed for secret %@. Error: %@", secretId, error);
+        return;
+      }
+      
+      MXGrdbSecret* grdbSecret = [[MXGrdbSecret alloc] initWithId:secretId secret:nil encryptedSecret:encryptedSecret iv:iv];
+      [self.grdbCoordinator storeSecret:grdbSecret];
+      
+    } else {
+      
+      MXGrdbSecret* grdbSecret = [[MXGrdbSecret alloc] initWithId:secretId secret:secret encryptedSecret:nil iv:nil];
+      [self.grdbCoordinator storeSecret:grdbSecret];
+    }
+}
+
+- (NSString*)secretWithSecretId:(NSString*)secretId {
+  MXGrdbSecret* grdbSecret = [self.grdbCoordinator retrieveSecretWithId:secretId];
+  if (grdbSecret.encryptedSecret) {
+    NSData *key = self.encryptionKey;
+    if (!key) {
+      MXLogDebug(@"[MXSQLiteCryptoStore] secretWithSecretId: ERROR: Key to decrypt secret %@ is unavailable", secretId);
+      return nil;
+    }
+    
+    NSData *iv = grdbSecret.iv;
+    if (!iv) {
+      MXLogDebug(@"[MXSQLiteCryptoStore] secretWithSecretId: ERROR: IV for %@ is unavailable", secretId);
+      return nil;
+    }
+    
+    NSError *error;
+    NSData *secretData = [MXAes decrypt:grdbSecret.encryptedSecret aesKey:key iv:iv error:&error];
+    if (error || !secretData) {
+      MXLogDebug(@"[MXSQLiteCryptoStore] secretWithSecretId: Decryption failed for secret %@. Error: %@", secretId, error);
+      return nil;
+    }
+    
+    return [[NSString alloc] initWithData:secretData encoding:NSUTF8StringEncoding];
+  } else {
+    return grdbSecret.secret;
+  }
 }
 @end

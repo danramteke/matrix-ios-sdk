@@ -100,6 +100,13 @@ final class GRDBSchema {
         t.column("deviceId", .text)
         t.column("requestBodyData", .blob)
       }
+      
+      try db.create(table: "Secret") { t in
+        t.column("id", .text).notNull()
+        t.column("secret", .text)
+        t.column("encryptedSecret", .blob)
+        t.column("iv", .blob)
+      }
     }
     return migrator
   }

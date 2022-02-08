@@ -447,4 +447,11 @@
   [store deleteIncomingRoomKeyRequest:@"request id" fromUser:@"user id" andDevice:@"device id"];
   XCTAssertNil([store incomingRoomKeyRequestWithRequestId:@"request id" fromUser:@"user id" andDevice:@"device id"]);
 }
+
+-(void)testSecret {
+  MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
+  [store storeSecret:@"secret secret secret" withSecretId:@"secret id"];
+  
+  XCTAssertEqualObjects([store secretWithSecretId:@"secret id"], @"secret secret secret");
+}
 @end
