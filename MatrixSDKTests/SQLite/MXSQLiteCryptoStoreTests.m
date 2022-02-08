@@ -453,5 +453,8 @@
   [store storeSecret:@"secret secret secret" withSecretId:@"secret id"];
   
   XCTAssertEqualObjects([store secretWithSecretId:@"secret id"], @"secret secret secret");
+  
+  [store deleteSecretWithSecretId:@"secret id"];
+  XCTAssertNil([store secretWithSecretId:@"secret id"]);
 }
 @end

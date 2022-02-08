@@ -731,4 +731,24 @@
     return grdbSecret.secret;
   }
 }
+
+- (void)deleteSecretWithSecretId:(NSString *)secretId {
+  [self.grdbCoordinator deleteSecretWithId:secretId];
+}
+
+
++ (void)deleteStoreWithCredentials:(MXCredentials *)credentials {
+  
+}
+
+
++ (void)deleteReadonlyStoreWithCredentials:(MXCredentials *)credentials {
+  
+}
+
+
+- (void)open:(void (^)(void))onComplete failure:(void (^)(NSError *))failure {
+  onComplete();
+}
+
 @end

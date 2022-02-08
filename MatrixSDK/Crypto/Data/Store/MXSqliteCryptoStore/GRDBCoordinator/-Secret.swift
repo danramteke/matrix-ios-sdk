@@ -27,6 +27,18 @@ extension GRDBCoordinator {
       MXLog.error("[\(String(describing: Self.self))] error storing secret: \(error)")
     }
   }
+
+  public func deleteSecret(id: String) {
+    do {
+      return try self.pool.write { db in
+        try MXGrdbSecret
+          .filter(MXGrdbSecret.CodingKeys.id == id)
+          .deleteAll(db)
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error deleting secret: \(error)")
+    }
+  }
   
   public func retrieveSecret(id: String) -> MXGrdbSecret? {
     do {
