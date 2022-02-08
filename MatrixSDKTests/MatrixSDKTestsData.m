@@ -1045,7 +1045,7 @@ onUnrecognizedCertificateBlock:(MXHTTPClientOnUnrecognizedCertificate)onUnrecogn
         }
     }
     _retainedObjects = nil;
-    [MXRealmCryptoStore deleteAllStores];
+    [MXSQLiteCryptoStore deleteAllStores];
 }
 
 @end

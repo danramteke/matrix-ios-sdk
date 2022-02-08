@@ -32,7 +32,7 @@ class MXRoomListDataManagerUnitTests: XCTestCase {
     }
     
     override class func setUp() {
-        MXRealmCryptoStore.deleteAllStores()
+      MXSQLiteCryptoStore.deleteAllStores()
     }
     
     private var basicFetchOptions: MXRoomListDataFetchOptions {

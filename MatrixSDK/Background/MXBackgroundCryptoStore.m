@@ -18,7 +18,7 @@
 
 #import <OLMKit/OLMKit.h>
 
-#import "MXRealmCryptoStore.h"
+#import "MXSQLiteCryptoStore.h"
 #import "MXTools.h"
 
 NSString *const MXBackgroundCryptoStoreUserIdSuffix = @":bgCryptoStore";
@@ -26,15 +26,15 @@ NSString *const MXBackgroundCryptoStoreUserIdSuffix = @":bgCryptoStore";
 
 @interface MXBackgroundCryptoStore()
 {
-    MXCredentials *credentials;
+  MXCredentials *credentials;
     
     // The MXRealmCryptoStore used by the app process
     // It is used in a read-only way.
-    MXRealmCryptoStore *cryptoStore;
+  MXSQLiteCryptoStore *cryptoStore;
     
     // A MXRealmCryptoStore instance we use as an intermediate read-write cache for data (olm and megolm keys) that comes during background syncs.
     // Write operations happen only in this instance.
-    MXRealmCryptoStore *bgCryptoStore;
+  MXSQLiteCryptoStore *bgCryptoStore;
 }
 @end
 
@@ -49,30 +49,30 @@ NSString *const MXBackgroundCryptoStoreUserIdSuffix = @":bgCryptoStore";
         
         // Do not compact Realm DBs from the backgrounc sync process to avoid race conditions on self.cryptoStore with the app process.
         // self.bgCryptoStore should not become so big that it needs compaction. It will be reset before.
-        MXRealmCryptoStore.shouldCompactOnLaunch = NO;
+     
         
-        if ([MXRealmCryptoStore hasDataForCredentials:credentials])
+        if ([MXSQLiteCryptoStore hasDataForCredentials:credentials])
         {
-            cryptoStore = [[MXRealmCryptoStore alloc] initWithCredentials:credentials];
-            cryptoStore.readOnly = YES;
+            cryptoStore = [[MXSQLiteCryptoStore alloc] initWithCredentials:credentials];
+            
         }
         else
         {
             //  this is not very likely, Read-only Realm may be out-of-date. Remove it and try again. It'll be recopied from the original Realm on the next call of `hasDataForCredentials` method.
             MXLogDebug(@"[MXBackgroundCryptoStore] initWithCredentials: Remove read-only store with credentials: %@:%@", credentials.userId, credentials.deviceId);
-            [MXRealmCryptoStore deleteReadonlyStoreWithCredentials:credentials];
+            [MXSQLiteCryptoStore deleteReadonlyStoreWithCredentials:credentials];
             
-            if ([MXRealmCryptoStore hasDataForCredentials:credentials])
+            if ([MXSQLiteCryptoStore hasDataForCredentials:credentials])
             {
-                cryptoStore = [[MXRealmCryptoStore alloc] initWithCredentials:credentials];
-                cryptoStore.readOnly = YES;
+                cryptoStore = [[MXSQLiteCryptoStore alloc] initWithCredentials:credentials];
+                
             }
             else
             {
                 // Should never happen
                 MXLogDebug(@"[MXBackgroundCryptoStore] initWithCredentials: Warning: createStoreWithCredentials: %@:%@", credentials.userId, credentials.deviceId);
-                cryptoStore = [MXRealmCryptoStore createStoreWithCredentials:credentials];
-                cryptoStore.readOnly = NO;
+                cryptoStore = [MXSQLiteCryptoStore createStoreWithCredentials:credentials];
+              
             }
         }
         
@@ -81,18 +81,18 @@ NSString *const MXBackgroundCryptoStoreUserIdSuffix = @":bgCryptoStore";
         if (resetBackgroundCryptoStore)
         {
             MXLogDebug(@"[MXBackgroundCryptoStore] initWithCredentials: Delete existing bgCryptoStore if any");
-            [MXRealmCryptoStore deleteStoreWithCredentials:bgCredentials];
+            [MXSQLiteCryptoStore deleteStoreWithCredentials:bgCredentials];
         }
         
-        if ([MXRealmCryptoStore hasDataForCredentials:bgCredentials])
+        if ([MXSQLiteCryptoStore hasDataForCredentials:bgCredentials])
         {
             MXLogDebug(@"[MXBackgroundCryptoStore] initWithCredentials: Reuse existing bgCryptoStore");
-            bgCryptoStore = [[MXRealmCryptoStore alloc] initWithCredentials:bgCredentials];
+            bgCryptoStore = [[MXSQLiteCryptoStore alloc] initWithCredentials:bgCredentials];
         }
         else
         {
             MXLogDebug(@"[MXBackgroundCryptoStore] initWithCredentials: Create bgCryptoStore");
-            bgCryptoStore = [MXRealmCryptoStore createStoreWithCredentials:bgCredentials];
+            bgCryptoStore = [MXSQLiteCryptoStore createStoreWithCredentials:bgCredentials];
         }
     }
     return self;
@@ -103,9 +103,9 @@ NSString *const MXBackgroundCryptoStoreUserIdSuffix = @":bgCryptoStore";
     if (bgCryptoStore)
     {
         MXCredentials *bgCredentials = [MXBackgroundCryptoStore credentialForBgCryptoStoreWithCredentials:credentials];
-        [MXRealmCryptoStore deleteStoreWithCredentials:bgCredentials];
-        [MXRealmCryptoStore deleteReadonlyStoreWithCredentials:credentials];
-        bgCryptoStore = [MXRealmCryptoStore createStoreWithCredentials:bgCredentials];
+        [MXSQLiteCryptoStore deleteStoreWithCredentials:bgCredentials];
+        [MXSQLiteCryptoStore deleteReadonlyStoreWithCredentials:credentials];
+        bgCryptoStore = [MXSQLiteCryptoStore createStoreWithCredentials:bgCredentials];
     }
 }
 

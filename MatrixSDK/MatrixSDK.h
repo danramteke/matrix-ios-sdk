@@ -143,7 +143,7 @@ FOUNDATION_EXPORT NSString *MatrixSDKVersion;
 
 //  Bridging to Swift
 #import "MXCryptoStore.h"
-#import "MXRealmCryptoStore.h"
+#import "MXSQLiteCryptoStore.h"
 #import "MXCryptoAlgorithms.h"
 #import "MXOlmDevice.h"
 #import "MXEventDecryptionResult.h"

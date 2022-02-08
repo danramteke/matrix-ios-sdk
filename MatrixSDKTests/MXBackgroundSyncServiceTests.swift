@@ -299,8 +299,8 @@ class MXBackgroundSyncServiceTests: XCTestCase {
                                         XCTAssertNotNil(syncResponseStoreManager.event(withEventId: eventId, inRoom: roomId), "Event should be stored in sync response store")
                                         
                                         // -> Keys are stored in the intermediate MXBackgroundSyncService crypto store, not in the main crypto store
-                                        let cryptoStore = MXRealmCryptoStore(credentials: bobCredentials)
-                                        let bgSyncServiceCryptoStore = MXRealmCryptoStore(credentials: self.credentialForBgCryptoStore(withCredentials: bobCredentials))
+                                        let cryptoStore = MXSQLiteCryptoStore(credentials: bobCredentials)
+                                        let bgSyncServiceCryptoStore = MXSQLiteCryptoStore(credentials: self.credentialForBgCryptoStore(withCredentials: bobCredentials))
                                         let sessionId = event.wireContent["session_id"] as! String
                                         let senderKey = event.wireContent["sender_key"] as! String
                                         XCTAssertNil(cryptoStore?.inboundGroupSession(withId: sessionId, andSenderKey: senderKey), "Key must not be yet stored in the main MXRealmCryptoStore")
@@ -316,11 +316,11 @@ class MXBackgroundSyncServiceTests: XCTestCase {
                                                 XCTAssertNotNil(bobStore.event(withEventId: eventId, inRoom: roomId), "Event should be in session store anymore")
                                                 
                                                 // -> Keys are stored in the main crypto store but no more in the intermediate MXBackgroundSyncService crypto store
-                                                let cryptoStore = MXRealmCryptoStore(credentials: bobCredentials)
+                                                let cryptoStore = MXSQLiteCryptoStore(credentials: bobCredentials)
                                                 XCTAssertNotNil(cryptoStore?.inboundGroupSession(withId: sessionId, andSenderKey: senderKey), "Key must be now stored in the main MXRealmCryptoStore")
                                                 
                                                 self.bgSyncService?.event(withEventId: eventId, inRoom: roomId) { _ in
-                                                    let bgSyncServiceCryptoStore = MXRealmCryptoStore(credentials: self.credentialForBgCryptoStore(withCredentials: bobCredentials))
+                                                    let bgSyncServiceCryptoStore = MXSQLiteCryptoStore(credentials: self.credentialForBgCryptoStore(withCredentials: bobCredentials))
                                                     XCTAssertNil(bgSyncServiceCryptoStore?.inboundGroupSession(withId: sessionId, andSenderKey: senderKey), "Key must be no more stored in the intermediate MXBackgroundService MXRealmCryptoStore")
                                                     
                                                     expectation?.fulfill()

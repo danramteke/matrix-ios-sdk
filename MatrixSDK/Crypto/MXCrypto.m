@@ -29,7 +29,7 @@
 #import "MXDeviceInfo.h"
 #import "MXKey.h"
 
-#import "MXRealmCryptoStore.h"
+#import "MXSQLiteCryptoStore.h"
 #import "MXCryptoMigration.h"
 
 #import "MXMegolmSessionData.h"
@@ -54,7 +54,7 @@
 /**
  The store to use for crypto.
  */
-#define MXCryptoStoreClass MXRealmCryptoStore
+#define MXCryptoStoreClass MXSQLiteCryptoStore
 
 NSString *const kMXCryptoRoomKeyRequestNotification = @"kMXCryptoRoomKeyRequestNotification";
 NSString *const kMXCryptoRoomKeyRequestNotificationRequestKey = @"kMXCryptoRoomKeyRequestNotificationRequestKey";

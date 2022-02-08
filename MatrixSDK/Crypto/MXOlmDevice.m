@@ -24,7 +24,7 @@
 
 #import "MXTools.h"
 #import "MXCryptoTools.h"
-#import "MXRealmCryptoStore.h"
+#import "MXSQLiteCryptoStore.h"
 
 #import "MXKeyProvider.h"
 #import "MXRawDataKey.h"
