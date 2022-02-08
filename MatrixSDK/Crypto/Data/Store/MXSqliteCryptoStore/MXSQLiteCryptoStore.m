@@ -19,6 +19,8 @@
 #import <MatrixSDK/MatrixSDK-Swift.h>
 #import "MatrixSDKSwiftHeader.h"
 #import <OLMKit/OLMKit.h>
+#import "MXCryptoTools.h"
+#import "MXOutgoingRoomKeyRequest+GRDB.h"
 
 @interface MXSQLiteCryptoStore ()
 @property (nonatomic, strong) GRDBCoordinator* grdbCoordinator;
@@ -560,4 +562,58 @@
   }
   return sessions;
 }
+
+#pragma mark - Key sharing - Outgoing key requests
+
+- (void)storeOutgoingRoomKeyRequest:(MXOutgoingRoomKeyRequest*)request {
+  
+  NSString* requestBodyString = [MXTools serialiseJSONObject:request.requestBody];
+  NSString* requestBodyHash = [MXCryptoTools canonicalJSONStringForJSON:request.requestBody];
+  NSData* recipientsData = [NSKeyedArchiver archivedDataWithRootObject:request.recipients];
+  
+  MXGrdbOutgoingRoomKeyRequest* grdbRequest = [[MXGrdbOutgoingRoomKeyRequest alloc] initWithId:request.requestId
+                                                                             cancellationTxnId:request.cancellationTxnId
+                                                                                recipientsData:recipientsData
+                                                                             requestBodyString:requestBodyString
+                                                                               requestBodyHash:requestBodyHash
+                                                                                         state:request.state];
+  
+  [self.grdbCoordinator storeOutgoingRoomKeyRequest:grdbRequest];
+}
+
+- (MXOutgoingRoomKeyRequest*)outgoingRoomKeyRequestWithRequestBody:(NSDictionary *)requestBody {
+  NSString *requestBodyHash = [MXCryptoTools canonicalJSONStringForJSON:requestBody];
+  MXGrdbOutgoingRoomKeyRequest* retrieved = [self.grdbCoordinator retrieveOutgoingRoomKeyRequestWithRequestBodyHash:requestBodyHash];
+  if (retrieved) {
+    return [[MXOutgoingRoomKeyRequest alloc] initWithGRDBOutgoingRoomKeyRequest:retrieved];
+  } else {
+    return nil;
+  }
+}
+
+- (MXOutgoingRoomKeyRequest *)outgoingRoomKeyRequestWithState:(MXRoomKeyRequestState)state {
+  MXGrdbOutgoingRoomKeyRequest* retrieved = [self.grdbCoordinator retrieveOutgoingRoomKeyRequestWithState:state];
+  if (retrieved) {
+    return [[MXOutgoingRoomKeyRequest alloc] initWithGRDBOutgoingRoomKeyRequest:retrieved];
+  } else {
+    return nil;
+  }
+}
+
+- (NSArray<MXOutgoingRoomKeyRequest*> *)allOutgoingRoomKeyRequestsWithState:(MXRoomKeyRequestState)state {
+  NSMutableArray<MXOutgoingRoomKeyRequest*> *allOutgoingRoomKeyRequests = [NSMutableArray array];
+
+  NSArray<MXGrdbOutgoingRoomKeyRequest*>* retrieved = [self.grdbCoordinator retrieveAllOutgoingRoomKeyRequestsWithState:state];
+  if (retrieved) {
+    [retrieved enumerateObjectsUsingBlock:^(MXGrdbOutgoingRoomKeyRequest * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+      [allOutgoingRoomKeyRequests addObject:[[MXOutgoingRoomKeyRequest alloc] initWithGRDBOutgoingRoomKeyRequest:obj]];
+    }];
+  }
+  return allOutgoingRoomKeyRequests;
+}
+
+- (void)updateOutgoingRoomKeyRequest:(MXOutgoingRoomKeyRequest*)request {
+  
+}
+
 @end

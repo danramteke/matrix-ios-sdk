@@ -83,8 +83,16 @@ final class GRDBSchema {
         t.column("userId", .text)
         t.column("messageIndex", .integer)
       }
+      
+      try db.create(table: "OutgoingRoomKeyRequest") { t in
+        t.column("id", .text).notNull()
+        t.column("cancellationTxnId", .text)
+        t.column("recipientsData", .blob)
+        t.column("requestBodyString", .text)
+        t.column("requestBodyHash", .text)
+        t.column("state", .integer)
+      }
     }
     return migrator
-//    try migrator.migrate(writer)
   }
 }

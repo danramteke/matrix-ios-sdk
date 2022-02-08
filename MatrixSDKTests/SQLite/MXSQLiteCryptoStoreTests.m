@@ -21,6 +21,7 @@
 #import "MXTestDoubles.h"
 #import "MXOlmSession.h"
 #import "MXLog.h"
+#import "MXCryptoTools.h"
 
 @interface MXSQLiteCryptoStoreTests : XCTestCase
 @property (nonatomic, strong) MXCredentials* credentials;
@@ -373,5 +374,42 @@
   XCTAssertNil([store backupVersion]);
   [store setBackupVersion:@"example"];
   XCTAssertEqualObjects([store backupVersion], @"example");
+}
+
+-(void)testOutgoingRoomKeyRequest {
+  MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
+  MXOutgoingRoomKeyRequest* request = [[MXOutgoingRoomKeyRequest alloc] init];
+  request.state = MXRoomKeyRequestStateCancellationPendingAndWillResend;
+  request.requestId = @"request id";
+  request.recipients = @[
+    @{
+      @"userId": @"1",
+      @"deviceId": @"1",
+    },
+    @{
+      @"userId": @"2",
+      @"deviceId": @"2",
+    }
+  ];
+  request.requestBody = @{
+    @"algorithm": @"lru",
+    @"roomId": @"55",
+    @"sessionId": @"session id",
+    @"senderKey": @"sender key"
+  };
+  
+  [store storeOutgoingRoomKeyRequest:request];
+  
+  MXOutgoingRoomKeyRequest* retrievedRequest = [store outgoingRoomKeyRequestWithState:MXRoomKeyRequestStateCancellationPendingAndWillResend];
+  XCTAssertNotNil(retrievedRequest);
+  XCTAssertEqualObjects(request.recipients, retrievedRequest.recipients);
+  
+  NSArray<MXOutgoingRoomKeyRequest*>* allRetrievedRequests = [store allOutgoingRoomKeyRequestsWithState:MXRoomKeyRequestStateCancellationPendingAndWillResend];
+  XCTAssertEqual(1, allRetrievedRequests.count);
+  XCTAssertEqualObjects(request.recipients, [allRetrievedRequests firstObject].recipients);
+  
+  MXOutgoingRoomKeyRequest* retrievedRequestWithBody = [store outgoingRoomKeyRequestWithRequestBody:request.requestBody];
+  XCTAssertNotNil(retrievedRequestWithBody);
+  XCTAssertEqualObjects(request.recipients, retrievedRequestWithBody.recipients);
 }
 @end
