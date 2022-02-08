@@ -91,6 +91,14 @@ final class GRDBSchema {
         t.column("requestBodyString", .text)
         t.column("requestBodyHash", .text)
         t.column("state", .integer)
+        t.primaryKey(["id"])
+      }
+      
+      try db.create(table: "IncomingRoomKeyRequest") { t in
+        t.column("id", .text).notNull()
+        t.column("userId", .text)
+        t.column("deviceId", .text)
+        t.column("requestBodyData", .blob)
       }
     }
     return migrator

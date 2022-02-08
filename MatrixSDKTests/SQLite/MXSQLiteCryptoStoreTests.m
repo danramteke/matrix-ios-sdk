@@ -423,4 +423,24 @@
   XCTAssertEqual(0, [store allOutgoingRoomKeyRequestsWithState:MXRoomKeyRequestStateCancellationPendingAndWillResend].count);
   XCTAssertEqual(0, [store allOutgoingRoomKeyRequestsWithState:MXRoomKeyRequestStateSent].count);
 }
+
+-(void)testIncomingRoomKeyRequest {
+  MXIncomingRoomKeyRequest* request = [[MXIncomingRoomKeyRequest alloc] init];
+  request.userId = @"user id";
+  request.deviceId = @"device id";
+  request.requestId = @"request id";
+  request.requestBody = @{
+    @"room_id": @"room id",
+    @"session_id": @"session id"
+  };
+  
+  MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
+  [store storeIncomingRoomKeyRequest:request];
+  
+  MXIncomingRoomKeyRequest* retrieved = [store incomingRoomKeyRequestWithRequestId:@"request id" fromUser:@"user id" andDevice:@"device id"];
+  XCTAssertNotNil(retrieved);
+  
+  [store deleteIncomingRoomKeyRequest:@"request id" fromUser:@"user id" andDevice:@"device id"];
+  XCTAssertNil([store incomingRoomKeyRequestWithRequestId:@"request id" fromUser:@"user id" andDevice:@"device id"]);
+}
 @end

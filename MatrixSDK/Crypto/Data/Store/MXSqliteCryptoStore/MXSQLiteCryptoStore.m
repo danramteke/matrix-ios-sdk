@@ -21,6 +21,7 @@
 #import <OLMKit/OLMKit.h>
 #import "MXCryptoTools.h"
 #import "MXOutgoingRoomKeyRequest+GRDB.h"
+#import "MXIncomingRoomKeyRequest+GRDB.h"
 
 @interface MXSQLiteCryptoStore ()
 @property (nonatomic, strong) GRDBCoordinator* grdbCoordinator;
@@ -618,5 +619,28 @@
 
 - (void)deleteOutgoingRoomKeyRequestWithRequestId:(NSString*)requestId {
   [self.grdbCoordinator deleteOutgoingRoomKeyRequestWithId:requestId];
+}
+
+#pragma mark - Key sharing - Incoming key requests
+
+- (void)storeIncomingRoomKeyRequest:(MXIncomingRoomKeyRequest*)request {
+  NSData* data = [NSKeyedArchiver archivedDataWithRootObject:request.requestBody];
+  MXGrdbIncomingRoomKeyRequest* grdbRequest = [[MXGrdbIncomingRoomKeyRequest alloc] initWithId:request.requestId
+                                                                                        userId:request.userId
+                                                                                      deviceId:request.deviceId
+                                                                               requestBodyData:data];
+  [self.grdbCoordinator storeIncomingRoomKeyRequest:grdbRequest];
+}
+
+- (MXIncomingRoomKeyRequest*)incomingRoomKeyRequestWithRequestId:(NSString*)requestId fromUser:(NSString*)userId andDevice:(NSString*)deviceId {
+  MXGrdbIncomingRoomKeyRequest* retrieved = [self.grdbCoordinator retrieveIncomingRoomKeyRequestWithRequestId:requestId userId:userId deviceId:deviceId];
+  if (retrieved) {
+    return [[MXIncomingRoomKeyRequest alloc] initWithGRDBIncomingRoomKeyRequest:retrieved];
+  }
+  return nil;
+}
+
+- (void)deleteIncomingRoomKeyRequest:(NSString*)requestId fromUser:(NSString*)userId andDevice:(NSString*)deviceId {
+  [self.grdbCoordinator deleteIncomingRoomKeyRequestWithRequestId:requestId userId:userId deviceId:deviceId];
 }
 @end
