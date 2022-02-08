@@ -18,16 +18,13 @@
 #import <OLMKit/OLMKit.h>
 
 #import "MXMediaScanStore.h"
-#import "MXRealmMediaScanStore.h"
 #import "MXMediaScan.h"
 
 #import "MXEventScanStore.h"
-#import "MXRealmEventScanStore.h"
 #import "MXEventScan.h"
 
 #import "MXRestClient.h"
 #import "MXTools.h"
-#import "MXScanRealmFileProvider.h"
 
 #pragma mark - Defines & Constants
 
@@ -49,7 +46,6 @@ static const char * const kProcessingQueueName = "org.MatrixSDK.MXScanManager";
 
 @interface MXScanManager () <MXMediaScanStoreDelegate, MXEventScanStoreDelegate>
 
-@property (nonatomic, strong) id<MXScanRealmProvider> realmProvider;
 @property (nonatomic, strong) id<MXMediaScanStore> mediaScanStore;
 @property (nonatomic, strong) id<MXEventScanStore> eventScanStore;
 
@@ -82,10 +78,6 @@ static const char * const kProcessingQueueName = "org.MatrixSDK.MXScanManager";
             _antivirusServerURL = restClient.antivirusServer;
             _antivirusServerPathPrefix = restClient.antivirusServerPathPrefix;
             _enableEncryptedBoby = YES;
-            id<MXScanRealmProvider> scanRealmProvider = [[MXScanRealmFileProvider alloc] initWithAntivirusServerDomain:antivirusServerDomain];
-            _mediaScanStore = [[MXRealmMediaScanStore alloc] initWithRealmProvider:scanRealmProvider];
-            _eventScanStore = [[MXRealmEventScanStore alloc] initWithRealmProvider:scanRealmProvider];
-            _realmProvider = scanRealmProvider;
             _scanInterval = kDefaultScanUpdateInterval;
             _processingQueue = dispatch_queue_create(kProcessingQueueName, DISPATCH_QUEUE_CONCURRENT);
             _completionQueue = dispatch_get_main_queue();

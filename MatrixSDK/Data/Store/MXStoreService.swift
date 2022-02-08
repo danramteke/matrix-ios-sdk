@@ -37,16 +37,7 @@ public class MXStoreService: NSObject {
     let credentials: MXCredentials
     
     public let mainStore: MXStore
-    
-    public var aggregations: MXAggregations? {
-        didSet {
-            if shouldResetStore(.aggregations) {
-                aggregations?.resetData()
-                removeStoreToReset(.aggregations)
-            }
-        }
-    }
-    
+   
     // MARK: - Setup
     
     public init(store: MXStore, credentials: MXCredentials) {
@@ -71,14 +62,10 @@ public class MXStoreService: NSObject {
         
         MXLog.debug("[MXStoreService] Reset secondary stores")
         
-        if let aggregations = aggregations {
-            aggregations.resetData()
-        } else {
-            // It is possible that aggregations doesn't exist (for example in MXBackgroundStore),
-            // In this instance, remember to reset the aggregations store when it is set.
-            addStoreToReset(.aggregations)
-            MXLog.debug("[MXStoreService] Aggregations will be reset when added to the service.")
-        }
+      // It is possible that aggregations doesn't exist (for example in MXBackgroundStore),
+      // In this instance, remember to reset the aggregations store when it is set.
+      addStoreToReset(.aggregations)
+      MXLog.debug("[MXStoreService] Aggregations will be reset when added to the service.")
     }
     
     /// Close all stores in the service.

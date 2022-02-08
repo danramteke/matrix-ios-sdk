@@ -51,140 +51,19 @@
 
 - (void)testBobClosesPollWithOneAnswer
 {
-    [self createScenarioForBob:^(MXSession *mxSession, MXRoom *room, XCTestExpectation *expectation, MXEvent *pollStartEvent, MXEventContentPollStart *pollStartContent) {
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [mxSession.aggregations referenceEventsForEvent:pollStartEvent.eventId inRoom:room.roomId from:nil limit:-1 success:^(MXAggregationPaginatedResponse *paginatedResponse) {
-                XCTAssertNil(paginatedResponse.nextBatch);
-                XCTAssertEqual(paginatedResponse.chunk.count, 0);
-                
-                [room sendPollResponseForEvent:pollStartEvent withAnswerIdentifiers:@[pollStartContent.answerOptions.firstObject.uuid] localEcho:nil success:^(NSString *eventId) {
-                    [room sendPollEndForEvent:pollStartEvent localEcho:nil success:^(NSString *eventId) {
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                            [mxSession.aggregations referenceEventsForEvent:pollStartEvent.eventId inRoom:room.roomId from:nil limit:-1 success:^(MXAggregationPaginatedResponse *paginatedResponse) {
-                                XCTAssertNil(paginatedResponse.nextBatch);
-                                XCTAssertEqual(paginatedResponse.chunk.count, 2);
-                                
-                                [expectation fulfill];
-                            } failure:^(NSError *error) {
-                                XCTFail(@"The operation should not fail - NSError: %@", error);
-                                [expectation fulfill];
-                            }];
-                        });
-                    } failure:^(NSError *error) {
-                        XCTFail(@"The operation should not fail - NSError: %@", error);
-                        [expectation fulfill];
-                    }];
-                } failure:^(NSError *error) {
-                    XCTFail(@"The operation should not fail - NSError: %@", error);
-                    [expectation fulfill];
-                }];
-                
-                [expectation fulfill];
-            } failure:^(NSError *error) {
-                XCTFail(@"The operation should not fail - NSError: %@", error);
-                [expectation fulfill];
-            }];
-        });
-    }];
+    // aggregations not supported
 }
 
 // Pagination on relations is not implemented on the backend.
 // Make sure that's still the case.
 - (void)testNoPollRelationPagination
 {
-    NSUInteger totalAnswers = 100;
-    
-    [self createScenarioForBob:^(MXSession *mxSession, MXRoom *room, XCTestExpectation *expectation, MXEvent *pollStartEvent, MXEventContentPollStart *pollStartContent) {
-        dispatch_group_t dispatchGroup = dispatch_group_create();
-        for (NSUInteger i = 0; i < totalAnswers; i++) {
-            dispatch_group_enter(dispatchGroup);
-            [room sendPollResponseForEvent:pollStartEvent withAnswerIdentifiers:@[pollStartContent.answerOptions.firstObject.uuid] localEcho:nil success:^(NSString *eventId) {
-                dispatch_group_leave(dispatchGroup);
-            } failure:^(NSError *error) {
-                XCTFail(@"The operation should not fail - NSError: %@", error);
-                [expectation fulfill];
-            }];
-        }
-        
-        dispatch_group_notify(dispatchGroup, dispatch_get_main_queue(), ^{
-            [room sendPollEndForEvent:pollStartEvent localEcho:nil success:^(NSString *eventId) {
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    [mxSession.aggregations referenceEventsForEvent:pollStartEvent.eventId inRoom:room.roomId from:nil limit:-1 success:^(MXAggregationPaginatedResponse *paginatedResponse) {
-                        XCTAssertEqual(paginatedResponse.chunk.count, totalAnswers + 1);
-                        [expectation fulfill];
-                    } failure:^(NSError *error) {
-                        XCTFail(@"The operation should not fail - NSError: %@", error);
-                        [expectation fulfill];
-                    }];
-                });
-            } failure:^(NSError *error) {
-                XCTFail(@"The operation should not fail - NSError: %@", error);
-                [expectation fulfill];
-            }];
-        });
-    }];
+   //aggregations not supported
 }
 
 - (void)testBobAndAliceAnswer
 {
-    [self createScenarioForBobAndAlice:^(MXSession *bobSession, MXSession *aliceSession, NSString *roomId, XCTestExpectation *expectation, NSString *pollStartEventId, MXEventContentPollStart *pollStartContent) {
-        
-        dispatch_group_t dispatchGroup = dispatch_group_create();
-        
-        MXRoom *bobRoom = [bobSession roomWithRoomId:roomId];
-        
-        dispatch_group_enter(dispatchGroup);
-        [bobSession eventWithEventId:pollStartEventId inRoom:roomId success:^(MXEvent *event) {
-            [bobRoom sendPollResponseForEvent:event withAnswerIdentifiers:@[pollStartContent.answerOptions.firstObject.uuid] localEcho:nil success:^(NSString *eventId) {
-                dispatch_group_leave(dispatchGroup);
-            } failure:^(NSError *error) {
-                XCTFail(@"The operation should not fail - NSError: %@", error);
-                [expectation fulfill];
-            }];
-        } failure:^(NSError *error) {
-            XCTFail(@"The operation should not fail - NSError: %@", error);
-            [expectation fulfill];
-        }];
-        
-        
-        MXRoom *aliceRoom = [aliceSession roomWithRoomId:roomId];
-        
-        dispatch_group_enter(dispatchGroup);
-        [aliceSession eventWithEventId:pollStartEventId inRoom:roomId success:^(MXEvent *event) {
-            
-            for (NSUInteger i = 0; i < 10; i++)
-            {
-                dispatch_group_enter(dispatchGroup);
-                [aliceRoom sendPollResponseForEvent:event withAnswerIdentifiers:@[pollStartContent.answerOptions.lastObject.uuid] localEcho:nil success:^(NSString *eventId) {
-                    dispatch_group_leave(dispatchGroup);
-                } failure:^(NSError *error) {
-                    XCTFail(@"The operation should not fail - NSError: %@", error);
-                    [expectation fulfill];
-                }];
-            }
-            
-            dispatch_group_leave(dispatchGroup);
-
-        } failure:^(NSError *error) {
-            XCTFail(@"The operation should not fail - NSError: %@", error);
-            [expectation fulfill];
-        }];
-        
-        dispatch_group_notify(dispatchGroup, dispatch_get_main_queue(), ^{
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                [bobSession.aggregations referenceEventsForEvent:pollStartEventId inRoom:roomId from:nil limit:-1 success:^(MXAggregationPaginatedResponse *paginatedResponse) {
-                    XCTAssertEqual(paginatedResponse.chunk.count, 11);
-                    XCTAssertEqualObjects(paginatedResponse.chunk.firstObject.sender, bobSession.myUser.userId);
-                    XCTAssertEqualObjects(paginatedResponse.chunk.lastObject.sender, aliceSession.myUser.userId);
-                    [expectation fulfill];
-                } failure:^(NSError *error) {
-                    XCTFail(@"The operation should not fail - NSError: %@", error);
-                    [expectation fulfill];
-                }];
-            });
-        });
-    }];
+   // aggregations not supported
 }
 
 // - Create a room with a poll in it
@@ -192,43 +71,7 @@
 // - Add poll answers in the gap
 - (void)testAnswerInAGappySync
 {
-    [self createScenarioForBobAndAlice:^(MXSession *bobSession, MXSession *aliceSession, NSString *roomId, XCTestExpectation *expectation, NSString *pollStartEventId, MXEventContentPollStart *pollStartContent) {
-        
-        // - Add enough messages while the session in background to trigger a gappy sync
-        [bobSession pause];
-        [self.matrixSDKTestsData for:bobSession.matrixRestClient andRoom:roomId sendMessages:10 testCase:self success:^{
-            
-            // - Add a poll answer in the gap
-            MXRoom *aliceRoom = [aliceSession roomWithRoomId:roomId];
-            [aliceSession eventWithEventId:pollStartEventId inRoom:roomId success:^(MXEvent *event) {
-                [aliceRoom sendPollResponseForEvent:event withAnswerIdentifiers:@[pollStartContent.answerOptions.lastObject.uuid] localEcho:nil success:^(NSString *eventId) {
-                    
-                    [self.matrixSDKTestsData for:bobSession.matrixRestClient andRoom:roomId sendMessages:20 testCase:self success:^{
-                        [bobSession start:^{
-                            [bobSession.aggregations referenceEventsForEvent:pollStartEventId inRoom:roomId from:nil limit:-1 success:^(MXAggregationPaginatedResponse *paginatedResponse) {
-                                XCTAssertEqual(paginatedResponse.chunk.count, 1);
-                                XCTAssertEqualObjects(paginatedResponse.chunk.firstObject.sender, aliceSession.myUser.userId);
-                                XCTAssertEqualObjects(paginatedResponse.chunk.firstObject.eventId, eventId);
-                                [expectation fulfill];
-                            } failure:^(NSError *error) {
-                                XCTFail(@"The operation should not fail - NSError: %@", error);
-                                [expectation fulfill];
-                            }];
-                        } failure:^(NSError *error) {
-                            XCTFail(@"The operation should not fail - NSError: %@", error);
-                            [expectation fulfill];
-                        }];
-                    }];
-                } failure:^(NSError *error) {
-                    XCTFail(@"The operation should not fail - NSError: %@", error);
-                    [expectation fulfill];
-                }];
-            } failure:^(NSError *error) {
-                XCTFail(@"The operation should not fail - NSError: %@", error);
-                [expectation fulfill];
-            }];
-        }];
-    }];
+    //aggregations not supported
 }
 
 #pragma mark - Private

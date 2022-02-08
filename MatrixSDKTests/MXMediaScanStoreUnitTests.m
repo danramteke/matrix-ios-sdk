@@ -15,14 +15,9 @@
  */
 
 #import <XCTest/XCTest.h>
-
-#import "MXScanRealmInMemoryProvider.h"
-#import "MXRealmMediaScanStore.h"
 #import "MXMediaScanStore.h"
 
 @interface MXMediaScanStoreUnitTests : XCTestCase
-
-@property (nonatomic, strong) id<MXScanRealmProvider> realmProvider;
 @property (nonatomic, strong) id<MXMediaScanStore> mediaScanStore;
 
 @end
@@ -34,11 +29,6 @@ static NSString* const kDefaultAntivirusServerDomain = @"matrix.org";
 - (void)setUp
 {
     // Put setup code here. This method is called before the invocation of each test method in the class.
-
-    id<MXScanRealmProvider> realmProvider = [[MXScanRealmInMemoryProvider alloc] initWithAntivirusServerDomain:kDefaultAntivirusServerDomain];
-    self.mediaScanStore = [[MXRealmMediaScanStore alloc] initWithRealmProvider:realmProvider];    
-    self.realmProvider = realmProvider;
-    [self.realmProvider deleteAllObjects];
 }
 
 - (void)tearDown

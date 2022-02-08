@@ -34,7 +34,6 @@
 #import "MXGroup.h"
 #import "MXError.h"
 #import "MXScanManager.h"
-#import "MXAggregations.h"
 #import "MXIdentityService.h"
 #import "MX3PidAddManager.h"
 #import "MXMembershipTransitionState.h"
@@ -487,11 +486,6 @@ FOUNDATION_EXPORT NSString *const kMXSessionNoRoomTag;
  Nil if `antivirusServerURL` is nil.
  */
 @property (nonatomic, readonly) MXScanManager *scanManager;
-
-/**
- The module that manages aggregations (reactions, edition, ...).
- */
-@property (nonatomic, readonly) MXAggregations *aggregations;
 
 /**
  The module that manages spaces.

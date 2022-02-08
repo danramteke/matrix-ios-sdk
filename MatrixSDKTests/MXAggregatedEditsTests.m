@@ -64,27 +64,7 @@ static NSString* const kEditedMarkdownMessageFormattedText = @"<strong>I meant H
 {
     [matrixSDKTestsData doMXSessionTestWithBobAndARoom:self andStore:[[MXMemoryStore alloc] init] readyToTest:^(MXSession *mxSession, MXRoom *room, XCTestExpectation *expectation) {
 
-        [room sendTextMessage:kOriginalMessageText success:^(NSString *eventId) {
-            [mxSession eventWithEventId:eventId inRoom:room.roomId success:^(MXEvent *event) {
-                [mxSession.aggregations replaceTextMessageEvent:event withTextMessage:kEditedMessageText formattedText:nil localEchoBlock:nil success:^(NSString * _Nonnull editEventId) {
-                    
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                        readyToTest(mxSession, room, expectation, eventId, editEventId);
-                    });
-
-                } failure:^(NSError *error) {
-                    XCTFail(@"The operation should not fail - NSError: %@", error);
-                    [expectation fulfill];
-                }];
-
-            } failure:^(NSError *error) {
-                XCTFail(@"Cannot set up intial test conditions - error: %@", error);
-                [expectation fulfill];
-            }];
-        } failure:^(NSError *error) {
-            XCTFail(@"Cannot set up intial test conditions - error: %@", error);
-            [expectation fulfill];
-        }];
+        // aggregations not supported
     }];
 }
 
@@ -93,27 +73,7 @@ static NSString* const kEditedMarkdownMessageFormattedText = @"<strong>I meant H
 {
     [matrixSDKTestsData doMXSessionTestWithBobAndARoom:self andStore:[[MXMemoryStore alloc] init] readyToTest:^(MXSession *mxSession, MXRoom *room, XCTestExpectation *expectation) {
         
-        [room sendTextMessage:kOriginalMarkdownMessageText success:^(NSString *eventId) {
-            [mxSession eventWithEventId:eventId inRoom:room.roomId success:^(MXEvent *event) {
-                [mxSession.aggregations replaceTextMessageEvent:event withTextMessage:kEditedMarkdownMessageText formattedText:kEditedMarkdownMessageFormattedText localEchoBlock:nil success:^(NSString * _Nonnull editEventId) {
-                    
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                        readyToTest(mxSession, room, expectation, eventId, editEventId);
-                    });
-                    
-                } failure:^(NSError *error) {
-                    XCTFail(@"The operation should not fail - NSError: %@", error);
-                    [expectation fulfill];
-                }];
-                
-            } failure:^(NSError *error) {
-                XCTFail(@"Cannot set up intial test conditions - error: %@", error);
-                [expectation fulfill];
-            }];
-        } failure:^(NSError *error) {
-            XCTFail(@"Cannot set up intial test conditions - error: %@", error);
-            [expectation fulfill];
-        }];
+      // aggregations not supported
     }];
 }
 
@@ -130,12 +90,6 @@ static NSString* const kEditedMarkdownMessageFormattedText = @"<strong>I meant H
             [mxSession eventWithEventId:eventId inRoom:room.roomId success:^(MXEvent *event) {
 
                 // Edit it
-                [mxSession.aggregations replaceTextMessageEvent:event withTextMessage:kEditedMessageText formattedText:nil localEchoBlock:nil success:^(NSString * _Nonnull eventId) {
-                     XCTAssertNotNil(eventId);
-                 } failure:^(NSError *error) {
-                     XCTFail(@"The operation should not fail - NSError: %@", error);
-                     [expectation fulfill];
-                 }];
 
                 [room listenToEventsOfTypes:@[kMXEventTypeStringRoomMessage] onEvent:^(MXEvent *event, MXTimelineDirection direction, MXRoomState *roomState) {
 
@@ -176,12 +130,6 @@ static NSString* const kEditedMarkdownMessageFormattedText = @"<strong>I meant H
             [mxSession eventWithEventId:eventId inRoom:room.roomId success:^(MXEvent *event) {
                 
                 // Edit it
-                [mxSession.aggregations replaceTextMessageEvent:event withTextMessage:kEditedMarkdownMessageText formattedText:kEditedMarkdownMessageFormattedText localEchoBlock:nil success:^(NSString * _Nonnull eventId) {
-                    XCTAssertNotNil(eventId);
-                } failure:^(NSError *error) {
-                    XCTFail(@"The operation should not fail - NSError: %@", error);
-                    [expectation fulfill];
-                }];
                 
                 [room listenToEventsOfTypes:@[kMXEventTypeStringRoomMessage] onEvent:^(MXEvent *event, MXTimelineDirection direction, MXRoomState *roomState) {
                     
@@ -287,7 +235,6 @@ static NSString* const kEditedMarkdownMessageFormattedText = @"<strong>I meant H
 
         MXRestClient *restClient = mxSession.matrixRestClient;
 
-        [mxSession.aggregations resetData];
         [mxSession close];
         mxSession = nil;
 
@@ -335,7 +282,6 @@ static NSString* const kEditedMarkdownMessageFormattedText = @"<strong>I meant H
         
         MXRestClient *restClient = mxSession.matrixRestClient;
         
-        [mxSession.aggregations resetData];
         [mxSession close];
         mxSession = nil;
         
@@ -422,26 +368,11 @@ static NSString* const kEditedMarkdownMessageFormattedText = @"<strong>I meant H
     [self createScenario:^(MXSession *mxSession, MXRoom *room, XCTestExpectation *expectation, NSString *eventId, NSString *editEventId) {
         
         // -> We must get notified about the reaction count change
-        [mxSession.aggregations listenToEditsUpdateInRoom:room.roomId block:^(MXEvent * _Nonnull replaceEvent) {
-            
-            MXEvent *editedEvent = [mxSession.store eventWithEventId:eventId inRoom:room.roomId];
-            
-            XCTAssertNotNil(editedEvent);
-            XCTAssertTrue(editedEvent.contentHasBeenEdited);
-            XCTAssertEqualObjects(editedEvent.unsignedData.relations.replace.eventId, replaceEvent.eventId);
-            XCTAssertEqualObjects(editedEvent.content[kMXMessageBodyKey], secondEditionTextMessage);
-            
-            [expectation fulfill];
-        }];
+      // aggregations not supported
         
         MXEvent *editedEvent = [mxSession.store eventWithEventId:eventId inRoom:room.roomId];
         
-        [mxSession.aggregations replaceTextMessageEvent:editedEvent withTextMessage:secondEditionTextMessage formattedText:nil localEchoBlock:nil success:^(NSString * _Nonnull eventId) {
-            
-        } failure:^(NSError * _Nonnull error) {
-            XCTFail(@"Cannot set up intial test conditions - error: %@", error);
-            [expectation fulfill];
-        }];
+
     }];
 }
 
@@ -496,59 +427,7 @@ static NSString* const kEditedMarkdownMessageFormattedText = @"<strong>I meant H
         }];
 
         // - Edit its local echo
-        [mxSession.aggregations replaceTextMessageEvent:localEcho withTextMessage:kEditedMessageText formattedText:nil localEchoBlock:^(MXEvent * _Nonnull localEcho) {
-
-            localEchoBlockCount++;
-
-            XCTAssertEqual(localEcho.sentState, MXEventSentStateSending);
-            XCTAssertEqual(localEcho.eventType, MXEventTypeRoomMessage);
-
-            XCTAssertNotNil(localEcho.relatesTo);
-            XCTAssertEqualObjects(localEcho.relatesTo.relationType, MXEventRelationTypeReplace);
-
-            XCTAssertEqualObjects(localEcho.content[@"m.new_content"][kMXMessageTypeKey], kMXMessageTypeText);
-            XCTAssertEqualObjects(localEcho.content[@"m.new_content"][kMXMessageBodyKey], kEditedMessageText);
-
-            switch (localEchoBlockCount) {
-                case 1:
-                    // The first local echo must point to a local echo
-                    XCTAssertTrue([localEcho.relatesTo.eventId hasPrefix:kMXEventLocalEventIdPrefix]);
-                    break;
-                case 2:
-                    // The second local echo must point to the final event id
-                    XCTAssertFalse([localEcho.relatesTo.eventId hasPrefix:kMXEventLocalEventIdPrefix]);
-                    break;
-
-                default:
-                    break;
-            }
-
-        } success:^(NSString * _Nonnull eventId) {
-            XCTAssertNotNil(eventId);
-        } failure:^(NSError *error) {
-            XCTFail(@"The operation should not fail - NSError: %@", error);
-            [expectation fulfill];
-        }];
-
-        // -> We must get notified about the replace event
-        [mxSession.aggregations listenToEditsUpdateInRoom:room.roomId block:^(MXEvent * _Nonnull replaceEvent) {
-
-            XCTAssertNotNil(eventId, @"The original event must have been sent before receiving the final edit");
-
-            MXEvent *editedEvent = [mxSession.store eventWithEventId:eventId inRoom:room.roomId];
-
-            XCTAssertNotNil(editedEvent);
-            XCTAssertTrue(editedEvent.contentHasBeenEdited);
-            XCTAssertEqualObjects(editedEvent.unsignedData.relations.replace.eventId, replaceEvent.eventId);
-            XCTAssertEqualObjects(editedEvent.content[kMXMessageBodyKey], kEditedMessageText);
-
-            XCTAssertEqualObjects(replaceEvent.relatesTo.eventId, eventId);
-
-            // -> The local echo block must have been called twice
-            XCTAssertEqual(localEchoBlockCount, 2);
-
-            [expectation fulfill];
-        }];
+      // aggregations not supported
     }];
 }
 
@@ -564,16 +443,7 @@ static NSString* const kEditedMarkdownMessageFormattedText = @"<strong>I meant H
 
         [room sendTextMessage:kOriginalMessageText success:^(NSString *eventId) {
             [mxSession eventWithEventId:eventId inRoom:room.roomId success:^(MXEvent *event) {
-                [mxSession.aggregations replaceTextMessageEvent:event withTextMessage:kEditedMessageText formattedText:nil localEchoBlock:nil success:^(NSString * _Nonnull editEventId) {
-
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                        readyToTest(mxSession, room, expectation, eventId, editEventId);
-                    });
-
-                } failure:^(NSError *error) {
-                    XCTFail(@"The operation should not fail - NSError: %@", error);
-                    [expectation fulfill];
-                }];
+                
 
             } failure:^(NSError *error) {
                 XCTFail(@"Cannot set up intial test conditions - error: %@", error);
@@ -603,12 +473,7 @@ static NSString* const kEditedMarkdownMessageFormattedText = @"<strong>I meant H
             [aliceSession eventWithEventId:eventId inRoom:room.roomId success:^(MXEvent *event) {
 
                 // Edit it
-                [aliceSession.aggregations replaceTextMessageEvent:event withTextMessage:kEditedMessageText formattedText:nil localEchoBlock:nil success:^(NSString * _Nonnull eventId) {
-                    XCTAssertNotNil(eventId);
-                } failure:^(NSError *error) {
-                    XCTFail(@"The operation should not fail - NSError: %@", error);
-                    [expectation fulfill];
-                }];
+               
 
                 [room listenToEventsOfTypes:@[kMXEventTypeStringRoomMessage] onEvent:^(MXEvent *editEvent, MXTimelineDirection direction, MXRoomState *roomState) {
 
@@ -718,60 +583,6 @@ static NSString* const kEditedMarkdownMessageFormattedText = @"<strong>I meant H
         }];
 
         // - Edit its local echo
-        [mxSession.aggregations replaceTextMessageEvent:localEcho withTextMessage:kEditedMessageText formattedText:nil localEchoBlock:^(MXEvent * _Nonnull localEcho) {
-
-            localEchoBlockCount++;
-
-            XCTAssertEqual(localEcho.eventType, MXEventTypeRoomMessage);
-
-            XCTAssertNotNil(localEcho.relatesTo);
-            XCTAssertEqualObjects(localEcho.relatesTo.relationType, MXEventRelationTypeReplace);
-
-            XCTAssertEqualObjects(localEcho.content[@"m.new_content"][kMXMessageTypeKey], kMXMessageTypeText);
-            XCTAssertEqualObjects(localEcho.content[@"m.new_content"][kMXMessageBodyKey], kEditedMessageText);
-
-            switch (localEchoBlockCount) {
-                    case 1:
-                    // The first local echo must point to a local echo
-                    XCTAssertEqual(localEcho.sentState, MXEventSentStateEncrypting);
-                    XCTAssertTrue([localEcho.relatesTo.eventId hasPrefix:kMXEventLocalEventIdPrefix]);
-                    break;
-                    case 2:
-                    // The second local echo must point to the final event id
-                    XCTAssertEqual(localEcho.sentState, MXEventSentStateEncrypting);
-                    XCTAssertFalse([localEcho.relatesTo.eventId hasPrefix:kMXEventLocalEventIdPrefix]);
-                    break;
-
-                default:
-                    break;
-            }
-
-        } success:^(NSString * _Nonnull eventId) {
-            XCTAssertNotNil(eventId);
-        } failure:^(NSError *error) {
-            XCTFail(@"The operation should not fail - NSError: %@", error);
-            [expectation fulfill];
-        }];
-
-        // -> We must get notified about the replace event
-        [mxSession.aggregations listenToEditsUpdateInRoom:room.roomId block:^(MXEvent * _Nonnull replaceEvent) {
-
-            XCTAssertNotNil(eventId, @"The original event must have been sent before receiving the final edit");
-
-            MXEvent *editedEvent = [mxSession.store eventWithEventId:eventId inRoom:room.roomId];
-
-            XCTAssertNotNil(editedEvent);
-            XCTAssertTrue(editedEvent.contentHasBeenEdited);
-            XCTAssertEqualObjects(editedEvent.unsignedData.relations.replace.eventId, replaceEvent.eventId);
-            XCTAssertEqualObjects(editedEvent.content[kMXMessageBodyKey], kEditedMessageText);
-
-            XCTAssertEqualObjects(replaceEvent.relatesTo.eventId, eventId);
-
-            // -> The local echo block must have been called twice
-            XCTAssertEqual(localEchoBlockCount, 2);
-
-            [expectation fulfill];
-        }];
     }];
 }
 
@@ -786,12 +597,7 @@ static NSString* const kEditedMarkdownMessageFormattedText = @"<strong>I meant H
         for (NSUInteger i = 1; i <= editsCount; i++)
         {
             NSString *editMessageText = [NSString stringWithFormat:@"%@ - %@", kEditedMessageText, @(i)];
-            [mxSession.aggregations replaceTextMessageEvent:event withTextMessage:editMessageText formattedText:nil localEchoBlock:nil success:^(NSString * _Nonnull eventId) {
 
-            } failure:^(NSError *error) {
-                XCTFail(@"The operation should not fail - NSError: %@", error);
-                [expectation fulfill];
-            }];
         }
 
         __block NSUInteger receivedEditsCount = 0;
@@ -828,48 +634,7 @@ static NSString* const kEditedMarkdownMessageFormattedText = @"<strong>I meant H
         // - Edit the message 10 more times
         [self addEdits:10 toEvent:eventId inRoom:room mmSession:mxSession expectation:expectation onComplete:^{
 
-            [mxSession.aggregations replaceEventsForEvent:eventId isEncrypted:NO inRoom:room.roomId from:nil limit:1 success:^(MXAggregationPaginatedResponse *paginatedResponse) {
-
-                // -> We must get an edit event and a nextBatch
-                XCTAssertNotNil(paginatedResponse);
-                XCTAssertEqual(paginatedResponse.chunk.count, 1);
-                XCTAssertTrue(paginatedResponse.chunk.firstObject.isEditEvent);
-                XCTAssertNotNil(paginatedResponse.nextBatch);
-
-                // -> We must get the original event
-                XCTAssertNotNil(paginatedResponse.originalEvent);
-                XCTAssertEqualObjects(paginatedResponse.originalEvent.eventId, eventId);
-                XCTAssertEqualObjects(paginatedResponse.originalEvent.content[kMXMessageBodyKey], kOriginalMessageText);
-
-                // - Paginate more
-                [mxSession.aggregations replaceEventsForEvent:eventId isEncrypted:NO inRoom:room.roomId from:paginatedResponse.nextBatch limit:20 success:^(MXAggregationPaginatedResponse *paginatedResponse) {
-
-                    // -> We must get all other edit events and no more nextBatch
-                    XCTAssertNotNil(paginatedResponse);
-                    XCTAssertEqual(paginatedResponse.chunk.count, 10);
-                    XCTAssertNil(paginatedResponse.nextBatch);
-
-                    for (MXEvent *event in paginatedResponse.chunk)
-                    {
-                        XCTAssertTrue(event.isEditEvent);
-                    }
-
-                    // -> We must get the original event
-                    XCTAssertNotNil(paginatedResponse.originalEvent);
-                    XCTAssertEqualObjects(paginatedResponse.originalEvent.eventId, eventId);
-                    XCTAssertEqualObjects(paginatedResponse.originalEvent.content[kMXMessageBodyKey], kOriginalMessageText);
-
-                    [expectation fulfill];
-
-                } failure:^(NSError *error) {
-                    XCTFail(@"The operation should not fail - NSError: %@", error);
-                    [expectation fulfill];
-                }];
-
-            } failure:^(NSError *error) {
-                XCTFail(@"The operation should not fail - NSError: %@", error);
-                [expectation fulfill];
-            }];
+            
         }];
     }];
 }

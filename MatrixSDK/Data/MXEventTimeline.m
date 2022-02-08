@@ -21,7 +21,6 @@
 
 #import "MXSession.h"
 #import "MXMemoryStore.h"
-#import "MXAggregations_Private.h"
 #import "MXEventRelations.h"
 
 #import "MXError.h"
@@ -708,11 +707,6 @@ NSString *const kMXRoomInviteStateEventIdPrefix = @"invite-";
     {
         [store storeEventForRoom:_state.roomId event:event direction:direction];
     }
-
-    // Notify the aggregation manager for every events so that it can store
-    // aggregated data sent by the server
-
-    [room.mxSession.aggregations handleOriginalDataOfEvent:event];
 
     // Notify listeners
     [self notifyListeners:event direction:direction];

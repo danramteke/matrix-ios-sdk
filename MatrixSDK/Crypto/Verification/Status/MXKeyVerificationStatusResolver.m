@@ -130,10 +130,11 @@
                                                                         success:(void(^)(MXEvent *originalEvent, NSArray<MXEvent*> *events))success
                                                                         failure:(void(^)(NSError *error))failure
 {
-    // Get all related events
-    return [self.mxSession.aggregations referenceEventsForEvent:originalEventId inRoom:roomId from:nil limit:-1 success:^(MXAggregationPaginatedResponse * _Nonnull paginatedResponse) {
-        success(paginatedResponse.originalEvent, paginatedResponse.chunk);
-    } failure:failure];
+  NSError* error = [[NSError alloc] initWithDomain:@"aggregations" code:2 userInfo:@{
+    NSLocalizedDescriptionKey: @"Aggregations not supported"
+  }];
+  failure(error);
+  return nil;
 }
 
 - (nullable MXKeyVerification *)makeKeyVerificationFromOriginalDMEvent:(nullable MXEvent*)originalEvent events:(NSArray<MXEvent*> *)events

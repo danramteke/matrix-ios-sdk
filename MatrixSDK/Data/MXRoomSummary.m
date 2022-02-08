@@ -470,27 +470,12 @@ static NSUInteger const kMXRoomSummaryTrustComputationDelayMs = 1000;
 - (void)registerEventEditsListener
 {
     MXWeakify(self);
-    eventEditsListener = [_mxSession.aggregations listenToEditsUpdateInRoom:_roomId block:^(MXEvent * _Nonnull replaceEvent) {
-        MXStrongifyAndReturnIfNil(self);
-
-        // Update the last event if it has been edited
-        if ([replaceEvent.relatesTo.eventId isEqualToString:self.lastMessage.eventId])
-        {
-            [self.mxSession eventWithEventId:self.lastMessage.eventId
-                                      inRoom:self.roomId
-                                     success:^(MXEvent *event) {
-                MXEvent *editedEvent = [event editedEventFromReplacementEvent:replaceEvent];
-                [self handleEvent:editedEvent];
-            } failure:nil];
-        }
-    }];
 }
 
 - (void)unregisterEventEditsListener
 {
     if (eventEditsListener)
     {
-        [self.mxSession.aggregations removeListener:eventEditsListener];
         eventEditsListener = nil;
     }
 }

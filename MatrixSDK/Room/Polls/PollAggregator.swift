@@ -87,39 +87,5 @@ public class PollAggregator {
     
     private func reloadData() {
         delegate?.pollAggregatorDidStartLoading(self)
-        session.aggregations.referenceEvents(forEvent: pollStartEvent.eventId, inRoom: room.roomId, from: nil, limit: -1) { [weak self] response in
-            guard let self = self else {
-                return
-            }
-            
-            self.events.removeAll()
-            
-            self.events.append(contentsOf: response.chunk)
-            
-            let eventTypes = [kMXEventTypeStringPollResponse, kMXEventTypeStringPollResponseMSC3381, kMXEventTypeStringPollEnd, kMXEventTypeStringPollEndMSC3381]
-            self.eventListener = self.room.listen(toEventsOfTypes: eventTypes) { [weak self] event, direction, state in
-                guard let self = self,
-                      let event = event,
-                      let relatedEventId = event.relatesTo?.eventId,
-                      relatedEventId == self.pollStartEvent.eventId else {
-                    return
-                }
-                
-                self.events.append(event)
-                
-                self.poll = self.pollBuilder.build(pollStartEventContent: self.pollStartEventContent, events: self.events, currentUserIdentifier: self.session.myUserId)
-            } as Any
-            
-            self.poll = self.pollBuilder.build(pollStartEventContent: self.pollStartEventContent, events: self.events, currentUserIdentifier: self.session.myUserId)
-            
-            self.delegate?.pollAggregatorDidEndLoading(self)
-            
-        } failure: { [weak self] error in
-            guard let self = self else {
-                return
-            }
-            
-            self.delegate?.pollAggregator(self, didFailWithError: error)
-        }
     }
 }

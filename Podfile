@@ -10,7 +10,6 @@ abstract_target 'MatrixSDK' do
     pod 'OLMKit', '~> 3.2.5', :inhibit_warnings => true
     #pod 'OLMKit', :path => '../olm/OLMKit.podspec'
     
-    pod 'Realm', '10.16.0'
     pod 'libbase58', '~> 0.1.4'
     pod 'GRDB.swift', '~> 5.19.0'
     

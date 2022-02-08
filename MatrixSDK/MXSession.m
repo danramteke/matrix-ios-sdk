@@ -44,7 +44,6 @@
 
 #import "MXScanManager.h"
 
-#import "MXAggregations_Private.h"
 #import "MatrixSDKSwiftHeader.h"
 #import "MXRoomSummaryProtocol.h"
 
@@ -362,8 +361,6 @@ typedef void (^MXOnResumeDone)(void);
         {
             return;
         }
-
-        self.storeService.aggregations = [[MXAggregations alloc] initWithMatrixSession:self];
 
         // Check if the user has enabled crypto
         MXWeakify(self);
@@ -960,11 +957,6 @@ typedef void (^MXOnResumeDone)(void);
         (_state == MXSessionStateBackgroundSyncInProgress
         || _state == MXSessionStatePauseRequested
         || _state == MXSessionStatePaused);
-}
-
-- (MXAggregations *)aggregations
-{
-    return self.storeService.aggregations;
 }
 
 - (void)pause
@@ -2872,7 +2864,7 @@ typedef void (^MXOnResumeDone)(void);
 
         // Clean the store
         [self.store deleteRoom:roomId];
-        [self.aggregations resetDataInRoom:roomId];
+
 
         // And remove the room and its summary from the list
         [rooms removeObjectForKey:roomId];

@@ -201,27 +201,7 @@ static NSString* const kThreadedMessage1Text = @"Morning!";
     [self createScenario:^(MXSession *mxSession, MXRoom *room, XCTestExpectation *expectation, NSString *eventId, NSString *referenceEventId) {
 
         // - Get all references from the HS
-        [mxSession.aggregations referenceEventsForEvent:eventId inRoom:room.roomId from:nil limit:-1 success:^(MXAggregationPaginatedResponse * _Nonnull paginatedResponse) {
-
-            // -> We must get all reference events and no more nextBatch
-            XCTAssertNotNil(paginatedResponse);
-            XCTAssertEqual(paginatedResponse.chunk.count, 1);
-            XCTAssertNil(paginatedResponse.nextBatch);
-
-            XCTAssertEqualObjects(paginatedResponse.chunk.firstObject.eventId, referenceEventId);
-            XCTAssertEqualObjects(paginatedResponse.chunk.firstObject.content[kMXMessageBodyKey], kThreadedMessage1Text);
-
-            // -> We must get the original event
-            XCTAssertNotNil(paginatedResponse.originalEvent);
-            XCTAssertEqualObjects(paginatedResponse.originalEvent.eventId, eventId);
-            XCTAssertEqualObjects(paginatedResponse.originalEvent.content[kMXMessageBodyKey], kOriginalMessageText);
-            
-            [expectation fulfill];
-
-        } failure:^(NSError *error) {
-            XCTFail(@"The operation should not fail - NSError: %@", error);
-            [expectation fulfill];
-        }];
+       // aggregations not supported
     }];
 }
 
@@ -275,33 +255,7 @@ static NSString* const kThreadedMessage1Text = @"Morning!";
     [self createE2EScenario:^(MXSession *mxSession, MXRoom *room, XCTestExpectation *expectation, NSString *eventId, NSString *referenceEventId) {
 
         // - Get all references from the HS
-        [mxSession.aggregations referenceEventsForEvent:eventId inRoom:room.roomId from:nil limit:-1 success:^(MXAggregationPaginatedResponse * _Nonnull paginatedResponse) {
-
-            // -> Events must be decrypted
-            XCTAssertTrue(paginatedResponse.originalEvent.isEncrypted);
-            XCTAssertNotNil(paginatedResponse.originalEvent.clearEvent);
-            XCTAssertTrue(paginatedResponse.chunk.firstObject.isEncrypted);
-            XCTAssertNotNil(paginatedResponse.chunk.firstObject.clearEvent);
-
-            // -> We must get all reference events and no more nextBatch
-            XCTAssertNotNil(paginatedResponse);
-            XCTAssertEqual(paginatedResponse.chunk.count, 1);
-            XCTAssertNil(paginatedResponse.nextBatch);
-
-            XCTAssertEqualObjects(paginatedResponse.chunk.firstObject.eventId, referenceEventId);
-            XCTAssertEqualObjects(paginatedResponse.chunk.firstObject.content[kMXMessageBodyKey], kThreadedMessage1Text);
-
-            // -> We must get the original event
-            XCTAssertNotNil(paginatedResponse.originalEvent);
-            XCTAssertEqualObjects(paginatedResponse.originalEvent.eventId, eventId);
-            XCTAssertEqualObjects(paginatedResponse.originalEvent.content[kMXMessageBodyKey], kOriginalMessageText);
-
-            [expectation fulfill];
-
-        } failure:^(NSError *error) {
-            XCTFail(@"The operation should not fail - NSError: %@", error);
-            [expectation fulfill];
-        }];
+       // aggregations not supported
     }];
 }
 
