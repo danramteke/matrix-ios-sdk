@@ -440,6 +440,10 @@
   MXIncomingRoomKeyRequest* retrieved = [store incomingRoomKeyRequestWithRequestId:@"request id" fromUser:@"user id" andDevice:@"device id"];
   XCTAssertNotNil(retrieved);
   
+  MXUsersDevicesMap<NSArray<MXIncomingRoomKeyRequest *> *> * allRetrieved = [store incomingRoomKeyRequests];
+  XCTAssertNotNil(allRetrieved);
+  XCTAssertEqual(1, allRetrieved.count);
+  
   [store deleteIncomingRoomKeyRequest:@"request id" fromUser:@"user id" andDevice:@"device id"];
   XCTAssertNil([store incomingRoomKeyRequestWithRequestId:@"request id" fromUser:@"user id" andDevice:@"device id"]);
 }

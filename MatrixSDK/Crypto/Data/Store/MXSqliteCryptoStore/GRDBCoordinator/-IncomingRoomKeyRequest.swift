@@ -56,4 +56,16 @@ extension GRDBCoordinator {
       MXLog.error("[\(String(describing: Self.self))] error deleting Outgoing Room Key Request: \(error)")
     }
   }
+  
+  public func retrieveAllIncomingRoomKeyRequests() -> [MXGrdbIncomingRoomKeyRequest]? {
+    do {
+      return try self.pool.read { db in
+        return try MXGrdbIncomingRoomKeyRequest
+          .fetchAll(db)
+      }
+    } catch {
+      MXLog.error("[\(String(describing: Self.self))] error retrieving Outgoing Room Key Request: \(error)")
+      return nil
+    }
+  }
 }

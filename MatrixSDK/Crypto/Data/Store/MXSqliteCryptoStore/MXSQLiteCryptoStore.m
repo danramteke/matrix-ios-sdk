@@ -643,4 +643,33 @@
 - (void)deleteIncomingRoomKeyRequest:(NSString*)requestId fromUser:(NSString*)userId andDevice:(NSString*)deviceId {
   [self.grdbCoordinator deleteIncomingRoomKeyRequestWithRequestId:requestId userId:userId deviceId:deviceId];
 }
+
+- (MXUsersDevicesMap<NSArray<MXIncomingRoomKeyRequest *> *> *)incomingRoomKeyRequests {
+  NSArray<MXGrdbIncomingRoomKeyRequest*>* retrievedRequests = [self.grdbCoordinator retrieveAllIncomingRoomKeyRequests];
+  if (retrievedRequests == nil) {
+    return nil;
+  }
+  
+  MXUsersDevicesMap<NSMutableArray<MXIncomingRoomKeyRequest *> *> *incomingRoomKeyRequests = [[MXUsersDevicesMap alloc] init];
+
+  for (MXGrdbIncomingRoomKeyRequest *grdbRequest in retrievedRequests) {
+    MXIncomingRoomKeyRequest *request = [[MXIncomingRoomKeyRequest alloc] initWithGRDBIncomingRoomKeyRequest:grdbRequest];
+    
+    NSMutableArray<MXIncomingRoomKeyRequest *> *requests = [incomingRoomKeyRequests objectForDevice:request.deviceId forUser:request.userId];
+    if (!requests) {
+      requests = [[NSMutableArray alloc] init];
+      [incomingRoomKeyRequests setObject:requests forUser:request.userId andDevice:request.deviceId];
+    }
+    
+    [requests addObject:request];
+  }
+  
+  return incomingRoomKeyRequests;
+}
+
+#pragma mark - Secret storage
+
+- (void)storeSecret:(NSString*)secret withSecretId:(NSString*)secretId {
+  
+}
 @end
