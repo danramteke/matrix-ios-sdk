@@ -38,8 +38,9 @@ extension GRDBCoordinator {
       return try self.pool.read() { db in
         return try MXGrdbUser
           .select(MXGrdbUser.CodingKeys.crossSigningKeysData)
-          .asRequest(of: Data.self)
+          .asRequest(of: Data?.self)
           .fetchAll(db)
+          .compactMap({ $0 })
       }
     } catch {
       MXLog.error("[\(String(describing: Self.self))] error retrieving all Cross Signing Keys Data: \(error)")
