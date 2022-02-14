@@ -24,7 +24,7 @@ extension GRDBCoordinator {
         try MXGrdbUser
           .select(MXGrdbUser.CodingKeys.crossSigningKeysData)
           .filter(MXGrdbUser.CodingKeys.id == userId)
-          .asRequest(of: Data.self)
+          .asRequest(of: Data?.self)
           .fetchOne(db)
       }
     } catch {
