@@ -36,13 +36,27 @@
 @end
 
 
-@implementation MXCredentials
+@implementation MXCredentials  (ForTesting)
 
 -(instancetype)initForTestingWithUserId:(NSString *)userId deviceId:(NSString *)deviceId {
   self = [super init];
   if (self) {
     self.userId = userId;
     self.deviceId = deviceId;
+  }
+  return self;
+}
+
+@end
+
+@implementation MXCrossSigningInfo  (ForTesting)
+
+-(instancetype)initForTestingWithUserId:(NSString *)userId  keys:(NSDictionary<NSString*, MXCrossSigningKey*>*)keys {
+  self = [super init];
+  if (self) {
+    self.userId = userId;
+    self.keys = keys;
+    self.trustLevel = [MXUserTrustLevel new];
   }
   return self;
 }

@@ -35,11 +35,11 @@ extern NSString *const MXCrossSigningInfoTrustLevelDidChangeNotification;
 /**
  The user's id.
  */
-@property (nonatomic, readonly) NSString *userId;
+@property (nonatomic) NSString *userId;
 
 // All cross signing keys
 // key type (MXCrossSigningKeyType) -> keys
-@property (nonatomic, readonly) NSDictionary<NSString*, MXCrossSigningKey*> *keys;
+@property (nonatomic) NSDictionary<NSString*, MXCrossSigningKey*> *keys;
 
 // Shorcuts to a specific key
 @property (nonatomic, nullable, readonly) MXCrossSigningKey *masterKeys;
@@ -50,7 +50,7 @@ extern NSString *const MXCrossSigningInfoTrustLevelDidChangeNotification;
 
 #pragma mark - Additional information
 
-@property (nonatomic, readonly) MXUserTrustLevel *trustLevel;
+@property (nonatomic) MXUserTrustLevel *trustLevel;
 
 @end
 

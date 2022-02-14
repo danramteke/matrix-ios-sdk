@@ -26,3 +26,7 @@
 @interface MXCredentials (ForTesting)
 -(instancetype)initForTestingWithUserId:(NSString *)userId deviceId:(NSString *)deviceId;
 @end
+
+@interface MXCrossSigningInfo (ForTesting)
+-(instancetype)initForTestingWithUserId:(NSString *)userId keys:(NSDictionary<NSString*, MXCrossSigningKey*>*)keys;
+@end

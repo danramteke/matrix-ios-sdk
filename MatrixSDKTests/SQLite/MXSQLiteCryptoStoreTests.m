@@ -186,13 +186,20 @@
 
 -(void)testStoreAndRetrieveCrossSigningKeysData {
   MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
-//  MXCrossSigningInfo* info = [[MXCrossSigningInfo alloc] init];
-
-//  info.userId = @"abc user";
   
-//  [store storeCrossSigningKeys:info];
+  XCTAssertEqual(0, [store crossSigningKeys].count);
+  XCTAssertNil([store crossSigningKeysForUser:@"user id"].userId);
   
-  // TODO: implement test inits for MXCrossSigningInfo
+  MXCrossSigningInfo* firstInfo = [[MXCrossSigningInfo alloc] initForTestingWithUserId:@"user id" keys:@{
+    MXCrossSigningKeyType.master: [[MXCrossSigningKey alloc] initWithUserId:@"user id" usage:@[@"master"] keys:@"keys"],
+    MXCrossSigningKeyType.selfSigning: [[MXCrossSigningKey alloc] initWithUserId:@"user id" usage:@[@"self_signing"] keys:@"keys"],
+    MXCrossSigningKeyType.userSigning: [[MXCrossSigningKey alloc] initWithUserId:@"user id" usage:@[@"user_signing"] keys:@"keys"]
+  }];
+  
+  [store storeCrossSigningKeys:firstInfo];
+  
+  XCTAssertEqual(1, [store crossSigningKeys].count);
+  XCTAssertEqualObjects(@"user id", [store crossSigningKeysForUser:@"user id"].userId);  
 }
 
 -(void)testStoreAndRetrieveRoomAlgorithm {

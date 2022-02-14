@@ -21,9 +21,11 @@ extension GRDBCoordinator {
   public func retrieveCrossSigningKeysDataFor(userId: String) -> Data? {
     do {
       return try self.pool.read() { db in
-        try Data.fetchOne(db, MXGrdbUser
-                            .select(MXGrdbUser.CodingKeys.crossSigningKeysData)
-                            .filter(MXGrdbOlmAccount.CodingKeys.userId == userId))
+        try MXGrdbUser
+          .select(MXGrdbUser.CodingKeys.crossSigningKeysData)
+          .filter(MXGrdbUser.CodingKeys.id == userId)
+          .asRequest(of: Data.self)
+          .fetchOne(db)
       }
     } catch {
       MXLog.error("[\(String(describing: Self.self))] error retrieving Cross Signing Keys Data for user ID \(userId): \(error)")
@@ -34,7 +36,10 @@ extension GRDBCoordinator {
   public func retrieveAllCrossSigningKeysData() -> [Data] {
     do {
       return try self.pool.read() { db in
-        return try Data.fetchAll(db, MXGrdbUser.select(MXGrdbUser.CodingKeys.crossSigningKeysData))
+        return try MXGrdbUser
+          .select(MXGrdbUser.CodingKeys.crossSigningKeysData)
+          .asRequest(of: Data.self)
+          .fetchAll(db)
       }
     } catch {
       MXLog.error("[\(String(describing: Self.self))] error retrieving all Cross Signing Keys Data: \(error)")
