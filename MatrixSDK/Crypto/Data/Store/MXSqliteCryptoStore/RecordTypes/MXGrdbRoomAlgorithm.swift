@@ -15,7 +15,6 @@
 //
 
 import Foundation
-import GRDB
 
 public final class MXGrdbRoomAlgorithm: NSObject, Codable, FetchableRecord, PersistableRecord, TableRecord {
   

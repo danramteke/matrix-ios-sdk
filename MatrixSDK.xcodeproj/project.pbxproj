@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -685,6 +685,264 @@
 		65160A1927AB2E1000D48B6B /* GRDBCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65160A1727AB2E1000D48B6B /* GRDBCoordinatorTests.swift */; };
 		65160A1D27AB322500D48B6B /* -Account.olmAccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65160A1A27AB312C00D48B6B /* -Account.olmAccountData.swift */; };
 		65160A1E27AB322600D48B6B /* -Account.olmAccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65160A1A27AB312C00D48B6B /* -Account.olmAccountData.swift */; };
+		652B220A27BAAF270056DFDF /* TableRecord+Association.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B217A27BAAF260056DFDF /* TableRecord+Association.swift */; };
+		652B220B27BAAF270056DFDF /* TableRecord+Association.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B217A27BAAF260056DFDF /* TableRecord+Association.swift */; };
+		652B220C27BAAF270056DFDF /* SQLInterpolation+QueryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B217B27BAAF260056DFDF /* SQLInterpolation+QueryInterface.swift */; };
+		652B220D27BAAF270056DFDF /* SQLInterpolation+QueryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B217B27BAAF260056DFDF /* SQLInterpolation+QueryInterface.swift */; };
+		652B220E27BAAF270056DFDF /* FTS5+QueryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B217C27BAAF260056DFDF /* FTS5+QueryInterface.swift */; };
+		652B220F27BAAF270056DFDF /* FTS5+QueryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B217C27BAAF260056DFDF /* FTS5+QueryInterface.swift */; };
+		652B221027BAAF270056DFDF /* SQLQueryGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B217E27BAAF260056DFDF /* SQLQueryGenerator.swift */; };
+		652B221127BAAF270056DFDF /* SQLQueryGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B217E27BAAF260056DFDF /* SQLQueryGenerator.swift */; };
+		652B221227BAAF270056DFDF /* SQLGenerationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B217F27BAAF260056DFDF /* SQLGenerationContext.swift */; };
+		652B221327BAAF270056DFDF /* SQLGenerationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B217F27BAAF260056DFDF /* SQLGenerationContext.swift */; };
+		652B221427BAAF270056DFDF /* ForeignKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218027BAAF260056DFDF /* ForeignKey.swift */; };
+		652B221527BAAF270056DFDF /* ForeignKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218027BAAF260056DFDF /* ForeignKey.swift */; };
+		652B221627BAAF270056DFDF /* TableDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218227BAAF260056DFDF /* TableDefinition.swift */; };
+		652B221727BAAF270056DFDF /* TableDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218227BAAF260056DFDF /* TableDefinition.swift */; };
+		652B221827BAAF270056DFDF /* VirtualTableModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218327BAAF260056DFDF /* VirtualTableModule.swift */; };
+		652B221927BAAF270056DFDF /* VirtualTableModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218327BAAF260056DFDF /* VirtualTableModule.swift */; };
+		652B221A27BAAF270056DFDF /* TableRecord+QueryInterfaceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218427BAAF260056DFDF /* TableRecord+QueryInterfaceRequest.swift */; };
+		652B221B27BAAF270056DFDF /* TableRecord+QueryInterfaceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218427BAAF260056DFDF /* TableRecord+QueryInterfaceRequest.swift */; };
+		652B221C27BAAF270056DFDF /* FTS3+QueryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218527BAAF260056DFDF /* FTS3+QueryInterface.swift */; };
+		652B221D27BAAF270056DFDF /* FTS3+QueryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218527BAAF260056DFDF /* FTS3+QueryInterface.swift */; };
+		652B221E27BAAF270056DFDF /* BelongsToAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218827BAAF260056DFDF /* BelongsToAssociation.swift */; };
+		652B221F27BAAF270056DFDF /* BelongsToAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218827BAAF260056DFDF /* BelongsToAssociation.swift */; };
+		652B222027BAAF270056DFDF /* JoinAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218927BAAF260056DFDF /* JoinAssociation.swift */; };
+		652B222127BAAF270056DFDF /* JoinAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218927BAAF260056DFDF /* JoinAssociation.swift */; };
+		652B222227BAAF270056DFDF /* HasOneAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218A27BAAF260056DFDF /* HasOneAssociation.swift */; };
+		652B222327BAAF270056DFDF /* HasOneAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218A27BAAF260056DFDF /* HasOneAssociation.swift */; };
+		652B222427BAAF270056DFDF /* AssociationAggregate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218B27BAAF260056DFDF /* AssociationAggregate.swift */; };
+		652B222527BAAF270056DFDF /* AssociationAggregate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218B27BAAF260056DFDF /* AssociationAggregate.swift */; };
+		652B222627BAAF270056DFDF /* HasManyAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218C27BAAF260056DFDF /* HasManyAssociation.swift */; };
+		652B222727BAAF270056DFDF /* HasManyAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218C27BAAF260056DFDF /* HasManyAssociation.swift */; };
+		652B222827BAAF270056DFDF /* HasManyThroughAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218D27BAAF260056DFDF /* HasManyThroughAssociation.swift */; };
+		652B222927BAAF270056DFDF /* HasManyThroughAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218D27BAAF260056DFDF /* HasManyThroughAssociation.swift */; };
+		652B222A27BAAF270056DFDF /* Association.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218E27BAAF260056DFDF /* Association.swift */; };
+		652B222B27BAAF270056DFDF /* Association.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218E27BAAF260056DFDF /* Association.swift */; };
+		652B222C27BAAF270056DFDF /* HasOneThroughAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218F27BAAF260056DFDF /* HasOneThroughAssociation.swift */; };
+		652B222D27BAAF270056DFDF /* HasOneThroughAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B218F27BAAF260056DFDF /* HasOneThroughAssociation.swift */; };
+		652B222E27BAAF270056DFDF /* QueryInterfaceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219027BAAF260056DFDF /* QueryInterfaceRequest.swift */; };
+		652B222F27BAAF270056DFDF /* QueryInterfaceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219027BAAF260056DFDF /* QueryInterfaceRequest.swift */; };
+		652B223027BAAF270056DFDF /* RequestProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219127BAAF260056DFDF /* RequestProtocols.swift */; };
+		652B223127BAAF270056DFDF /* RequestProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219127BAAF260056DFDF /* RequestProtocols.swift */; };
+		652B223227BAAF270056DFDF /* CommonTableExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219227BAAF260056DFDF /* CommonTableExpression.swift */; };
+		652B223327BAAF270056DFDF /* CommonTableExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219227BAAF260056DFDF /* CommonTableExpression.swift */; };
+		652B223427BAAF270056DFDF /* SQLAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219427BAAF260056DFDF /* SQLAssociation.swift */; };
+		652B223527BAAF270056DFDF /* SQLAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219427BAAF260056DFDF /* SQLAssociation.swift */; };
+		652B223627BAAF270056DFDF /* SQLSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219527BAAF260056DFDF /* SQLSelection.swift */; };
+		652B223727BAAF270056DFDF /* SQLSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219527BAAF260056DFDF /* SQLSelection.swift */; };
+		652B223827BAAF270056DFDF /* SQLForeignKeyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219627BAAF260056DFDF /* SQLForeignKeyRequest.swift */; };
+		652B223927BAAF270056DFDF /* SQLForeignKeyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219627BAAF260056DFDF /* SQLForeignKeyRequest.swift */; };
+		652B223A27BAAF270056DFDF /* DatabasePromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219727BAAF260056DFDF /* DatabasePromise.swift */; };
+		652B223B27BAAF270056DFDF /* DatabasePromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219727BAAF260056DFDF /* DatabasePromise.swift */; };
+		652B223C27BAAF270056DFDF /* SQLSubquery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219827BAAF260056DFDF /* SQLSubquery.swift */; };
+		652B223D27BAAF270056DFDF /* SQLSubquery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219827BAAF260056DFDF /* SQLSubquery.swift */; };
+		652B223E27BAAF270056DFDF /* SQLCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219927BAAF260056DFDF /* SQLCollection.swift */; };
+		652B223F27BAAF270056DFDF /* SQLCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219927BAAF260056DFDF /* SQLCollection.swift */; };
+		652B224027BAAF270056DFDF /* SQLExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219A27BAAF260056DFDF /* SQLExpression.swift */; };
+		652B224127BAAF270056DFDF /* SQLExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219A27BAAF260056DFDF /* SQLExpression.swift */; };
+		652B224227BAAF270056DFDF /* SQLOrdering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219B27BAAF260056DFDF /* SQLOrdering.swift */; };
+		652B224327BAAF270056DFDF /* SQLOrdering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219B27BAAF260056DFDF /* SQLOrdering.swift */; };
+		652B224427BAAF270056DFDF /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219C27BAAF260056DFDF /* Table.swift */; };
+		652B224527BAAF270056DFDF /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219C27BAAF260056DFDF /* Table.swift */; };
+		652B224627BAAF270056DFDF /* SQLOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219D27BAAF260056DFDF /* SQLOperators.swift */; };
+		652B224727BAAF270056DFDF /* SQLOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219D27BAAF260056DFDF /* SQLOperators.swift */; };
+		652B224827BAAF270056DFDF /* Column.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219E27BAAF260056DFDF /* Column.swift */; };
+		652B224927BAAF270056DFDF /* Column.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219E27BAAF260056DFDF /* Column.swift */; };
+		652B224A27BAAF270056DFDF /* SQLFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219F27BAAF260056DFDF /* SQLFunctions.swift */; };
+		652B224B27BAAF270056DFDF /* SQLFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B219F27BAAF260056DFDF /* SQLFunctions.swift */; };
+		652B224C27BAAF270056DFDF /* SQLRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21A027BAAF260056DFDF /* SQLRelation.swift */; };
+		652B224D27BAAF270056DFDF /* SQLRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21A027BAAF260056DFDF /* SQLRelation.swift */; };
+		652B224E27BAAF270056DFDF /* DatabaseQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21A227BAAF260056DFDF /* DatabaseQueue.swift */; };
+		652B224F27BAAF270056DFDF /* DatabaseQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21A227BAAF260056DFDF /* DatabaseQueue.swift */; };
+		652B225027BAAF270056DFDF /* SQLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21A327BAAF260056DFDF /* SQLRequest.swift */; };
+		652B225127BAAF270056DFDF /* SQLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21A327BAAF260056DFDF /* SQLRequest.swift */; };
+		652B225227BAAF270056DFDF /* DatabaseBackupProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21A427BAAF260056DFDF /* DatabaseBackupProgress.swift */; };
+		652B225327BAAF270056DFDF /* DatabaseBackupProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21A427BAAF260056DFDF /* DatabaseBackupProgress.swift */; };
+		652B225427BAAF270056DFDF /* RowAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21A527BAAF260056DFDF /* RowAdapter.swift */; };
+		652B225527BAAF270056DFDF /* RowAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21A527BAAF260056DFDF /* RowAdapter.swift */; };
+		652B225627BAAF270056DFDF /* StatementAuthorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21A627BAAF260056DFDF /* StatementAuthorizer.swift */; };
+		652B225727BAAF270056DFDF /* StatementAuthorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21A627BAAF260056DFDF /* StatementAuthorizer.swift */; };
+		652B225827BAAF270056DFDF /* FetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21A727BAAF260056DFDF /* FetchRequest.swift */; };
+		652B225927BAAF270056DFDF /* FetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21A727BAAF260056DFDF /* FetchRequest.swift */; };
+		652B225A27BAAF270056DFDF /* Database+Statements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21A827BAAF260056DFDF /* Database+Statements.swift */; };
+		652B225B27BAAF270056DFDF /* Database+Statements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21A827BAAF260056DFDF /* Database+Statements.swift */; };
+		652B225C27BAAF270056DFDF /* RowDecodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21A927BAAF260056DFDF /* RowDecodingError.swift */; };
+		652B225D27BAAF270056DFDF /* RowDecodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21A927BAAF260056DFDF /* RowDecodingError.swift */; };
+		652B225E27BAAF270056DFDF /* DatabaseSchemaCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21AA27BAAF260056DFDF /* DatabaseSchemaCache.swift */; };
+		652B225F27BAAF270056DFDF /* DatabaseSchemaCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21AA27BAAF260056DFDF /* DatabaseSchemaCache.swift */; };
+		652B226027BAAF270056DFDF /* DatabaseReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21AB27BAAF260056DFDF /* DatabaseReader.swift */; };
+		652B226127BAAF270056DFDF /* DatabaseReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21AB27BAAF260056DFDF /* DatabaseReader.swift */; };
+		652B226227BAAF270056DFDF /* DatabaseValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21AC27BAAF260056DFDF /* DatabaseValue.swift */; };
+		652B226327BAAF270056DFDF /* DatabaseValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21AC27BAAF260056DFDF /* DatabaseValue.swift */; };
+		652B226427BAAF270056DFDF /* DatabaseSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21AD27BAAF260056DFDF /* DatabaseSnapshot.swift */; };
+		652B226527BAAF270056DFDF /* DatabaseSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21AD27BAAF260056DFDF /* DatabaseSnapshot.swift */; };
+		652B226627BAAF270056DFDF /* StatementColumnConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21AE27BAAF260056DFDF /* StatementColumnConvertible.swift */; };
+		652B226727BAAF270056DFDF /* StatementColumnConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21AE27BAAF260056DFDF /* StatementColumnConvertible.swift */; };
+		652B226827BAAF270056DFDF /* DatabasePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21AF27BAAF260056DFDF /* DatabasePool.swift */; };
+		652B226927BAAF270056DFDF /* DatabasePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21AF27BAAF260056DFDF /* DatabasePool.swift */; };
+		652B226A27BAAF270056DFDF /* SchedulingWatchdog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21B027BAAF260056DFDF /* SchedulingWatchdog.swift */; };
+		652B226B27BAAF270056DFDF /* SchedulingWatchdog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21B027BAAF260056DFDF /* SchedulingWatchdog.swift */; };
+		652B226C27BAAF270056DFDF /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21B127BAAF260056DFDF /* DatabaseError.swift */; };
+		652B226D27BAAF270056DFDF /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21B127BAAF260056DFDF /* DatabaseError.swift */; };
+		652B226E27BAAF270056DFDF /* Database+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21B227BAAF260056DFDF /* Database+Schema.swift */; };
+		652B226F27BAAF270056DFDF /* Database+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21B227BAAF260056DFDF /* Database+Schema.swift */; };
+		652B227027BAAF270056DFDF /* StandardLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21B527BAAF260056DFDF /* StandardLibrary.swift */; };
+		652B227127BAAF270056DFDF /* StandardLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21B527BAAF260056DFDF /* StandardLibrary.swift */; };
+		652B227227BAAF270056DFDF /* DatabaseValueConvertible+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21B627BAAF260056DFDF /* DatabaseValueConvertible+RawRepresentable.swift */; };
+		652B227327BAAF270056DFDF /* DatabaseValueConvertible+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21B627BAAF260056DFDF /* DatabaseValueConvertible+RawRepresentable.swift */; };
+		652B227427BAAF270056DFDF /* DatabaseValueConvertible+Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21B727BAAF260056DFDF /* DatabaseValueConvertible+Encodable.swift */; };
+		652B227527BAAF270056DFDF /* DatabaseValueConvertible+Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21B727BAAF260056DFDF /* DatabaseValueConvertible+Encodable.swift */; };
+		652B227627BAAF270056DFDF /* JSONRequiredEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21B827BAAF260056DFDF /* JSONRequiredEncoder.swift */; };
+		652B227727BAAF270056DFDF /* JSONRequiredEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21B827BAAF260056DFDF /* JSONRequiredEncoder.swift */; };
+		652B227827BAAF270056DFDF /* DatabaseValueConvertible+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21B927BAAF260056DFDF /* DatabaseValueConvertible+Decodable.swift */; };
+		652B227927BAAF270056DFDF /* DatabaseValueConvertible+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21B927BAAF260056DFDF /* DatabaseValueConvertible+Decodable.swift */; };
+		652B227A27BAAF270056DFDF /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21BB27BAAF260056DFDF /* CGFloat.swift */; };
+		652B227B27BAAF270056DFDF /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21BB27BAAF260056DFDF /* CGFloat.swift */; };
+		652B227C27BAAF270056DFDF /* NSString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21BD27BAAF260056DFDF /* NSString.swift */; };
+		652B227D27BAAF270056DFDF /* NSString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21BD27BAAF260056DFDF /* NSString.swift */; };
+		652B227E27BAAF270056DFDF /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21BE27BAAF260056DFDF /* Date.swift */; };
+		652B227F27BAAF270056DFDF /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21BE27BAAF260056DFDF /* Date.swift */; };
+		652B228027BAAF270056DFDF /* NSNull.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21BF27BAAF260056DFDF /* NSNull.swift */; };
+		652B228127BAAF270056DFDF /* NSNull.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21BF27BAAF260056DFDF /* NSNull.swift */; };
+		652B228227BAAF270056DFDF /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21C027BAAF260056DFDF /* Data.swift */; };
+		652B228327BAAF270056DFDF /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21C027BAAF260056DFDF /* Data.swift */; };
+		652B228427BAAF270056DFDF /* DatabaseValueConvertible+ReferenceConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21C127BAAF260056DFDF /* DatabaseValueConvertible+ReferenceConvertible.swift */; };
+		652B228527BAAF270056DFDF /* DatabaseValueConvertible+ReferenceConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21C127BAAF260056DFDF /* DatabaseValueConvertible+ReferenceConvertible.swift */; };
+		652B228627BAAF270056DFDF /* Decimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21C227BAAF260056DFDF /* Decimal.swift */; };
+		652B228727BAAF270056DFDF /* Decimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21C227BAAF260056DFDF /* Decimal.swift */; };
+		652B228827BAAF270056DFDF /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21C327BAAF270056DFDF /* UUID.swift */; };
+		652B228927BAAF270056DFDF /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21C327BAAF270056DFDF /* UUID.swift */; };
+		652B228A27BAAF270056DFDF /* DatabaseDateComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21C427BAAF270056DFDF /* DatabaseDateComponents.swift */; };
+		652B228B27BAAF270056DFDF /* DatabaseDateComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21C427BAAF270056DFDF /* DatabaseDateComponents.swift */; };
+		652B228C27BAAF270056DFDF /* NSData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21C527BAAF270056DFDF /* NSData.swift */; };
+		652B228D27BAAF270056DFDF /* NSData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21C527BAAF270056DFDF /* NSData.swift */; };
+		652B228E27BAAF270056DFDF /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21C627BAAF270056DFDF /* URL.swift */; };
+		652B228F27BAAF270056DFDF /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21C627BAAF270056DFDF /* URL.swift */; };
+		652B229027BAAF270056DFDF /* SQLiteDateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21C727BAAF270056DFDF /* SQLiteDateParser.swift */; };
+		652B229127BAAF270056DFDF /* SQLiteDateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21C727BAAF270056DFDF /* SQLiteDateParser.swift */; };
+		652B229227BAAF270056DFDF /* NSNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21C827BAAF270056DFDF /* NSNumber.swift */; };
+		652B229327BAAF270056DFDF /* NSNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21C827BAAF270056DFDF /* NSNumber.swift */; };
+		652B229427BAAF270056DFDF /* TransactionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21C927BAAF270056DFDF /* TransactionObserver.swift */; };
+		652B229527BAAF270056DFDF /* TransactionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21C927BAAF270056DFDF /* TransactionObserver.swift */; };
+		652B229627BAAF270056DFDF /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21CA27BAAF270056DFDF /* Database.swift */; };
+		652B229727BAAF270056DFDF /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21CA27BAAF270056DFDF /* Database.swift */; };
+		652B229827BAAF270056DFDF /* DatabaseRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21CB27BAAF270056DFDF /* DatabaseRegion.swift */; };
+		652B229927BAAF270056DFDF /* DatabaseRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21CB27BAAF270056DFDF /* DatabaseRegion.swift */; };
+		652B229A27BAAF270056DFDF /* SQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21CC27BAAF270056DFDF /* SQL.swift */; };
+		652B229B27BAAF270056DFDF /* SQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21CC27BAAF270056DFDF /* SQL.swift */; };
+		652B229C27BAAF270056DFDF /* DatabaseRegionObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21CD27BAAF270056DFDF /* DatabaseRegionObservation.swift */; };
+		652B229D27BAAF270056DFDF /* DatabaseRegionObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21CD27BAAF270056DFDF /* DatabaseRegionObservation.swift */; };
+		652B229E27BAAF270056DFDF /* Cursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21CE27BAAF270056DFDF /* Cursor.swift */; };
+		652B229F27BAAF270056DFDF /* Cursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21CE27BAAF270056DFDF /* Cursor.swift */; };
+		652B22A027BAAF270056DFDF /* Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21CF27BAAF270056DFDF /* Row.swift */; };
+		652B22A127BAAF270056DFDF /* Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21CF27BAAF270056DFDF /* Row.swift */; };
+		652B22A227BAAF270056DFDF /* DatabaseWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21D027BAAF270056DFDF /* DatabaseWriter.swift */; };
+		652B22A327BAAF270056DFDF /* DatabaseWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21D027BAAF270056DFDF /* DatabaseWriter.swift */; };
+		652B22A427BAAF270056DFDF /* SQLInterpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21D127BAAF270056DFDF /* SQLInterpolation.swift */; };
+		652B22A527BAAF270056DFDF /* SQLInterpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21D127BAAF270056DFDF /* SQLInterpolation.swift */; };
+		652B22A627BAAF270056DFDF /* DatabaseFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21D227BAAF270056DFDF /* DatabaseFunction.swift */; };
+		652B22A727BAAF270056DFDF /* DatabaseFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21D227BAAF270056DFDF /* DatabaseFunction.swift */; };
+		652B22A827BAAF270056DFDF /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21D327BAAF270056DFDF /* Statement.swift */; };
+		652B22A927BAAF270056DFDF /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21D327BAAF270056DFDF /* Statement.swift */; };
+		652B22AA27BAAF270056DFDF /* DatabaseValueConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21D427BAAF270056DFDF /* DatabaseValueConvertible.swift */; };
+		652B22AB27BAAF270056DFDF /* DatabaseValueConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21D427BAAF270056DFDF /* DatabaseValueConvertible.swift */; };
+		652B22AC27BAAF270056DFDF /* DatabaseCollation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21D527BAAF270056DFDF /* DatabaseCollation.swift */; };
+		652B22AD27BAAF270056DFDF /* DatabaseCollation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21D527BAAF270056DFDF /* DatabaseCollation.swift */; };
+		652B22AE27BAAF270056DFDF /* SerializedDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21D627BAAF270056DFDF /* SerializedDatabase.swift */; };
+		652B22AF27BAAF270056DFDF /* SerializedDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21D627BAAF270056DFDF /* SerializedDatabase.swift */; };
+		652B22B027BAAF270056DFDF /* DatabasePublishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21D727BAAF270056DFDF /* DatabasePublishers.swift */; };
+		652B22B127BAAF270056DFDF /* DatabasePublishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21D727BAAF270056DFDF /* DatabasePublishers.swift */; };
+		652B22B227BAAF270056DFDF /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21D827BAAF270056DFDF /* Configuration.swift */; };
+		652B22B327BAAF270056DFDF /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21D827BAAF270056DFDF /* Configuration.swift */; };
+		652B22B427BAAF270056DFDF /* EncodableRecord+Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21DA27BAAF270056DFDF /* EncodableRecord+Encodable.swift */; };
+		652B22B527BAAF270056DFDF /* EncodableRecord+Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21DA27BAAF270056DFDF /* EncodableRecord+Encodable.swift */; };
+		652B22B627BAAF270056DFDF /* EncodableRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21DB27BAAF270056DFDF /* EncodableRecord.swift */; };
+		652B22B727BAAF270056DFDF /* EncodableRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21DB27BAAF270056DFDF /* EncodableRecord.swift */; };
+		652B22B827BAAF270056DFDF /* FetchableRecord+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21DC27BAAF270056DFDF /* FetchableRecord+Decodable.swift */; };
+		652B22B927BAAF270056DFDF /* FetchableRecord+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21DC27BAAF270056DFDF /* FetchableRecord+Decodable.swift */; };
+		652B22BA27BAAF270056DFDF /* FetchableRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21DD27BAAF270056DFDF /* FetchableRecord.swift */; };
+		652B22BB27BAAF270056DFDF /* FetchableRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21DD27BAAF270056DFDF /* FetchableRecord.swift */; };
+		652B22BC27BAAF270056DFDF /* TableRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21DE27BAAF270056DFDF /* TableRecord.swift */; };
+		652B22BD27BAAF270056DFDF /* TableRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21DE27BAAF270056DFDF /* TableRecord.swift */; };
+		652B22BE27BAAF270056DFDF /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21DF27BAAF270056DFDF /* Record.swift */; };
+		652B22BF27BAAF270056DFDF /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21DF27BAAF270056DFDF /* Record.swift */; };
+		652B22C027BAAF270056DFDF /* PersistableRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21E027BAAF270056DFDF /* PersistableRecord.swift */; };
+		652B22C127BAAF270056DFDF /* PersistableRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21E027BAAF270056DFDF /* PersistableRecord.swift */; };
+		652B22C227BAAF270056DFDF /* FetchableRecord+TableRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21E127BAAF270056DFDF /* FetchableRecord+TableRecord.swift */; };
+		652B22C327BAAF270056DFDF /* FetchableRecord+TableRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21E127BAAF270056DFDF /* FetchableRecord+TableRecord.swift */; };
+		652B22C427BAAF270056DFDF /* OnDemandFuture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21E327BAAF270056DFDF /* OnDemandFuture.swift */; };
+		652B22C527BAAF270056DFDF /* OnDemandFuture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21E327BAAF270056DFDF /* OnDemandFuture.swift */; };
+		652B22C627BAAF270056DFDF /* CaseInsensitiveIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21E427BAAF270056DFDF /* CaseInsensitiveIdentifier.swift */; };
+		652B22C727BAAF270056DFDF /* CaseInsensitiveIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21E427BAAF270056DFDF /* CaseInsensitiveIdentifier.swift */; };
+		652B22C827BAAF270056DFDF /* ReadWriteBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21E527BAAF270056DFDF /* ReadWriteBox.swift */; };
+		652B22C927BAAF270056DFDF /* ReadWriteBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21E527BAAF270056DFDF /* ReadWriteBox.swift */; };
+		652B22CA27BAAF270056DFDF /* LockedBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21E627BAAF270056DFDF /* LockedBox.swift */; };
+		652B22CB27BAAF270056DFDF /* LockedBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21E627BAAF270056DFDF /* LockedBox.swift */; };
+		652B22CC27BAAF270056DFDF /* Refinable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21E727BAAF270056DFDF /* Refinable.swift */; };
+		652B22CD27BAAF270056DFDF /* Refinable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21E727BAAF270056DFDF /* Refinable.swift */; };
+		652B22CE27BAAF270056DFDF /* Inflections+English.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21E827BAAF270056DFDF /* Inflections+English.swift */; };
+		652B22CF27BAAF270056DFDF /* Inflections+English.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21E827BAAF270056DFDF /* Inflections+English.swift */; };
+		652B22D027BAAF270056DFDF /* Pool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21E927BAAF270056DFDF /* Pool.swift */; };
+		652B22D127BAAF270056DFDF /* Pool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21E927BAAF270056DFDF /* Pool.swift */; };
+		652B22D227BAAF270056DFDF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21EA27BAAF270056DFDF /* Utils.swift */; };
+		652B22D327BAAF270056DFDF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21EA27BAAF270056DFDF /* Utils.swift */; };
+		652B22D427BAAF270056DFDF /* ReceiveValuesOn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21EB27BAAF270056DFDF /* ReceiveValuesOn.swift */; };
+		652B22D527BAAF270056DFDF /* ReceiveValuesOn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21EB27BAAF270056DFDF /* ReceiveValuesOn.swift */; };
+		652B22D627BAAF270056DFDF /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21EC27BAAF270056DFDF /* OrderedDictionary.swift */; };
+		652B22D727BAAF270056DFDF /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21EC27BAAF270056DFDF /* OrderedDictionary.swift */; };
+		652B22D827BAAF270056DFDF /* Inflections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21ED27BAAF270056DFDF /* Inflections.swift */; };
+		652B22D927BAAF270056DFDF /* Inflections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21ED27BAAF270056DFDF /* Inflections.swift */; };
+		652B22DA27BAAF270056DFDF /* FTS5Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21EF27BAAF270056DFDF /* FTS5Pattern.swift */; };
+		652B22DB27BAAF270056DFDF /* FTS5Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21EF27BAAF270056DFDF /* FTS5Pattern.swift */; };
+		652B22DC27BAAF270056DFDF /* FTS5CustomTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21F027BAAF270056DFDF /* FTS5CustomTokenizer.swift */; };
+		652B22DD27BAAF270056DFDF /* FTS5CustomTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21F027BAAF270056DFDF /* FTS5CustomTokenizer.swift */; };
+		652B22DE27BAAF270056DFDF /* FTS3TokenizerDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21F127BAAF270056DFDF /* FTS3TokenizerDescriptor.swift */; };
+		652B22DF27BAAF270056DFDF /* FTS3TokenizerDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21F127BAAF270056DFDF /* FTS3TokenizerDescriptor.swift */; };
+		652B22E027BAAF270056DFDF /* FTS3Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21F227BAAF270056DFDF /* FTS3Pattern.swift */; };
+		652B22E127BAAF270056DFDF /* FTS3Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21F227BAAF270056DFDF /* FTS3Pattern.swift */; };
+		652B22E227BAAF270056DFDF /* FTS5Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21F327BAAF270056DFDF /* FTS5Tokenizer.swift */; };
+		652B22E327BAAF270056DFDF /* FTS5Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21F327BAAF270056DFDF /* FTS5Tokenizer.swift */; };
+		652B22E427BAAF270056DFDF /* FTS4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21F427BAAF270056DFDF /* FTS4.swift */; };
+		652B22E527BAAF270056DFDF /* FTS4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21F427BAAF270056DFDF /* FTS4.swift */; };
+		652B22E627BAAF270056DFDF /* FTS5TokenizerDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21F527BAAF270056DFDF /* FTS5TokenizerDescriptor.swift */; };
+		652B22E727BAAF270056DFDF /* FTS5TokenizerDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21F527BAAF270056DFDF /* FTS5TokenizerDescriptor.swift */; };
+		652B22E827BAAF270056DFDF /* FTS5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21F627BAAF270056DFDF /* FTS5.swift */; };
+		652B22E927BAAF270056DFDF /* FTS5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21F627BAAF270056DFDF /* FTS5.swift */; };
+		652B22EA27BAAF270056DFDF /* FTS5WrapperTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21F727BAAF270056DFDF /* FTS5WrapperTokenizer.swift */; };
+		652B22EB27BAAF270056DFDF /* FTS5WrapperTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21F727BAAF270056DFDF /* FTS5WrapperTokenizer.swift */; };
+		652B22EC27BAAF270056DFDF /* FTS3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21F827BAAF270056DFDF /* FTS3.swift */; };
+		652B22ED27BAAF270056DFDF /* FTS3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21F827BAAF270056DFDF /* FTS3.swift */; };
+		652B22EE27BAAF270056DFDF /* GRDB-5.0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21FA27BAAF270056DFDF /* GRDB-5.0.swift */; };
+		652B22EF27BAAF270056DFDF /* GRDB-5.0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21FA27BAAF270056DFDF /* GRDB-5.0.swift */; };
+		652B22F027BAAF270056DFDF /* ValueObservationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21FC27BAAF270056DFDF /* ValueObservationScheduler.swift */; };
+		652B22F127BAAF270056DFDF /* ValueObservationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21FC27BAAF270056DFDF /* ValueObservationScheduler.swift */; };
+		652B22F227BAAF270056DFDF /* DatabaseCancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21FD27BAAF270056DFDF /* DatabaseCancellable.swift */; };
+		652B22F327BAAF270056DFDF /* DatabaseCancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21FD27BAAF270056DFDF /* DatabaseCancellable.swift */; };
+		652B22F427BAAF270056DFDF /* ValueObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21FE27BAAF270056DFDF /* ValueObservation.swift */; };
+		652B22F527BAAF270056DFDF /* ValueObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21FE27BAAF270056DFDF /* ValueObservation.swift */; };
+		652B22F627BAAF270056DFDF /* SharedValueObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21FF27BAAF270056DFDF /* SharedValueObservation.swift */; };
+		652B22F727BAAF270056DFDF /* SharedValueObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B21FF27BAAF270056DFDF /* SharedValueObservation.swift */; };
+		652B22F827BAAF270056DFDF /* ValueObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B220027BAAF270056DFDF /* ValueObserver.swift */; };
+		652B22F927BAAF270056DFDF /* ValueObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B220027BAAF270056DFDF /* ValueObserver.swift */; };
+		652B22FA27BAAF270056DFDF /* Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B220227BAAF270056DFDF /* Fetch.swift */; };
+		652B22FB27BAAF270056DFDF /* Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B220227BAAF270056DFDF /* Fetch.swift */; };
+		652B22FC27BAAF270056DFDF /* Trace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B220327BAAF270056DFDF /* Trace.swift */; };
+		652B22FD27BAAF270056DFDF /* Trace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B220327BAAF270056DFDF /* Trace.swift */; };
+		652B22FE27BAAF270056DFDF /* ValueReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B220427BAAF270056DFDF /* ValueReducer.swift */; };
+		652B22FF27BAAF270056DFDF /* ValueReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B220427BAAF270056DFDF /* ValueReducer.swift */; };
+		652B230027BAAF270056DFDF /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B220527BAAF270056DFDF /* Map.swift */; };
+		652B230127BAAF270056DFDF /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B220527BAAF270056DFDF /* Map.swift */; };
+		652B230227BAAF270056DFDF /* RemoveDuplicates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B220627BAAF270056DFDF /* RemoveDuplicates.swift */; };
+		652B230327BAAF270056DFDF /* RemoveDuplicates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B220627BAAF270056DFDF /* RemoveDuplicates.swift */; };
+		652B230427BAAF270056DFDF /* DatabaseMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B220827BAAF270056DFDF /* DatabaseMigrator.swift */; };
+		652B230527BAAF270056DFDF /* DatabaseMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B220827BAAF270056DFDF /* DatabaseMigrator.swift */; };
+		652B230627BAAF270056DFDF /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B220927BAAF270056DFDF /* Migration.swift */; };
+		652B230727BAAF270056DFDF /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652B220927BAAF270056DFDF /* Migration.swift */; };
+		652B230927BAB0040056DFDF /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 652B230827BAAFF40056DFDF /* libsqlite3.tbd */; };
+		652B230A27BAB00D0056DFDF /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 652B230827BAAFF40056DFDF /* libsqlite3.tbd */; platformFilter = maccatalyst; };
+		652B230C27BAB2DF0056DFDF /* MXGRDBShim.h in Headers */ = {isa = PBXBuildFile; fileRef = 652B230B27BAB2DF0056DFDF /* MXGRDBShim.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		652B230D27BAB2DF0056DFDF /* MXGRDBShim.h in Headers */ = {isa = PBXBuildFile; fileRef = 652B230B27BAB2DF0056DFDF /* MXGRDBShim.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		653517B927AB772C00782CEB /* -Account.globalBlacklistUnverifiedDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517B827AB772C00782CEB /* -Account.globalBlacklistUnverifiedDevices.swift */; };
 		653517BA27AB772C00782CEB /* -Account.globalBlacklistUnverifiedDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517B827AB772C00782CEB /* -Account.globalBlacklistUnverifiedDevices.swift */; };
 		653517BC27AB7BD100782CEB /* -Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653517BB27AB7BD100782CEB /* -Device.swift */; };
@@ -2150,6 +2408,135 @@
 		65160A1427AB1A7C00D48B6B /* -Account.deviceSyncToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "-Account.deviceSyncToken.swift"; sourceTree = "<group>"; };
 		65160A1727AB2E1000D48B6B /* GRDBCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRDBCoordinatorTests.swift; sourceTree = "<group>"; };
 		65160A1A27AB312C00D48B6B /* -Account.olmAccountData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "-Account.olmAccountData.swift"; sourceTree = "<group>"; };
+		652B217A27BAAF260056DFDF /* TableRecord+Association.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableRecord+Association.swift"; sourceTree = "<group>"; };
+		652B217B27BAAF260056DFDF /* SQLInterpolation+QueryInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SQLInterpolation+QueryInterface.swift"; sourceTree = "<group>"; };
+		652B217C27BAAF260056DFDF /* FTS5+QueryInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FTS5+QueryInterface.swift"; sourceTree = "<group>"; };
+		652B217E27BAAF260056DFDF /* SQLQueryGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLQueryGenerator.swift; sourceTree = "<group>"; };
+		652B217F27BAAF260056DFDF /* SQLGenerationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLGenerationContext.swift; sourceTree = "<group>"; };
+		652B218027BAAF260056DFDF /* ForeignKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForeignKey.swift; sourceTree = "<group>"; };
+		652B218227BAAF260056DFDF /* TableDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableDefinition.swift; sourceTree = "<group>"; };
+		652B218327BAAF260056DFDF /* VirtualTableModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualTableModule.swift; sourceTree = "<group>"; };
+		652B218427BAAF260056DFDF /* TableRecord+QueryInterfaceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableRecord+QueryInterfaceRequest.swift"; sourceTree = "<group>"; };
+		652B218527BAAF260056DFDF /* FTS3+QueryInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FTS3+QueryInterface.swift"; sourceTree = "<group>"; };
+		652B218827BAAF260056DFDF /* BelongsToAssociation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BelongsToAssociation.swift; sourceTree = "<group>"; };
+		652B218927BAAF260056DFDF /* JoinAssociation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinAssociation.swift; sourceTree = "<group>"; };
+		652B218A27BAAF260056DFDF /* HasOneAssociation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasOneAssociation.swift; sourceTree = "<group>"; };
+		652B218B27BAAF260056DFDF /* AssociationAggregate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssociationAggregate.swift; sourceTree = "<group>"; };
+		652B218C27BAAF260056DFDF /* HasManyAssociation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasManyAssociation.swift; sourceTree = "<group>"; };
+		652B218D27BAAF260056DFDF /* HasManyThroughAssociation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasManyThroughAssociation.swift; sourceTree = "<group>"; };
+		652B218E27BAAF260056DFDF /* Association.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Association.swift; sourceTree = "<group>"; };
+		652B218F27BAAF260056DFDF /* HasOneThroughAssociation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasOneThroughAssociation.swift; sourceTree = "<group>"; };
+		652B219027BAAF260056DFDF /* QueryInterfaceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryInterfaceRequest.swift; sourceTree = "<group>"; };
+		652B219127BAAF260056DFDF /* RequestProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestProtocols.swift; sourceTree = "<group>"; };
+		652B219227BAAF260056DFDF /* CommonTableExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonTableExpression.swift; sourceTree = "<group>"; };
+		652B219427BAAF260056DFDF /* SQLAssociation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLAssociation.swift; sourceTree = "<group>"; };
+		652B219527BAAF260056DFDF /* SQLSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLSelection.swift; sourceTree = "<group>"; };
+		652B219627BAAF260056DFDF /* SQLForeignKeyRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLForeignKeyRequest.swift; sourceTree = "<group>"; };
+		652B219727BAAF260056DFDF /* DatabasePromise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabasePromise.swift; sourceTree = "<group>"; };
+		652B219827BAAF260056DFDF /* SQLSubquery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLSubquery.swift; sourceTree = "<group>"; };
+		652B219927BAAF260056DFDF /* SQLCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLCollection.swift; sourceTree = "<group>"; };
+		652B219A27BAAF260056DFDF /* SQLExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLExpression.swift; sourceTree = "<group>"; };
+		652B219B27BAAF260056DFDF /* SQLOrdering.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLOrdering.swift; sourceTree = "<group>"; };
+		652B219C27BAAF260056DFDF /* Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
+		652B219D27BAAF260056DFDF /* SQLOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLOperators.swift; sourceTree = "<group>"; };
+		652B219E27BAAF260056DFDF /* Column.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Column.swift; sourceTree = "<group>"; };
+		652B219F27BAAF260056DFDF /* SQLFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLFunctions.swift; sourceTree = "<group>"; };
+		652B21A027BAAF260056DFDF /* SQLRelation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLRelation.swift; sourceTree = "<group>"; };
+		652B21A227BAAF260056DFDF /* DatabaseQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseQueue.swift; sourceTree = "<group>"; };
+		652B21A327BAAF260056DFDF /* SQLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLRequest.swift; sourceTree = "<group>"; };
+		652B21A427BAAF260056DFDF /* DatabaseBackupProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseBackupProgress.swift; sourceTree = "<group>"; };
+		652B21A527BAAF260056DFDF /* RowAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowAdapter.swift; sourceTree = "<group>"; };
+		652B21A627BAAF260056DFDF /* StatementAuthorizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatementAuthorizer.swift; sourceTree = "<group>"; };
+		652B21A727BAAF260056DFDF /* FetchRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchRequest.swift; sourceTree = "<group>"; };
+		652B21A827BAAF260056DFDF /* Database+Statements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Database+Statements.swift"; sourceTree = "<group>"; };
+		652B21A927BAAF260056DFDF /* RowDecodingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowDecodingError.swift; sourceTree = "<group>"; };
+		652B21AA27BAAF260056DFDF /* DatabaseSchemaCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseSchemaCache.swift; sourceTree = "<group>"; };
+		652B21AB27BAAF260056DFDF /* DatabaseReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseReader.swift; sourceTree = "<group>"; };
+		652B21AC27BAAF260056DFDF /* DatabaseValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseValue.swift; sourceTree = "<group>"; };
+		652B21AD27BAAF260056DFDF /* DatabaseSnapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseSnapshot.swift; sourceTree = "<group>"; };
+		652B21AE27BAAF260056DFDF /* StatementColumnConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatementColumnConvertible.swift; sourceTree = "<group>"; };
+		652B21AF27BAAF260056DFDF /* DatabasePool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabasePool.swift; sourceTree = "<group>"; };
+		652B21B027BAAF260056DFDF /* SchedulingWatchdog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulingWatchdog.swift; sourceTree = "<group>"; };
+		652B21B127BAAF260056DFDF /* DatabaseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
+		652B21B227BAAF260056DFDF /* Database+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Database+Schema.swift"; sourceTree = "<group>"; };
+		652B21B527BAAF260056DFDF /* StandardLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardLibrary.swift; sourceTree = "<group>"; };
+		652B21B627BAAF260056DFDF /* DatabaseValueConvertible+RawRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DatabaseValueConvertible+RawRepresentable.swift"; sourceTree = "<group>"; };
+		652B21B727BAAF260056DFDF /* DatabaseValueConvertible+Encodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DatabaseValueConvertible+Encodable.swift"; sourceTree = "<group>"; };
+		652B21B827BAAF260056DFDF /* JSONRequiredEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONRequiredEncoder.swift; sourceTree = "<group>"; };
+		652B21B927BAAF260056DFDF /* DatabaseValueConvertible+Decodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DatabaseValueConvertible+Decodable.swift"; sourceTree = "<group>"; };
+		652B21BB27BAAF260056DFDF /* CGFloat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
+		652B21BD27BAAF260056DFDF /* NSString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSString.swift; sourceTree = "<group>"; };
+		652B21BE27BAAF260056DFDF /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		652B21BF27BAAF260056DFDF /* NSNull.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNull.swift; sourceTree = "<group>"; };
+		652B21C027BAAF260056DFDF /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		652B21C127BAAF260056DFDF /* DatabaseValueConvertible+ReferenceConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DatabaseValueConvertible+ReferenceConvertible.swift"; sourceTree = "<group>"; };
+		652B21C227BAAF260056DFDF /* Decimal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decimal.swift; sourceTree = "<group>"; };
+		652B21C327BAAF270056DFDF /* UUID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UUID.swift; sourceTree = "<group>"; };
+		652B21C427BAAF270056DFDF /* DatabaseDateComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseDateComponents.swift; sourceTree = "<group>"; };
+		652B21C527BAAF270056DFDF /* NSData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSData.swift; sourceTree = "<group>"; };
+		652B21C627BAAF270056DFDF /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		652B21C727BAAF270056DFDF /* SQLiteDateParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteDateParser.swift; sourceTree = "<group>"; };
+		652B21C827BAAF270056DFDF /* NSNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNumber.swift; sourceTree = "<group>"; };
+		652B21C927BAAF270056DFDF /* TransactionObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionObserver.swift; sourceTree = "<group>"; };
+		652B21CA27BAAF270056DFDF /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		652B21CB27BAAF270056DFDF /* DatabaseRegion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseRegion.swift; sourceTree = "<group>"; };
+		652B21CC27BAAF270056DFDF /* SQL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQL.swift; sourceTree = "<group>"; };
+		652B21CD27BAAF270056DFDF /* DatabaseRegionObservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseRegionObservation.swift; sourceTree = "<group>"; };
+		652B21CE27BAAF270056DFDF /* Cursor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cursor.swift; sourceTree = "<group>"; };
+		652B21CF27BAAF270056DFDF /* Row.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Row.swift; sourceTree = "<group>"; };
+		652B21D027BAAF270056DFDF /* DatabaseWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseWriter.swift; sourceTree = "<group>"; };
+		652B21D127BAAF270056DFDF /* SQLInterpolation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLInterpolation.swift; sourceTree = "<group>"; };
+		652B21D227BAAF270056DFDF /* DatabaseFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseFunction.swift; sourceTree = "<group>"; };
+		652B21D327BAAF270056DFDF /* Statement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Statement.swift; sourceTree = "<group>"; };
+		652B21D427BAAF270056DFDF /* DatabaseValueConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseValueConvertible.swift; sourceTree = "<group>"; };
+		652B21D527BAAF270056DFDF /* DatabaseCollation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseCollation.swift; sourceTree = "<group>"; };
+		652B21D627BAAF270056DFDF /* SerializedDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerializedDatabase.swift; sourceTree = "<group>"; };
+		652B21D727BAAF270056DFDF /* DatabasePublishers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabasePublishers.swift; sourceTree = "<group>"; };
+		652B21D827BAAF270056DFDF /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		652B21DA27BAAF270056DFDF /* EncodableRecord+Encodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EncodableRecord+Encodable.swift"; sourceTree = "<group>"; };
+		652B21DB27BAAF270056DFDF /* EncodableRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodableRecord.swift; sourceTree = "<group>"; };
+		652B21DC27BAAF270056DFDF /* FetchableRecord+Decodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FetchableRecord+Decodable.swift"; sourceTree = "<group>"; };
+		652B21DD27BAAF270056DFDF /* FetchableRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchableRecord.swift; sourceTree = "<group>"; };
+		652B21DE27BAAF270056DFDF /* TableRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableRecord.swift; sourceTree = "<group>"; };
+		652B21DF27BAAF270056DFDF /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		652B21E027BAAF270056DFDF /* PersistableRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistableRecord.swift; sourceTree = "<group>"; };
+		652B21E127BAAF270056DFDF /* FetchableRecord+TableRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FetchableRecord+TableRecord.swift"; sourceTree = "<group>"; };
+		652B21E327BAAF270056DFDF /* OnDemandFuture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnDemandFuture.swift; sourceTree = "<group>"; };
+		652B21E427BAAF270056DFDF /* CaseInsensitiveIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseInsensitiveIdentifier.swift; sourceTree = "<group>"; };
+		652B21E527BAAF270056DFDF /* ReadWriteBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadWriteBox.swift; sourceTree = "<group>"; };
+		652B21E627BAAF270056DFDF /* LockedBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockedBox.swift; sourceTree = "<group>"; };
+		652B21E727BAAF270056DFDF /* Refinable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Refinable.swift; sourceTree = "<group>"; };
+		652B21E827BAAF270056DFDF /* Inflections+English.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Inflections+English.swift"; sourceTree = "<group>"; };
+		652B21E927BAAF270056DFDF /* Pool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pool.swift; sourceTree = "<group>"; };
+		652B21EA27BAAF270056DFDF /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		652B21EB27BAAF270056DFDF /* ReceiveValuesOn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveValuesOn.swift; sourceTree = "<group>"; };
+		652B21EC27BAAF270056DFDF /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
+		652B21ED27BAAF270056DFDF /* Inflections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inflections.swift; sourceTree = "<group>"; };
+		652B21EF27BAAF270056DFDF /* FTS5Pattern.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTS5Pattern.swift; sourceTree = "<group>"; };
+		652B21F027BAAF270056DFDF /* FTS5CustomTokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTS5CustomTokenizer.swift; sourceTree = "<group>"; };
+		652B21F127BAAF270056DFDF /* FTS3TokenizerDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTS3TokenizerDescriptor.swift; sourceTree = "<group>"; };
+		652B21F227BAAF270056DFDF /* FTS3Pattern.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTS3Pattern.swift; sourceTree = "<group>"; };
+		652B21F327BAAF270056DFDF /* FTS5Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTS5Tokenizer.swift; sourceTree = "<group>"; };
+		652B21F427BAAF270056DFDF /* FTS4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTS4.swift; sourceTree = "<group>"; };
+		652B21F527BAAF270056DFDF /* FTS5TokenizerDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTS5TokenizerDescriptor.swift; sourceTree = "<group>"; };
+		652B21F627BAAF270056DFDF /* FTS5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTS5.swift; sourceTree = "<group>"; };
+		652B21F727BAAF270056DFDF /* FTS5WrapperTokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTS5WrapperTokenizer.swift; sourceTree = "<group>"; };
+		652B21F827BAAF270056DFDF /* FTS3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTS3.swift; sourceTree = "<group>"; };
+		652B21FA27BAAF270056DFDF /* GRDB-5.0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GRDB-5.0.swift"; sourceTree = "<group>"; };
+		652B21FC27BAAF270056DFDF /* ValueObservationScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueObservationScheduler.swift; sourceTree = "<group>"; };
+		652B21FD27BAAF270056DFDF /* DatabaseCancellable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseCancellable.swift; sourceTree = "<group>"; };
+		652B21FE27BAAF270056DFDF /* ValueObservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueObservation.swift; sourceTree = "<group>"; };
+		652B21FF27BAAF270056DFDF /* SharedValueObservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedValueObservation.swift; sourceTree = "<group>"; };
+		652B220027BAAF270056DFDF /* ValueObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueObserver.swift; sourceTree = "<group>"; };
+		652B220227BAAF270056DFDF /* Fetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetch.swift; sourceTree = "<group>"; };
+		652B220327BAAF270056DFDF /* Trace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trace.swift; sourceTree = "<group>"; };
+		652B220427BAAF270056DFDF /* ValueReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueReducer.swift; sourceTree = "<group>"; };
+		652B220527BAAF270056DFDF /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		652B220627BAAF270056DFDF /* RemoveDuplicates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveDuplicates.swift; sourceTree = "<group>"; };
+		652B220827BAAF270056DFDF /* DatabaseMigrator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseMigrator.swift; sourceTree = "<group>"; };
+		652B220927BAAF270056DFDF /* Migration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Migration.swift; sourceTree = "<group>"; };
+		652B230827BAAFF40056DFDF /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		652B230B27BAB2DF0056DFDF /* MXGRDBShim.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MXGRDBShim.h; sourceTree = "<group>"; };
 		653517B827AB772C00782CEB /* -Account.globalBlacklistUnverifiedDevices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "-Account.globalBlacklistUnverifiedDevices.swift"; sourceTree = "<group>"; };
 		653517BB27AB7BD100782CEB /* -Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "-Device.swift"; sourceTree = "<group>"; };
 		653517BE27AB7CF600782CEB /* MXGrdbDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXGrdbDevice.swift; sourceTree = "<group>"; };
@@ -2496,6 +2883,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				652B230927BAB0040056DFDF /* libsqlite3.tbd in Frameworks */,
 				0696FFB36962606A28BEC38E /* libPods-MatrixSDK-MatrixSDK-iOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2513,6 +2901,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				652B230A27BAB00D0056DFDF /* libsqlite3.tbd in Frameworks */,
 				9CC8EFC1457B94FB58DFF1F7 /* libPods-MatrixSDK-MatrixSDK-macOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2569,6 +2958,7 @@
 		10FA4A5252784B85B27DEA5B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				652B230827BAAFF40056DFDF /* libsqlite3.tbd */,
 				B57EF0A39A7649D55CA1208A /* libPods-MatrixSDK-MatrixSDK-iOS.a */,
 				FA84A2BE7767F3645CAEC2AF /* libPods-MatrixSDK-MatrixSDK-macOS.a */,
 				7290AD6ED063E2E323E9485C /* libPods-MatrixSDKTests-iOS.a */,
@@ -3217,6 +3607,7 @@
 		3284A59C1DB7C00600A09972 /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				652B217827BAAF260056DFDF /* MXGRDB */,
 				3284A59D1DB7C00600A09972 /* MXCryptoStore.h */,
 				651609E227A881F700D48B6B /* MXSqliteCryptoStore */,
 			);
@@ -3806,6 +4197,285 @@
 			path = GRDBCoordinator;
 			sourceTree = "<group>";
 		};
+		652B217827BAAF260056DFDF /* MXGRDB */ = {
+			isa = PBXGroup;
+			children = (
+				652B217927BAAF260056DFDF /* QueryInterface */,
+				652B21A127BAAF260056DFDF /* Core */,
+				652B21D927BAAF270056DFDF /* Record */,
+				652B21E227BAAF270056DFDF /* Utils */,
+				652B21EE27BAAF270056DFDF /* FTS */,
+				652B21F927BAAF270056DFDF /* Fixit */,
+				652B21FB27BAAF270056DFDF /* ValueObservation */,
+				652B220727BAAF270056DFDF /* Migration */,
+				652B230B27BAB2DF0056DFDF /* MXGRDBShim.h */,
+			);
+			path = MXGRDB;
+			sourceTree = "<group>";
+		};
+		652B217927BAAF260056DFDF /* QueryInterface */ = {
+			isa = PBXGroup;
+			children = (
+				652B217A27BAAF260056DFDF /* TableRecord+Association.swift */,
+				652B217B27BAAF260056DFDF /* SQLInterpolation+QueryInterface.swift */,
+				652B217C27BAAF260056DFDF /* FTS5+QueryInterface.swift */,
+				652B217D27BAAF260056DFDF /* SQLGeneration */,
+				652B218027BAAF260056DFDF /* ForeignKey.swift */,
+				652B218127BAAF260056DFDF /* Schema */,
+				652B218427BAAF260056DFDF /* TableRecord+QueryInterfaceRequest.swift */,
+				652B218527BAAF260056DFDF /* FTS3+QueryInterface.swift */,
+				652B218627BAAF260056DFDF /* Request */,
+				652B219327BAAF260056DFDF /* SQL */,
+			);
+			path = QueryInterface;
+			sourceTree = "<group>";
+		};
+		652B217D27BAAF260056DFDF /* SQLGeneration */ = {
+			isa = PBXGroup;
+			children = (
+				652B217E27BAAF260056DFDF /* SQLQueryGenerator.swift */,
+				652B217F27BAAF260056DFDF /* SQLGenerationContext.swift */,
+			);
+			path = SQLGeneration;
+			sourceTree = "<group>";
+		};
+		652B218127BAAF260056DFDF /* Schema */ = {
+			isa = PBXGroup;
+			children = (
+				652B218227BAAF260056DFDF /* TableDefinition.swift */,
+				652B218327BAAF260056DFDF /* VirtualTableModule.swift */,
+			);
+			path = Schema;
+			sourceTree = "<group>";
+		};
+		652B218627BAAF260056DFDF /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				652B218727BAAF260056DFDF /* Association */,
+				652B219027BAAF260056DFDF /* QueryInterfaceRequest.swift */,
+				652B219127BAAF260056DFDF /* RequestProtocols.swift */,
+				652B219227BAAF260056DFDF /* CommonTableExpression.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		652B218727BAAF260056DFDF /* Association */ = {
+			isa = PBXGroup;
+			children = (
+				652B218827BAAF260056DFDF /* BelongsToAssociation.swift */,
+				652B218927BAAF260056DFDF /* JoinAssociation.swift */,
+				652B218A27BAAF260056DFDF /* HasOneAssociation.swift */,
+				652B218B27BAAF260056DFDF /* AssociationAggregate.swift */,
+				652B218C27BAAF260056DFDF /* HasManyAssociation.swift */,
+				652B218D27BAAF260056DFDF /* HasManyThroughAssociation.swift */,
+				652B218E27BAAF260056DFDF /* Association.swift */,
+				652B218F27BAAF260056DFDF /* HasOneThroughAssociation.swift */,
+			);
+			path = Association;
+			sourceTree = "<group>";
+		};
+		652B219327BAAF260056DFDF /* SQL */ = {
+			isa = PBXGroup;
+			children = (
+				652B219427BAAF260056DFDF /* SQLAssociation.swift */,
+				652B219527BAAF260056DFDF /* SQLSelection.swift */,
+				652B219627BAAF260056DFDF /* SQLForeignKeyRequest.swift */,
+				652B219727BAAF260056DFDF /* DatabasePromise.swift */,
+				652B219827BAAF260056DFDF /* SQLSubquery.swift */,
+				652B219927BAAF260056DFDF /* SQLCollection.swift */,
+				652B219A27BAAF260056DFDF /* SQLExpression.swift */,
+				652B219B27BAAF260056DFDF /* SQLOrdering.swift */,
+				652B219C27BAAF260056DFDF /* Table.swift */,
+				652B219D27BAAF260056DFDF /* SQLOperators.swift */,
+				652B219E27BAAF260056DFDF /* Column.swift */,
+				652B219F27BAAF260056DFDF /* SQLFunctions.swift */,
+				652B21A027BAAF260056DFDF /* SQLRelation.swift */,
+			);
+			path = SQL;
+			sourceTree = "<group>";
+		};
+		652B21A127BAAF260056DFDF /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				652B21A227BAAF260056DFDF /* DatabaseQueue.swift */,
+				652B21A327BAAF260056DFDF /* SQLRequest.swift */,
+				652B21A427BAAF260056DFDF /* DatabaseBackupProgress.swift */,
+				652B21A527BAAF260056DFDF /* RowAdapter.swift */,
+				652B21A627BAAF260056DFDF /* StatementAuthorizer.swift */,
+				652B21A727BAAF260056DFDF /* FetchRequest.swift */,
+				652B21A827BAAF260056DFDF /* Database+Statements.swift */,
+				652B21A927BAAF260056DFDF /* RowDecodingError.swift */,
+				652B21AA27BAAF260056DFDF /* DatabaseSchemaCache.swift */,
+				652B21AB27BAAF260056DFDF /* DatabaseReader.swift */,
+				652B21AC27BAAF260056DFDF /* DatabaseValue.swift */,
+				652B21AD27BAAF260056DFDF /* DatabaseSnapshot.swift */,
+				652B21AE27BAAF260056DFDF /* StatementColumnConvertible.swift */,
+				652B21AF27BAAF260056DFDF /* DatabasePool.swift */,
+				652B21B027BAAF260056DFDF /* SchedulingWatchdog.swift */,
+				652B21B127BAAF260056DFDF /* DatabaseError.swift */,
+				652B21B227BAAF260056DFDF /* Database+Schema.swift */,
+				652B21B327BAAF260056DFDF /* Support */,
+				652B21C927BAAF270056DFDF /* TransactionObserver.swift */,
+				652B21CA27BAAF270056DFDF /* Database.swift */,
+				652B21CB27BAAF270056DFDF /* DatabaseRegion.swift */,
+				652B21CC27BAAF270056DFDF /* SQL.swift */,
+				652B21CD27BAAF270056DFDF /* DatabaseRegionObservation.swift */,
+				652B21CE27BAAF270056DFDF /* Cursor.swift */,
+				652B21CF27BAAF270056DFDF /* Row.swift */,
+				652B21D027BAAF270056DFDF /* DatabaseWriter.swift */,
+				652B21D127BAAF270056DFDF /* SQLInterpolation.swift */,
+				652B21D227BAAF270056DFDF /* DatabaseFunction.swift */,
+				652B21D327BAAF270056DFDF /* Statement.swift */,
+				652B21D427BAAF270056DFDF /* DatabaseValueConvertible.swift */,
+				652B21D527BAAF270056DFDF /* DatabaseCollation.swift */,
+				652B21D627BAAF270056DFDF /* SerializedDatabase.swift */,
+				652B21D727BAAF270056DFDF /* DatabasePublishers.swift */,
+				652B21D827BAAF270056DFDF /* Configuration.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		652B21B327BAAF260056DFDF /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				652B21B427BAAF260056DFDF /* StandardLibrary */,
+				652B21BA27BAAF260056DFDF /* CoreGraphics */,
+				652B21BC27BAAF260056DFDF /* Foundation */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		652B21B427BAAF260056DFDF /* StandardLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				652B21B527BAAF260056DFDF /* StandardLibrary.swift */,
+				652B21B627BAAF260056DFDF /* DatabaseValueConvertible+RawRepresentable.swift */,
+				652B21B727BAAF260056DFDF /* DatabaseValueConvertible+Encodable.swift */,
+				652B21B827BAAF260056DFDF /* JSONRequiredEncoder.swift */,
+				652B21B927BAAF260056DFDF /* DatabaseValueConvertible+Decodable.swift */,
+			);
+			path = StandardLibrary;
+			sourceTree = "<group>";
+		};
+		652B21BA27BAAF260056DFDF /* CoreGraphics */ = {
+			isa = PBXGroup;
+			children = (
+				652B21BB27BAAF260056DFDF /* CGFloat.swift */,
+			);
+			path = CoreGraphics;
+			sourceTree = "<group>";
+		};
+		652B21BC27BAAF260056DFDF /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				652B21BD27BAAF260056DFDF /* NSString.swift */,
+				652B21BE27BAAF260056DFDF /* Date.swift */,
+				652B21BF27BAAF260056DFDF /* NSNull.swift */,
+				652B21C027BAAF260056DFDF /* Data.swift */,
+				652B21C127BAAF260056DFDF /* DatabaseValueConvertible+ReferenceConvertible.swift */,
+				652B21C227BAAF260056DFDF /* Decimal.swift */,
+				652B21C327BAAF270056DFDF /* UUID.swift */,
+				652B21C427BAAF270056DFDF /* DatabaseDateComponents.swift */,
+				652B21C527BAAF270056DFDF /* NSData.swift */,
+				652B21C627BAAF270056DFDF /* URL.swift */,
+				652B21C727BAAF270056DFDF /* SQLiteDateParser.swift */,
+				652B21C827BAAF270056DFDF /* NSNumber.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		652B21D927BAAF270056DFDF /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				652B21DA27BAAF270056DFDF /* EncodableRecord+Encodable.swift */,
+				652B21DB27BAAF270056DFDF /* EncodableRecord.swift */,
+				652B21DC27BAAF270056DFDF /* FetchableRecord+Decodable.swift */,
+				652B21DD27BAAF270056DFDF /* FetchableRecord.swift */,
+				652B21DE27BAAF270056DFDF /* TableRecord.swift */,
+				652B21DF27BAAF270056DFDF /* Record.swift */,
+				652B21E027BAAF270056DFDF /* PersistableRecord.swift */,
+				652B21E127BAAF270056DFDF /* FetchableRecord+TableRecord.swift */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
+		652B21E227BAAF270056DFDF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				652B21E327BAAF270056DFDF /* OnDemandFuture.swift */,
+				652B21E427BAAF270056DFDF /* CaseInsensitiveIdentifier.swift */,
+				652B21E527BAAF270056DFDF /* ReadWriteBox.swift */,
+				652B21E627BAAF270056DFDF /* LockedBox.swift */,
+				652B21E727BAAF270056DFDF /* Refinable.swift */,
+				652B21E827BAAF270056DFDF /* Inflections+English.swift */,
+				652B21E927BAAF270056DFDF /* Pool.swift */,
+				652B21EA27BAAF270056DFDF /* Utils.swift */,
+				652B21EB27BAAF270056DFDF /* ReceiveValuesOn.swift */,
+				652B21EC27BAAF270056DFDF /* OrderedDictionary.swift */,
+				652B21ED27BAAF270056DFDF /* Inflections.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		652B21EE27BAAF270056DFDF /* FTS */ = {
+			isa = PBXGroup;
+			children = (
+				652B21EF27BAAF270056DFDF /* FTS5Pattern.swift */,
+				652B21F027BAAF270056DFDF /* FTS5CustomTokenizer.swift */,
+				652B21F127BAAF270056DFDF /* FTS3TokenizerDescriptor.swift */,
+				652B21F227BAAF270056DFDF /* FTS3Pattern.swift */,
+				652B21F327BAAF270056DFDF /* FTS5Tokenizer.swift */,
+				652B21F427BAAF270056DFDF /* FTS4.swift */,
+				652B21F527BAAF270056DFDF /* FTS5TokenizerDescriptor.swift */,
+				652B21F627BAAF270056DFDF /* FTS5.swift */,
+				652B21F727BAAF270056DFDF /* FTS5WrapperTokenizer.swift */,
+				652B21F827BAAF270056DFDF /* FTS3.swift */,
+			);
+			path = FTS;
+			sourceTree = "<group>";
+		};
+		652B21F927BAAF270056DFDF /* Fixit */ = {
+			isa = PBXGroup;
+			children = (
+				652B21FA27BAAF270056DFDF /* GRDB-5.0.swift */,
+			);
+			path = Fixit;
+			sourceTree = "<group>";
+		};
+		652B21FB27BAAF270056DFDF /* ValueObservation */ = {
+			isa = PBXGroup;
+			children = (
+				652B21FC27BAAF270056DFDF /* ValueObservationScheduler.swift */,
+				652B21FD27BAAF270056DFDF /* DatabaseCancellable.swift */,
+				652B21FE27BAAF270056DFDF /* ValueObservation.swift */,
+				652B21FF27BAAF270056DFDF /* SharedValueObservation.swift */,
+				652B220027BAAF270056DFDF /* ValueObserver.swift */,
+				652B220127BAAF270056DFDF /* ValueReducer */,
+			);
+			path = ValueObservation;
+			sourceTree = "<group>";
+		};
+		652B220127BAAF270056DFDF /* ValueReducer */ = {
+			isa = PBXGroup;
+			children = (
+				652B220227BAAF270056DFDF /* Fetch.swift */,
+				652B220327BAAF270056DFDF /* Trace.swift */,
+				652B220427BAAF270056DFDF /* ValueReducer.swift */,
+				652B220527BAAF270056DFDF /* Map.swift */,
+				652B220627BAAF270056DFDF /* RemoveDuplicates.swift */,
+			);
+			path = ValueReducer;
+			sourceTree = "<group>";
+		};
+		652B220727BAAF270056DFDF /* Migration */ = {
+			isa = PBXGroup;
+			children = (
+				652B220827BAAF270056DFDF /* DatabaseMigrator.swift */,
+				652B220927BAAF270056DFDF /* Migration.swift */,
+			);
+			path = Migration;
+			sourceTree = "<group>";
+		};
 		653DD68F27B1EA2F00097AE9 /* conversions */ = {
 			isa = PBXGroup;
 			children = (
@@ -4341,6 +5011,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				652B230C27BAB2DF0056DFDF /* MXGRDBShim.h in Headers */,
 				651609ED27A8829200D48B6B /* MXSQLiteCryptoStore.h in Headers */,
 				32F9FA7D1DBA0CF0009D98A6 /* MXDecryptionResult.h in Headers */,
 				EC116599270FCF740089FA56 /* MXBackgroundTask.h in Headers */,
@@ -4664,6 +5335,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				652B230D27BAB2DF0056DFDF /* MXGRDBShim.h in Headers */,
 				651609EE27A8829200D48B6B /* MXSQLiteCryptoStore.h in Headers */,
 				B14EF2D62397E90400758AF0 /* MXMegolmSessionData.h in Headers */,
 				EC8A53BA25B1BC77004E0802 /* MXCallEventContent.h in Headers */,
@@ -5247,6 +5919,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				652B225427BAAF270056DFDF /* RowAdapter.swift in Sources */,
 				ECD289BC26FDE4E300F268CF /* MXRoomListDataCounts.swift in Sources */,
 				32A1513F1DAF768D00400192 /* MXOlmInboundGroupSession.m in Sources */,
 				3259CFE626026A6F00C365DB /* MXRestClient+Extensions.swift in Sources */,
@@ -5254,7 +5927,9 @@
 				3AB5EBB4270B332B0058703A /* MXSpaceStore.swift in Sources */,
 				EC8A53A125B1BC77004E0802 /* MXCallSelectAnswerEventContent.m in Sources */,
 				B14EECE72577F76100448735 /* MXLoginSSOFlow.m in Sources */,
+				652B223C27BAAF270056DFDF /* SQLSubquery.swift in Sources */,
 				ECE3DF9D270C660900FB4C96 /* MXMulticastDelegate.swift in Sources */,
+				652B227227BAAF270056DFDF /* DatabaseValueConvertible+RawRepresentable.swift in Sources */,
 				32481A851C03572900782AD3 /* MXRoomAccountData.m in Sources */,
 				EC1165B027107E330089FA56 /* MXRoomListDataManager.swift in Sources */,
 				327E9AD92284803100A98BC1 /* MXEventAnnotationChunk.m in Sources */,
@@ -5263,9 +5938,13 @@
 				EC1165C627107E330089FA56 /* MXRoomListDataFetcher.swift in Sources */,
 				EC60ED69265CFC7200B39A4E /* MXPresenceSyncResponse.m in Sources */,
 				3259D02326037A7200C365DB /* NSArray.swift in Sources */,
+				652B225027BAAF270056DFDF /* SQLRequest.swift in Sources */,
 				B146D50321A5C6D700D8C2C6 /* MXScanManager.m in Sources */,
+				652B223427BAAF270056DFDF /* SQLAssociation.swift in Sources */,
 				F082946E1DB66C3D00CEAB63 /* MXInvite3PID.m in Sources */,
+				652B228427BAAF270056DFDF /* DatabaseValueConvertible+ReferenceConvertible.swift in Sources */,
 				322360531A8E610500A3CA81 /* MXPushRuleDisplayNameCondtionChecker.m in Sources */,
+				652B22C227BAAF270056DFDF /* FetchableRecord+TableRecord.swift in Sources */,
 				32A31BC520D3FFB0005916C7 /* MXFilter.m in Sources */,
 				65160A1527AB1A7C00D48B6B /* -Account.deviceSyncToken.swift in Sources */,
 				32B76EA520FDE85100B095F6 /* MXRoomMembersCount.m in Sources */,
@@ -5289,6 +5968,7 @@
 				32FFB4F1217E146A00C96002 /* MXRecoveryKey.m in Sources */,
 				32DC15D51A8CF874006F9AD3 /* MXPushRuleEventMatchConditionChecker.m in Sources */,
 				EC1165B427107E330089FA56 /* MXStoreRoomListDataManager.swift in Sources */,
+				652B22CA27BAAF270056DFDF /* LockedBox.swift in Sources */,
 				653517D827ADAF4F00782CEB /* MXGrdbOlmSession.swift in Sources */,
 				320BBF411D6C81550079890E /* MXEventsByTypesEnumeratorOnArray.m in Sources */,
 				181FD5D62660C791008EC084 /* MXLogObjcWrapper.m in Sources */,
@@ -5300,14 +5980,17 @@
 				EC8A53E225B1BCC6004E0802 /* MXThirdPartyUserInstance.m in Sources */,
 				653DD69727B2032900097AE9 /* MXGrdbIncomingRoomKeyRequest.swift in Sources */,
 				3AB5EBB7270ED1C00058703A /* MXSpaceFileStore.swift in Sources */,
+				652B222227BAAF270056DFDF /* HasOneAssociation.swift in Sources */,
 				321B41401E09937E009EEEC7 /* MXRoomSummary.m in Sources */,
 				653DD67E27B097B100097AE9 /* MXGrdbSharedOutboundSession.swift in Sources */,
+				652B22C827BAAF270056DFDF /* ReadWriteBox.swift in Sources */,
 				32CAB1081A91EA34008C5BB9 /* MXPushRuleRoomMemberCountConditionChecker.m in Sources */,
 				3245A7511AF7B2930001D8A7 /* MXCall.m in Sources */,
 				32CF439E2371AF9500907C56 /* MXWellknownIntegrations.m in Sources */,
 				ECBF658126DE2A8500AA3A99 /* MXMemoryRoomOutgoingMessagesStore.m in Sources */,
 				32F00ABD2488E1CD00131741 /* MXRecoveryService.m in Sources */,
 				3275FD9D21A6B60B00B9C13D /* MXLoginPolicy.m in Sources */,
+				652B22A027BAAF270056DFDF /* Row.swift in Sources */,
 				653DD67527B0262800097AE9 /* -InboundGroupSession.swift in Sources */,
 				327F8DB31C6112BA00581CA3 /* MXRoomThirdPartyInvite.m in Sources */,
 				B17982FC2119E4A2001FD722 /* MXRoomPowerLevels.m in Sources */,
@@ -5315,14 +5998,21 @@
 				32C235731F827F3800E38FC5 /* MXRoomOperation.m in Sources */,
 				322A51C41D9AC8FE00C8536D /* MXCryptoAlgorithms.m in Sources */,
 				B1798D0824091A0100308A8F /* MXBase64Tools.m in Sources */,
+				652B22F227BAAF270056DFDF /* DatabaseCancellable.swift in Sources */,
 				B182B08823167A640057972E /* MXIdentityServerHashDetails.m in Sources */,
+				652B227427BAAF270056DFDF /* DatabaseValueConvertible+Encodable.swift in Sources */,
 				EC60EDBE265CFE8600B39A4E /* MXRoomSyncAccountData.m in Sources */,
+				652B229627BAAF270056DFDF /* Database.swift in Sources */,
+				652B225C27BAAF270056DFDF /* RowDecodingError.swift in Sources */,
 				EC1165BE27107E330089FA56 /* MXSuggestedRoomListDataFetcher.swift in Sources */,
 				324DD2A2246AE1EF00377005 /* MXEncryptedSecretContent.m in Sources */,
 				329FB1761A0A3A1600A5E88E /* MXRoomMember.m in Sources */,
 				3251D41F25AF01D7001E6E77 /* MXUIKitApplicationStateService.swift in Sources */,
+				652B22B427BAAF270056DFDF /* EncodableRecord+Encodable.swift in Sources */,
 				B1136965230AC9D900E2B2FA /* MXIdentityService.m in Sources */,
+				652B22EE27BAAF270056DFDF /* GRDB-5.0.swift in Sources */,
 				B11BD44922CB56790064D8B0 /* MXReplyEventParser.m in Sources */,
+				652B22DC27BAAF270056DFDF /* FTS5CustomTokenizer.swift in Sources */,
 				323360701A403A0D0071A488 /* MXFileStore.m in Sources */,
 				B1136967230C1E8600E2B2FA /* MXIdentityService.swift in Sources */,
 				32A9770521626E5C00919CC0 /* MXServerNotices.m in Sources */,
@@ -5334,40 +6024,56 @@
 				EC1165C027107E330089FA56 /* MXSuggestedRoomListDataCache.swift in Sources */,
 				ECD2897726E8ED0900F268CF /* MXRoomListDataFetchOptions.swift in Sources */,
 				327E9AE82285A8C400A98BC1 /* MXAggregationPaginatedResponse.m in Sources */,
+				652B230027BAAF270056DFDF /* Map.swift in Sources */,
 				B10AFB4422A970060092E6AF /* MXEventReplace.m in Sources */,
 				EC383BB62540E15E002FBBE6 /* MXBackgroundPushRulesManager.swift in Sources */,
+				652B22CC27BAAF270056DFDF /* Refinable.swift in Sources */,
+				652B22FE27BAAF270056DFDF /* ValueReducer.swift in Sources */,
 				EC1165BA27107E330089FA56 /* MXRoomListDataFetcherDelegate.swift in Sources */,
 				3275FD9421A6B46600B9C13D /* MXLoginTerms.m in Sources */,
 				EC05478425FF99450047ECD7 /* MXRoomAccountDataUpdater.m in Sources */,
 				653DD69427B1EAB100097AE9 /* MXOutgoingRoomKeyRequest+GRDB.m in Sources */,
+				652B22B027BAAF270056DFDF /* DatabasePublishers.swift in Sources */,
 				B11BD44D22CB56E80064D8B0 /* MXReplyEventParts.m in Sources */,
+				652B222627BAAF270056DFDF /* HasManyAssociation.swift in Sources */,
 				3259D01B2603731A00C365DB /* MXKeysQueryResponse+Extensions.swift in Sources */,
 				32A151531DAF8A7200400192 /* MXQueuedEncryption.m in Sources */,
 				324AAC70239913AD00380A66 /* MXKeyVerificationJSONModel.m in Sources */,
 				C6D5D60A1E4FA74000706C0F /* MXEnumConstants.swift in Sources */,
+				652B22F827BAAF270056DFDF /* ValueObserver.swift in Sources */,
 				327E9ADD2284804500A98BC1 /* MXEventRelations.m in Sources */,
+				652B22EC27BAAF270056DFDF /* FTS3.swift in Sources */,
 				B19EC8A2260E134A00543BEC /* MXRoomInitialStateEventBuilder.swift in Sources */,
 				3256E3821DCB91EB003C9718 /* MXCryptoConstants.m in Sources */,
 				EC8A53B525B1BC77004E0802 /* MXCallHangupEventContent.m in Sources */,
 				EC60EDB4265CFE6200B39A4E /* MXRoomSyncEphemeral.m in Sources */,
 				32BBAE6F2178E99100D85F46 /* MXKeyBackupVersion.m in Sources */,
 				326056861C76FDF2009D44AD /* MXEventTimeline.m in Sources */,
+				652B224427BAAF270056DFDF /* Table.swift in Sources */,
+				652B229E27BAAF270056DFDF /* Cursor.swift in Sources */,
 				327A5F4F239805F600ED6329 /* MXKeyVerificationAccept.m in Sources */,
 				B19A30BA2404268600FB6F35 /* MXQRCodeData.m in Sources */,
 				653DD6A327B20DD000097AE9 /* MXGrdbSecret.swift in Sources */,
 				B105CDD8261F54C8006EB204 /* MXSpaceChildContent.m in Sources */,
 				327E9ABD2284521C00A98BC1 /* MXEventUnsignedData.m in Sources */,
 				32AF9286240EA2430008A0FD /* MXSecretShareRequest.m in Sources */,
+				652B222827BAAF270056DFDF /* HasManyThroughAssociation.swift in Sources */,
 				32A1513A1DAD292400400192 /* MXMegolmEncryption.m in Sources */,
 				EC60EDFE265CFFD200B39A4E /* MXInvitedGroupSync.m in Sources */,
 				8EC5110C256822B400EC4E5B /* MXTaggedEvents.m in Sources */,
+				652B22FA27BAAF270056DFDF /* Fetch.swift in Sources */,
 				65160A0E27A9E64A00D48B6B /* MXGrdbOlmAccount.swift in Sources */,
+				652B22BC27BAAF270056DFDF /* TableRecord.swift in Sources */,
+				652B223627BAAF270056DFDF /* SQLSelection.swift in Sources */,
 				32F945F71FAB83D900622468 /* MXIncomingRoomKeyRequest.m in Sources */,
+				652B22E427BAAF270056DFDF /* FTS4.swift in Sources */,
+				652B22AA27BAAF270056DFDF /* DatabaseValueConvertible.swift in Sources */,
 				32D2CC09234336D6002BD8CA /* MX3PidAddManager.swift in Sources */,
 				F0173EAD1FCF0E8900B5F6A3 /* MXGroup.m in Sources */,
 				EC60EDDC265CFF0600B39A4E /* MXInvitedRoomSync.m in Sources */,
 				3AF85F9226FC7AE800A9E67B /* MXSpaceNotificationState.swift in Sources */,
 				32CEEF5123B0AB030039BA98 /* MXCrossSigning.m in Sources */,
+				652B221E27BAAF270056DFDF /* BelongsToAssociation.swift in Sources */,
 				32720D9F222EAA6F0086FFF5 /* MXAutoDiscovery.m in Sources */,
 				3297912923A93D4B00F7BB9B /* MXKeyVerification.m in Sources */,
 				65160A0727A98C6700D48B6B /* MXSQLiteFileUtils.swift in Sources */,
@@ -5377,19 +6083,25 @@
 				92634B831EF2E3C400DB9F60 /* MXCallKitConfiguration.m in Sources */,
 				3265CB391A14C43E00E24B2F /* MXRoomState.m in Sources */,
 				EC619D9224DD834B00663A80 /* MXPushGatewayRestClient.m in Sources */,
+				652B220C27BAAF270056DFDF /* SQLInterpolation+QueryInterface.swift in Sources */,
 				3281E8B819E42DFE00976E1A /* MXJSONModel.m in Sources */,
+				652B221A27BAAF270056DFDF /* TableRecord+QueryInterfaceRequest.swift in Sources */,
 				32AF929924115D8B0008A0FD /* MXPendingSecretShareRequest.m in Sources */,
+				652B224E27BAAF270056DFDF /* DatabaseQueue.swift in Sources */,
 				327E9AE22285497100A98BC1 /* MXEventContentRelatesTo.m in Sources */,
 				653517BC27AB7BD100782CEB /* -Device.swift in Sources */,
 				32A1514B1DAF7C0C00400192 /* MXUsersDevicesMap.m in Sources */,
 				328BCB3421947BE200A976D3 /* MXKeyBackupVersionTrust.m in Sources */,
 				324AAC72239913AD00380A66 /* MXKeyVerificationRequestByDMJSONModel.m in Sources */,
+				652B226027BAAF270056DFDF /* DatabaseReader.swift in Sources */,
 				C6B40F521F2A35BE00C42C72 /* MXRoomState.swift in Sources */,
 				B19A30C62404268600FB6F35 /* MXQRCodeDataBuilder.m in Sources */,
+				652B221C27BAAF270056DFDF /* FTS3+QueryInterface.swift in Sources */,
 				324676EC25C15F4600EA855B /* MXMemory.swift in Sources */,
 				32549AF723F2E2790002576B /* MXKeyVerificationReady.m in Sources */,
 				B11BD45522CB583E0064D8B0 /* MXReplyEventBodyParts.m in Sources */,
 				EC8A53A325B1BC77004E0802 /* MXCallEventContent.m in Sources */,
+				652B22AE27BAAF270056DFDF /* SerializedDatabase.swift in Sources */,
 				EC60EDEA265CFF3100B39A4E /* MXRoomInviteState.m in Sources */,
 				32F945F51FAB83D900622468 /* MXIncomingRoomKeyRequestCancellation.m in Sources */,
 				32D776821A27877300FC4AA2 /* MXMemoryRoomStore.m in Sources */,
@@ -5400,6 +6112,7 @@
 				18B22A7227707CDD00482170 /* MXEventContentLocation.m in Sources */,
 				3293C701214BBA4F009B3DDB /* MXPeekingRoomSummary.m in Sources */,
 				C602B58C1F2268F700B67D87 /* MXRoom.swift in Sources */,
+				652B224827BAAF270056DFDF /* Column.swift in Sources */,
 				EC8A53D825B1BCC6004E0802 /* MXThirdPartyProtocolInstance.m in Sources */,
 				3A7509BB26FC61DF00B85773 /* MXSpaceNotificationCounter.swift in Sources */,
 				32E402BA21C957D2004E87A6 /* MXOlmSession.m in Sources */,
@@ -5408,28 +6121,37 @@
 				18121F78273E6E1E00B68ADF /* PollBuilder.swift in Sources */,
 				327A5F50239805F600ED6329 /* MXKeyVerificationKey.m in Sources */,
 				B16C56E2261D0A9D00604765 /* MXSpaceChildInfo.swift in Sources */,
+				652B226627BAAF270056DFDF /* StatementColumnConvertible.swift in Sources */,
 				ECBF658726DE3DF800AA3A99 /* MXFileRoomOutgoingMessagesStore.m in Sources */,
 				653DD6A627B20F1B00097AE9 /* -Secret.swift in Sources */,
 				3AC13804264482A100EE1E74 /* MXExportedOlmDevice.m in Sources */,
 				321CFDFE2254E8C4004D31DF /* MXEmojiRepresentation.m in Sources */,
 				C6D5D60E1E4FBD2900706C0F /* MXSession.swift in Sources */,
+				652B229A27BAAF270056DFDF /* SQL.swift in Sources */,
 				320DFDE319DD99B60068622A /* MXError.m in Sources */,
 				EC60EDD2265CFECC00B39A4E /* MXRoomSyncSummary.m in Sources */,
 				021AFBA52179E91900742B2C /* MXEncryptedContentKey.m in Sources */,
 				32F634AC1FC5E3480054EF49 /* MXEventDecryptionResult.m in Sources */,
 				327137281A24D50A00DB6757 /* MXMyUser.m in Sources */,
+				652B228227BAAF270056DFDF /* Data.swift in Sources */,
 				C6F935881E5B3BE600FC34BF /* MX3PID.swift in Sources */,
 				B146D47821A5950800D8C2C6 /* MXMediaScan.m in Sources */,
 				3A108AA425810FE5005EEBE9 /* MXRawDataKey.m in Sources */,
+				652B22DE27BAAF270056DFDF /* FTS3TokenizerDescriptor.swift in Sources */,
+				652B224A27BAAF270056DFDF /* SQLFunctions.swift in Sources */,
 				C6F9358A1E5B3BE600FC34BF /* MXEvent.swift in Sources */,
 				B146D48021A59E2400D8C2C6 /* MXEventScan.m in Sources */,
 				329E808D224E2E1B00A48C3A /* MXOutgoingSASTransaction.m in Sources */,
 				1838927A2702F553003F0C4F /* MXSendReplyEventDefaultStringLocalizer.m in Sources */,
 				32581DEA23C8C0C900832EAA /* MXUserTrustLevel.m in Sources */,
+				652B22D227BAAF270056DFDF /* Utils.swift in Sources */,
 				3271878A1DA7DCE50071C818 /* MXOlmEncryption.m in Sources */,
+				652B22E227BAAF270056DFDF /* FTS5Tokenizer.swift in Sources */,
 				327187861DA7D0220071C818 /* MXOlmDecryption.m in Sources */,
+				652B225E27BAAF270056DFDF /* DatabaseSchemaCache.swift in Sources */,
 				EC383BA8253DE6EE002FBBE6 /* MXSyncResponseFileStore.swift in Sources */,
 				32114A901A262ECB00FF2EC4 /* MXNoStore.m in Sources */,
+				652B222027BAAF270056DFDF /* JoinAssociation.swift in Sources */,
 				B19A30C02404268600FB6F35 /* MXQRCodeDataCoder.m in Sources */,
 				3297913023AA126500F7BB9B /* MXKeyVerificationStatusResolver.m in Sources */,
 				3A59A49F25A7A16F00DDA1FC /* MXOlmOutboundGroupSession.m in Sources */,
@@ -5444,23 +6166,35 @@
 				3250E7CB220C913900736CB5 /* MXCryptoTools.m in Sources */,
 				322691331E5EF77D00966A6E /* MXDeviceListOperation.m in Sources */,
 				ECD2897D26E8F06F00F268CF /* MXStoreRoomListDataFetcher.swift in Sources */,
+				652B229427BAAF270056DFDF /* TransactionObserver.swift in Sources */,
 				32D2CC0323422462002BD8CA /* MX3PidAddSession.m in Sources */,
 				3283F7791EAF30F700C1688C /* MXBugReportRestClient.m in Sources */,
 				32B0E33B23A2989A0054FF1A /* MXEventReferenceChunk.m in Sources */,
+				652B229827BAAF270056DFDF /* DatabaseRegion.swift in Sources */,
 				9274AFE91EE580240009BEB6 /* MXCallKitAdapter.m in Sources */,
+				652B226A27BAAF270056DFDF /* SchedulingWatchdog.swift in Sources */,
+				652B226827BAAF270056DFDF /* DatabasePool.swift in Sources */,
+				652B227C27BAAF270056DFDF /* NSString.swift in Sources */,
 				3274538C23FD918800438328 /* MXKeyVerificationByToDeviceRequest.m in Sources */,
 				ECB6FA952683811800A941E4 /* MXiOSAudioOutputRouter.swift in Sources */,
+				652B223E27BAAF270056DFDF /* SQLCollection.swift in Sources */,
 				EC1848C52685F64D00865E16 /* MXiOSAudioOutputRoute.swift in Sources */,
 				EC60EE08265CFFF400B39A4E /* MXGroupSyncProfile.m in Sources */,
+				652B22F027BAAF270056DFDF /* ValueObservationScheduler.swift in Sources */,
 				B19A30A0240424BD00FB6F35 /* MXQRCodeTransaction.m in Sources */,
 				C63E78B01F26588000AC692F /* MXRoomPowerLevels.swift in Sources */,
 				EC383BA5253DE6C9002FBBE6 /* MXSyncResponseStore.swift in Sources */,
+				652B221027BAAF270056DFDF /* SQLQueryGenerator.swift in Sources */,
 				32CEEF4523AD2A6C0039BA98 /* MXCrossSigningKey.m in Sources */,
 				653517DE27ADD62600782CEB /* MXGrdbOlmInboundGroupSession.swift in Sources */,
+				652B22E027BAAF270056DFDF /* FTS3Pattern.swift in Sources */,
 				B18B0E4A25FB783B00E32151 /* MXSpaceCreationParameters.swift in Sources */,
+				652B221627BAAF270056DFDF /* TableDefinition.swift in Sources */,
 				EC2EACFF266625170038B61F /* MXRoomLastMessage.m in Sources */,
 				EC8A539525B1BC77004E0802 /* MXUserModel.m in Sources */,
+				652B221827BAAF270056DFDF /* VirtualTableModule.swift in Sources */,
 				3252DCAF224BE5D40032264F /* MXKeyVerificationManager.m in Sources */,
+				652B221427BAAF270056DFDF /* ForeignKey.swift in Sources */,
 				323E0C5C1A306D7A00A31D73 /* MXEvent.m in Sources */,
 				653DD69A27B203FE00097AE9 /* -IncomingRoomKeyRequest.swift in Sources */,
 				F03EF5011DF014D9009DF592 /* MXMediaManager.m in Sources */,
@@ -5469,57 +6203,84 @@
 				32AF928C240EA3880008A0FD /* MXSecretShareSend.m in Sources */,
 				324DD29B246AD2B500377005 /* MXSecretStorage.m in Sources */,
 				3281E8BA19E42DFE00976E1A /* MXJSONModels.m in Sources */,
+				652B227A27BAAF270056DFDF /* CGFloat.swift in Sources */,
+				652B224227BAAF270056DFDF /* SQLOrdering.swift in Sources */,
 				3245A7531AF7B2930001D8A7 /* MXCallManager.m in Sources */,
 				32E226A71D06AC9F00E6CA54 /* MXPeekingRoom.m in Sources */,
 				320F7D2C260A8E3B00EF8608 /* MXSyncResponseStoreMetaDataModel.swift in Sources */,
+				652B225227BAAF270056DFDF /* DatabaseBackupProgress.swift in Sources */,
 				021AFBA72179E91900742B2C /* MXEncryptedContentFile.m in Sources */,
 				3220094619EFBF30008DE41D /* MXSessionEventListener.m in Sources */,
+				652B222C27BAAF270056DFDF /* HasOneThroughAssociation.swift in Sources */,
 				320B393C239FD15E00BE2C06 /* MXKeyVerificationRequest.m in Sources */,
 				EC383BAC254030DF002FBBE6 /* MXBackgroundStore.swift in Sources */,
 				32A31BC920D401FC005916C7 /* MXRoomFilter.m in Sources */,
 				32A151471DAF7C0C00400192 /* MXDeviceInfo.m in Sources */,
+				652B225A27BAAF270056DFDF /* Database+Statements.swift in Sources */,
 				321CFDEB22525DEE004D31DF /* MXIncomingSASTransaction.m in Sources */,
 				EC1165C427107E330089FA56 /* MXRoomListDataFilterOptions.swift in Sources */,
 				3A108A8025810C96005EEBE9 /* MXKeyData.m in Sources */,
+				652B228027BAAF270056DFDF /* NSNull.swift in Sources */,
+				652B227827BAAF270056DFDF /* DatabaseValueConvertible+Decodable.swift in Sources */,
 				3A59A52B25A7B1B000DDA1FC /* MXOutboundSessionInfo.m in Sources */,
 				32A1515C1DB525DA00400192 /* NSObject+sortedKeys.m in Sources */,
 				32618E7C20EFA45B00E1D2EA /* MXRoomMembers.m in Sources */,
+				652B222A27BAAF270056DFDF /* Association.swift in Sources */,
 				32B0E34123A378320054FF1A /* MXEventReference.m in Sources */,
 				324DD2A8246AE81300377005 /* MXSecretStorageKeyContent.m in Sources */,
+				652B22C627BAAF270056DFDF /* CaseInsensitiveIdentifier.swift in Sources */,
+				652B22D427BAAF270056DFDF /* ReceiveValuesOn.swift in Sources */,
 				653DD68A27B1E1EB00097AE9 /* MXGrdbOutgoingRoomKeyRequest.swift in Sources */,
 				02CAD43A217DD12F0074700B /* MXContentScanEncryptedBody.m in Sources */,
 				325AF3E324897D9400EF937D /* MXSecretRecoveryResult.m in Sources */,
 				F03EF5091DF071D5009DF592 /* MXEncryptedAttachments.m in Sources */,
 				ECE3DF842707370000FB4C96 /* MXRoomListDataPaginationOptions.swift in Sources */,
 				324DD2C1246D658500377005 /* MXHkdfSha256.m in Sources */,
+				652B227027BAAF270056DFDF /* StandardLibrary.swift in Sources */,
 				EC60ED73265CFCA500B39A4E /* MXToDeviceSyncResponse.m in Sources */,
 				3274538623FD69D600438328 /* MXKeyVerificationRequestByToDeviceJSONModel.m in Sources */,
 				B1A026F826161EF5001AADFF /* MXSpaceChildSummaryResponse.m in Sources */,
 				324DD2C7246E638B00377005 /* MXAesHmacSha2.m in Sources */,
 				3A0AF06B2705A11400679D1A /* MXSpaceGraphData.swift in Sources */,
 				321CFDEF225264C4004D31DF /* NSArray+MatrixSDK.m in Sources */,
+				652B22F427BAAF270056DFDF /* ValueObservation.swift in Sources */,
+				652B223827BAAF270056DFDF /* SQLForeignKeyRequest.swift in Sources */,
+				652B225627BAAF270056DFDF /* StatementAuthorizer.swift in Sources */,
 				653DD68727B1D0B800097AE9 /* GRDBSchema.swift in Sources */,
+				652B22FC27BAAF270056DFDF /* Trace.swift in Sources */,
 				918D30B7273951F400A16405 /* MXStoreService.swift in Sources */,
 				327A5F52239805F600ED6329 /* MXKeyVerificationStart.m in Sources */,
+				652B227E27BAAF270056DFDF /* Date.swift in Sources */,
+				652B22A227BAAF270056DFDF /* DatabaseWriter.swift in Sources */,
 				3294FD9D22F321B0007F1E60 /* MXServiceTermsRestClient.m in Sources */,
 				EC60ED7D265CFCD100B39A4E /* MXDeviceListResponse.m in Sources */,
 				3A23A73F256D322C00B9D00F /* MXAes.m in Sources */,
+				652B22BA27BAAF270056DFDF /* FetchableRecord.swift in Sources */,
 				323547DD2226FC5700F15F94 /* MXCredentials.m in Sources */,
+				652B22C427BAAF270056DFDF /* OnDemandFuture.swift in Sources */,
 				32FA10CF1FA1C9F700E54233 /* MXOutgoingRoomKeyRequest.m in Sources */,
+				652B224C27BAAF270056DFDF /* SQLRelation.swift in Sources */,
 				EC05473625FF8A3C0047ECD7 /* MXVirtualRoomInfo.m in Sources */,
 				ECD289C42701DADB00F268CF /* MXTools.swift in Sources */,
 				32322A4C1E575F65005DD155 /* MXAllowedCertificates.m in Sources */,
+				652B222E27BAAF270056DFDF /* QueryInterfaceRequest.swift in Sources */,
 				653517D527ADA72700782CEB /* -RoomAlgorithm.swift in Sources */,
 				65160A1227AB152300D48B6B /* -Account.deviceId.swift in Sources */,
 				18C26C3D273C031900805154 /* PollAggregator.swift in Sources */,
 				F03EF5051DF01596009DF592 /* MXLRUCache.m in Sources */,
 				EC8A53AF25B1BC77004E0802 /* MXCallAnswerEventContent.m in Sources */,
 				32A30B191FB4813400C8309E /* MXIncomingRoomKeyRequestManager.m in Sources */,
+				652B228827BAAF270056DFDF /* UUID.swift in Sources */,
 				323F3F9320D3F0C700D26D6A /* MXRoomEventFilter.m in Sources */,
 				3275FD9921A6B53300B9C13D /* MXLoginPolicyData.m in Sources */,
+				652B228627BAAF270056DFDF /* Decimal.swift in Sources */,
+				652B22BE27BAAF270056DFDF /* Record.swift in Sources */,
 				653517D227ADA56A00782CEB /* MXGrdbRoomAlgorithm.swift in Sources */,
+				652B229C27BAAF270056DFDF /* DatabaseRegionObservation.swift in Sources */,
+				652B220A27BAAF270056DFDF /* TableRecord+Association.swift in Sources */,
 				EC1848C92686176D00865E16 /* MXiOSAudioOutputRouterDelegate.swift in Sources */,
 				3240969E1F9F751600DBA607 /* MXPushRuleSenderNotificationPermissionConditionChecker.m in Sources */,
+				652B226C27BAAF270056DFDF /* DatabaseError.swift in Sources */,
 				71DE22E01BC7C51200284153 /* MXReceiptData.m in Sources */,
 				B14766B923D9D9420091F721 /* MXUsersTrustLevelSummary.m in Sources */,
 				653517BF27AB7CF600782CEB /* MXGrdbDevice.swift in Sources */,
@@ -5527,39 +6288,61 @@
 				327E37B71A974F75007F026F /* MXLogger.m in Sources */,
 				324BE4691E3FADB1008D99D4 /* MXMegolmExportEncryption.m in Sources */,
 				32A31BBF20D3F2EC005916C7 /* MXFilterObject.m in Sources */,
+				652B22EA27BAAF270056DFDF /* FTS5WrapperTokenizer.swift in Sources */,
 				320DFDE719DD99B60068622A /* MXHTTPClient.m in Sources */,
+				652B227627BAAF270056DFDF /* JSONRequiredEncoder.swift in Sources */,
+				652B230627BAAF270056DFDF /* Migration.swift in Sources */,
 				32FE41371D0AB7070060835E /* MXEnumConstants.m in Sources */,
 				EC60EDF4265CFFAC00B39A4E /* MXGroupsSyncResponse.m in Sources */,
 				320DFDE119DD99B60068622A /* MXSession.m in Sources */,
 				B17982F62119E4A2001FD722 /* MXRoomTombStoneContent.m in Sources */,
+				652B22A427BAAF270056DFDF /* SQLInterpolation.swift in Sources */,
+				652B222427BAAF270056DFDF /* AssociationAggregate.swift in Sources */,
 				C602B58E1F22A8D700B67D87 /* MXImage.swift in Sources */,
+				652B220E27BAAF270056DFDF /* FTS5+QueryInterface.swift in Sources */,
 				B105CD9D261E0B70006EB204 /* MXSpaceChildrenSummary.swift in Sources */,
 				32A9F8E0244720B10069C65B /* MXThrottler.m in Sources */,
+				652B22A827BAAF270056DFDF /* Statement.swift in Sources */,
+				652B22E827BAAF270056DFDF /* FTS5.swift in Sources */,
 				189CC083265E362600BE1FD8 /* MXLog.swift in Sources */,
 				EC8A53E425B1BCC6004E0802 /* MXThirdPartyUsersResponse.m in Sources */,
+				652B22B627BAAF270056DFDF /* EncodableRecord.swift in Sources */,
+				652B228C27BAAF270056DFDF /* NSData.swift in Sources */,
+				652B22B227BAAF270056DFDF /* Configuration.swift in Sources */,
 				3295401A216385F100E300FC /* MXServerNoticeContent.m in Sources */,
 				B19A30A82404257700FB6F35 /* MXSASKeyVerificationStart.m in Sources */,
 				02CAD439217DD12F0074700B /* MXContentScanResult.m in Sources */,
 				EC60ED9C265CFE1700B39A4E /* MXRoomSyncState.m in Sources */,
+				652B22DA27BAAF270056DFDF /* FTS5Pattern.swift in Sources */,
 				B19A30A62404257700FB6F35 /* MXQRCodeKeyVerificationStart.m in Sources */,
+				652B230427BAAF270056DFDF /* DatabaseMigrator.swift in Sources */,
 				B146D47B21A5958400D8C2C6 /* MXAntivirusScanStatusFormatter.m in Sources */,
 				EC8A53DE25B1BCC6004E0802 /* MXThirdpartyProtocolsResponse.m in Sources */,
+				652B230227BAAF270056DFDF /* RemoveDuplicates.swift in Sources */,
 				32A151491DAF7C0C00400192 /* MXKey.m in Sources */,
 				651609F027A8848500D48B6B /* GRDBCoordinator.swift in Sources */,
+				652B223A27BAAF270056DFDF /* DatabasePromise.swift in Sources */,
 				324DD2AE246AEB7B00377005 /* MXSecretStoragePassphrase.m in Sources */,
+				652B22D627BAAF270056DFDF /* OrderedDictionary.swift in Sources */,
 				ECB5D98C2552C9B4000AD89C /* MXStopwatch.swift in Sources */,
 				653517DB27ADB12000782CEB /* -OlmSession.swift in Sources */,
 				B1136964230AC9D900E2B2FA /* MXIdentityServerRestClient.m in Sources */,
 				F0C34CBB1C18C93700C36F09 /* MXSDKOptions.m in Sources */,
+				652B22CE27BAAF270056DFDF /* Inflections+English.swift in Sources */,
 				B16F35A225F916A00029AE98 /* MXRoomTypeMapper.swift in Sources */,
 				ECD289BF26FDE5F700F268CF /* MXStoreRoomListDataCounts.swift in Sources */,
 				320BBF441D6C81550079890E /* MXEventsEnumeratorOnArray.m in Sources */,
+				652B226E27BAAF270056DFDF /* Database+Schema.swift in Sources */,
+				652B229027BAAF270056DFDF /* SQLiteDateParser.swift in Sources */,
+				652B22E627BAAF270056DFDF /* FTS5TokenizerDescriptor.swift in Sources */,
 				32618E7220ED2DF500E1D2EA /* MXFilterJSONModel.m in Sources */,
 				3259D02526037A7200C365DB /* NSDictionary.swift in Sources */,
 				ECF29BE52641953C0053E6D6 /* MXAssertedIdentityModel.m in Sources */,
+				652B226427BAAF270056DFDF /* DatabaseSnapshot.swift in Sources */,
 				323F8865212D4E480001C73C /* MXMatrixVersions.m in Sources */,
 				320A883D217F4E35002EA952 /* MXMegolmBackupCreationInfo.m in Sources */,
 				EC60EDC8265CFEA800B39A4E /* MXRoomSyncUnreadNotifications.m in Sources */,
+				652B22B827BAAF270056DFDF /* FetchableRecord+Decodable.swift in Sources */,
 				320DFDDC19DD99B60068622A /* MXRoom.m in Sources */,
 				EC8A538D25B1BC77004E0802 /* MXCallSessionDescription.m in Sources */,
 				F08B8D5D1E014711006171A8 /* NSData+MatrixSDK.m in Sources */,
@@ -5572,21 +6355,29 @@
 				ECD2897926E8EE9300F268CF /* MXRoomListDataSortOptions.swift in Sources */,
 				B14EECD92577DE7A00448735 /* MXLoginSSOIdentityProvider.m in Sources */,
 				32B090E2261F709B002924AA /* MXAsyncTaskQueue.swift in Sources */,
+				652B228E27BAAF270056DFDF /* URL.swift in Sources */,
 				322691371E5EFF8700966A6E /* MXDeviceListOperationsPool.m in Sources */,
+				652B22D027BAAF270056DFDF /* Pool.swift in Sources */,
 				C6F935801E5B3ACA00FC34BF /* MXResponse.swift in Sources */,
 				32EEA8632604014A0041425B /* MXSummable.swift in Sources */,
+				652B225827BAAF270056DFDF /* FetchRequest.swift in Sources */,
 				3A108AB725812995005EEBE9 /* MXKeyProvider.m in Sources */,
 				322AB586260CD5690017E964 /* MXCachedSyncResponse.m in Sources */,
 				B19A30D624042F2700FB6F35 /* MXSelfVerifyingMasterKeyNotTrustedQRCodeData.m in Sources */,
 				32F9FA7E1DBA0CF0009D98A6 /* MXDecryptionResult.m in Sources */,
+				652B224627BAAF270056DFDF /* SQLOperators.swift in Sources */,
 				321CFDF92254E721004D31DF /* MXTransactionCancelCode.m in Sources */,
+				652B22AC27BAAF270056DFDF /* DatabaseCollation.swift in Sources */,
 				B19A30C22404268600FB6F35 /* MXVerifyingAnotherUserQRCodeData.m in Sources */,
 				EC8A53BD25B1BC77004E0802 /* MXCallRejectEventContent.m in Sources */,
 				EC1848C72686174E00865E16 /* MXiOSAudioOutputRouteType.swift in Sources */,
 				3220093919EFA4C9008DE41D /* MXEventListener.m in Sources */,
 				C6481AF21F1678A9000DB8A0 /* MXSessionEventListener.swift in Sources */,
+				652B224027BAAF270056DFDF /* SQLExpression.swift in Sources */,
+				652B221227BAAF270056DFDF /* SQLGenerationContext.swift in Sources */,
 				651609EA27A8827B00D48B6B /* MXSQLiteCryptoStore.m in Sources */,
 				32A1514F1DAF897600400192 /* MXOlmSessionResult.m in Sources */,
+				652B223227BAAF270056DFDF /* CommonTableExpression.swift in Sources */,
 				ECF29BD3264194BB0053E6D6 /* MXCallAssertedIdentityEventContent.m in Sources */,
 				EC8A53A725B1BC77004E0802 /* MXCallCapabilitiesModel.m in Sources */,
 				C6F9357C1E5B39CA00FC34BF /* MXRestClient.swift in Sources */,
@@ -5609,21 +6400,29 @@
 				322A51C81D9BBD3C00C8536D /* MXOlmDevice.m in Sources */,
 				EC60ED5F265CFC2C00B39A4E /* MXSyncResponse.m in Sources */,
 				EC383BA2253DE4B1002FBBE6 /* MXBackgroundSyncService.swift in Sources */,
+				652B22A627BAAF270056DFDF /* DatabaseFunction.swift in Sources */,
 				18121F7D273E835D00B68ADF /* PollModels.swift in Sources */,
 				32442FB221EDD21300D2411B /* MXKeyBackupPassword.m in Sources */,
+				652B22D827BAAF270056DFDF /* Inflections.swift in Sources */,
 				3A108A9A25810F62005EEBE9 /* MXAesKeyData.m in Sources */,
 				329FB17A1A0A74B100A5E88E /* MXTools.m in Sources */,
 				329D3E631E251027002E2F1E /* MXRoomSummaryUpdater.m in Sources */,
 				324BE46D1E422766008D99D4 /* MXMegolmSessionData.m in Sources */,
 				325AD44123BE3E7500FF5277 /* MXCrossSigningInfo.m in Sources */,
 				653DD68127B0AB7400097AE9 /* -SharedOutboundSession.swift in Sources */,
+				652B229227BAAF270056DFDF /* NSNumber.swift in Sources */,
 				329E8089224E261600A48C3A /* MXKeyVerificationTransaction.m in Sources */,
 				C6F935891E5B3BE600FC34BF /* MXEventTimeline.swift in Sources */,
 				65160A1E27AB322600D48B6B /* -Account.olmAccountData.swift in Sources */,
+				652B226227BAAF270056DFDF /* DatabaseValue.swift in Sources */,
+				652B22C027BAAF270056DFDF /* PersistableRecord.swift in Sources */,
+				652B228A27BAAF270056DFDF /* DatabaseDateComponents.swift in Sources */,
+				652B223027BAAF270056DFDF /* RequestProtocols.swift in Sources */,
 				183892802702F553003F0C4F /* MXRoomNameDefaultStringLocalizer.m in Sources */,
 				C6F9358B1E5B3BE600FC34BF /* MXJSONModels.swift in Sources */,
 				EC8A539725B1BC77004E0802 /* MXCallReplacesEventContent.m in Sources */,
 				32FA10C21FA1C9EE00E54233 /* MXOutgoingRoomKeyRequestManager.m in Sources */,
+				652B22F627BAAF270056DFDF /* SharedValueObservation.swift in Sources */,
 				323547D42226D3F500F15F94 /* MXWellKnown.m in Sources */,
 				320DFDE519DD99B60068622A /* MXRestClient.m in Sources */,
 			);
@@ -5730,6 +6529,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				652B225527BAAF270056DFDF /* RowAdapter.swift in Sources */,
 				ECD289BD26FDE4E300F268CF /* MXRoomListDataCounts.swift in Sources */,
 				B19EC8A3260E134A00543BEC /* MXRoomInitialStateEventBuilder.swift in Sources */,
 				B14EF1CA2397E90400758AF0 /* MXOlmInboundGroupSession.m in Sources */,
@@ -5737,7 +6537,9 @@
 				3AB5EBB5270B332B0058703A /* MXSpaceStore.swift in Sources */,
 				B14EF1CC2397E90400758AF0 /* MXEventAnnotationChunk.m in Sources */,
 				ECE3DF9E270C660900FB4C96 /* MXMulticastDelegate.swift in Sources */,
+				652B223D27BAAF270056DFDF /* SQLSubquery.swift in Sources */,
 				181FD5D72660C791008EC084 /* MXLogObjcWrapper.m in Sources */,
+				652B227327BAAF270056DFDF /* DatabaseValueConvertible+RawRepresentable.swift in Sources */,
 				EC1165B127107E330089FA56 /* MXRoomListDataManager.swift in Sources */,
 				324DD2C2246D658500377005 /* MXHkdfSha256.m in Sources */,
 				18C26C56273C16C800805154 /* MXEventContentPollStart.m in Sources */,
@@ -5746,9 +6548,13 @@
 				3291DC8623DF52E20009732F /* MXRoomCreationParameters.m in Sources */,
 				B14EF1D02397E90400758AF0 /* MXInvite3PID.m in Sources */,
 				B14EF1D12397E90400758AF0 /* MXPushRuleDisplayNameCondtionChecker.m in Sources */,
+				652B225127BAAF270056DFDF /* SQLRequest.swift in Sources */,
 				B14EF1D22397E90400758AF0 /* MXFilter.m in Sources */,
+				652B223527BAAF270056DFDF /* SQLAssociation.swift in Sources */,
 				B14EF1D32397E90400758AF0 /* MXRoomMembersCount.m in Sources */,
+				652B228527BAAF270056DFDF /* DatabaseValueConvertible+ReferenceConvertible.swift in Sources */,
 				B19A30C12404268600FB6F35 /* MXQRCodeDataCoder.m in Sources */,
+				652B22C327BAAF270056DFDF /* FetchableRecord+TableRecord.swift in Sources */,
 				65160A1627AB1A7C00D48B6B /* -Account.deviceSyncToken.swift in Sources */,
 				B16C56E3261D0A9D00604765 /* MXSpaceChildInfo.swift in Sources */,
 				B14EF1D52397E90400758AF0 /* MXEventAnnotation.m in Sources */,
@@ -5772,6 +6578,7 @@
 				653517D927ADAF4F00782CEB /* MXGrdbOlmSession.swift in Sources */,
 				B14EF1E52397E90400758AF0 /* MXLoginPolicy.m in Sources */,
 				B14EF1E62397E90400758AF0 /* (null) in Sources */,
+				652B22CB27BAAF270056DFDF /* LockedBox.swift in Sources */,
 				653517BA27AB772C00782CEB /* -Account.globalBlacklistUnverifiedDevices.swift in Sources */,
 				EC60EDB5265CFE6200B39A4E /* MXRoomSyncEphemeral.m in Sources */,
 				B14EF1E72397E90400758AF0 /* MXRoomThirdPartyInvite.m in Sources */,
@@ -5783,14 +6590,17 @@
 				3AB5EBB8270ED1C00058703A /* MXSpaceFileStore.swift in Sources */,
 				B14EF1EB2397E90400758AF0 /* MXRoomOperation.m in Sources */,
 				653DD67F27B097B100097AE9 /* MXGrdbSharedOutboundSession.swift in Sources */,
+				652B222327BAAF270056DFDF /* HasOneAssociation.swift in Sources */,
 				B14EF1EC2397E90400758AF0 /* MXCryptoAlgorithms.m in Sources */,
 				B14EF1ED2397E90400758AF0 /* MXIdentityServerHashDetails.m in Sources */,
+				652B22C927BAAF270056DFDF /* ReadWriteBox.swift in Sources */,
 				B14EF1EE2397E90400758AF0 /* MXRoomMember.m in Sources */,
 				ECBF658226DE2A8500AA3A99 /* MXMemoryRoomOutgoingMessagesStore.m in Sources */,
 				324DD2AF246AEB7B00377005 /* MXSecretStoragePassphrase.m in Sources */,
 				B14EF1EF2397E90400758AF0 /* MXIdentityService.m in Sources */,
 				653DD67627B0262800097AE9 /* -InboundGroupSession.swift in Sources */,
 				ECF29BE62641953C0053E6D6 /* MXAssertedIdentityModel.m in Sources */,
+				652B22A127BAAF270056DFDF /* Row.swift in Sources */,
 				EC8A53C625B1BC77004E0802 /* MXTurnServerResponse.m in Sources */,
 				B14EF1F02397E90400758AF0 /* MXReplyEventParser.m in Sources */,
 				B14EF1F12397E90400758AF0 /* MXFileStore.m in Sources */,
@@ -5798,14 +6608,21 @@
 				B14EF1F32397E90400758AF0 /* MXServerNotices.m in Sources */,
 				B14EF1F42397E90400758AF0 /* MXMemoryStore.m in Sources */,
 				B14EF1F52397E90400758AF0 /* MXAggregationPaginatedResponse.m in Sources */,
+				652B22F327BAAF270056DFDF /* DatabaseCancellable.swift in Sources */,
 				B14EF1F62397E90400758AF0 /* MXEventReplace.m in Sources */,
+				652B227527BAAF270056DFDF /* DatabaseValueConvertible+Encodable.swift in Sources */,
 				B16F35A325F916A00029AE98 /* MXRoomTypeMapper.swift in Sources */,
+				652B229727BAAF270056DFDF /* Database.swift in Sources */,
+				652B225D27BAAF270056DFDF /* RowDecodingError.swift in Sources */,
 				EC1165BF27107E330089FA56 /* MXSuggestedRoomListDataFetcher.swift in Sources */,
 				B14EF1F72397E90400758AF0 /* MXLoginTerms.m in Sources */,
 				B14EF1F82397E90400758AF0 /* MXReplyEventParts.m in Sources */,
 				3259D02426037A7200C365DB /* NSArray.swift in Sources */,
+				652B22B527BAAF270056DFDF /* EncodableRecord+Encodable.swift in Sources */,
 				3A108A8125810C96005EEBE9 /* MXKeyData.m in Sources */,
+				652B22EF27BAAF270056DFDF /* GRDB-5.0.swift in Sources */,
 				3A59A4A025A7A16F00DDA1FC /* MXOlmOutboundGroupSession.m in Sources */,
+				652B22DD27BAAF270056DFDF /* FTS5CustomTokenizer.swift in Sources */,
 				B19A30BB2404268600FB6F35 /* MXQRCodeData.m in Sources */,
 				B14EF1FA2397E90400758AF0 /* MXQueuedEncryption.m in Sources */,
 				653517D027AD9DF300782CEB /* -User.swift in Sources */,
@@ -5817,40 +6634,56 @@
 				B14EF1FC2397E90400758AF0 /* MXEventRelations.m in Sources */,
 				EC8A53E325B1BCC6004E0802 /* MXThirdPartyUserInstance.m in Sources */,
 				EC383BB12540688B002FBBE6 /* MXBackgroundSyncService.swift in Sources */,
+				652B230127BAAF270056DFDF /* Map.swift in Sources */,
 				322AB587260CD5690017E964 /* MXCachedSyncResponse.m in Sources */,
 				322AB592260CDBC10017E964 /* MXSyncResponseStoreManager.swift in Sources */,
+				652B22CD27BAAF270056DFDF /* Refinable.swift in Sources */,
+				652B22FF27BAAF270056DFDF /* ValueReducer.swift in Sources */,
 				324AAC7B2399140D00380A66 /* MXKeyVerificationRequestByDMJSONModel.m in Sources */,
 				653DD69527B1EAB100097AE9 /* MXOutgoingRoomKeyRequest+GRDB.m in Sources */,
 				B14EF1FE2397E90400758AF0 /* MXCryptoConstants.m in Sources */,
 				32261B8D23C74A230018F1E2 /* MXDeviceTrustLevel.m in Sources */,
+				652B22B127BAAF270056DFDF /* DatabasePublishers.swift in Sources */,
 				B14EF2002397E90400758AF0 /* MXKeyBackupVersion.m in Sources */,
+				652B222727BAAF270056DFDF /* HasManyAssociation.swift in Sources */,
 				3297912A23A93D4B00F7BB9B /* MXKeyVerification.m in Sources */,
 				EC8A53AE25B1BC77004E0802 /* MXCallNegotiateEventContent.m in Sources */,
 				B14EF2012397E90400758AF0 /* MXEventTimeline.m in Sources */,
 				3259D01C2603731A00C365DB /* MXKeysQueryResponse+Extensions.swift in Sources */,
+				652B22F927BAAF270056DFDF /* ValueObserver.swift in Sources */,
 				ECE3DF852707370000FB4C96 /* MXRoomListDataPaginationOptions.swift in Sources */,
+				652B22ED27BAAF270056DFDF /* FTS3.swift in Sources */,
 				B14EF2022397E90400758AF0 /* MXEventUnsignedData.m in Sources */,
 				324AAC792399140D00380A66 /* MXKeyVerificationKey.m in Sources */,
 				B14EF2032397E90400758AF0 /* MXMegolmEncryption.m in Sources */,
 				B14EECDA2577DE7B00448735 /* MXLoginSSOIdentityProvider.m in Sources */,
 				B14EF2042397E90400758AF0 /* MXIncomingRoomKeyRequest.m in Sources */,
 				32581DEB23C8C0C900832EAA /* MXUserTrustLevel.m in Sources */,
+				652B224527BAAF270056DFDF /* Table.swift in Sources */,
+				652B229F27BAAF270056DFDF /* Cursor.swift in Sources */,
 				EC0C51752559388C00F2CC66 /* MXStopwatch.swift in Sources */,
 				3259D0092603705300C365DB /* Array.swift in Sources */,
 				653DD6A427B20DD000097AE9 /* MXGrdbSecret.swift in Sources */,
 				B14EF2052397E90400758AF0 /* MX3PidAddManager.swift in Sources */,
 				B14EF2062397E90400758AF0 /* MXGroup.m in Sources */,
 				B14EF2072397E90400758AF0 /* MXAutoDiscovery.m in Sources */,
+				652B222927BAAF270056DFDF /* HasManyThroughAssociation.swift in Sources */,
 				3297913123AA126500F7BB9B /* MXKeyVerificationStatusResolver.m in Sources */,
 				B14EF2082397E90400758AF0 /* MX3PidAddManager.m in Sources */,
 				ECD2899026EB3B3400F268CF /* MXRoomListData.swift in Sources */,
+				652B22FB27BAAF270056DFDF /* Fetch.swift in Sources */,
 				65160A0F27A9E64A00D48B6B /* MXGrdbOlmAccount.swift in Sources */,
+				652B22BD27BAAF270056DFDF /* TableRecord.swift in Sources */,
+				652B223727BAAF270056DFDF /* SQLSelection.swift in Sources */,
 				B14EF2092397E90400758AF0 /* MXCallKitConfiguration.m in Sources */,
+				652B22E527BAAF270056DFDF /* FTS4.swift in Sources */,
+				652B22AB27BAAF270056DFDF /* DatabaseValueConvertible.swift in Sources */,
 				324DD2A9246AE81300377005 /* MXSecretStorageKeyContent.m in Sources */,
 				B14EF20A2397E90400758AF0 /* MXRoomState.m in Sources */,
 				3AF85F9326FC7AE800A9E67B /* MXSpaceNotificationState.swift in Sources */,
 				B14EF20B2397E90400758AF0 /* MXJSONModel.m in Sources */,
 				B14EF20C2397E90400758AF0 /* MXEventContentRelatesTo.m in Sources */,
+				652B221F27BAAF270056DFDF /* BelongsToAssociation.swift in Sources */,
 				B14EF20D2397E90400758AF0 /* MXUsersDevicesMap.m in Sources */,
 				B14EF20E2397E90400758AF0 /* MXKeyBackupVersionTrust.m in Sources */,
 				65160A0827A98C6700D48B6B /* MXSQLiteFileUtils.swift in Sources */,
@@ -5860,19 +6693,25 @@
 				B14EF2122397E90400758AF0 /* MXMemoryRoomStore.m in Sources */,
 				B14EF2132397E90400758AF0 /* MXUIKitBackgroundTask.m in Sources */,
 				EC60EDFF265CFFD200B39A4E /* MXInvitedGroupSync.m in Sources */,
+				652B220D27BAAF270056DFDF /* SQLInterpolation+QueryInterface.swift in Sources */,
 				B14EF2142397E90400758AF0 /* MXPeekingRoomSummary.m in Sources */,
+				652B221B27BAAF270056DFDF /* TableRecord+QueryInterfaceRequest.swift in Sources */,
 				B14EF2152397E90400758AF0 /* MXRoom.swift in Sources */,
+				652B224F27BAAF270056DFDF /* DatabaseQueue.swift in Sources */,
 				B14EF2162397E90400758AF0 /* MXOlmSession.m in Sources */,
 				653517BD27AB7BD100782CEB /* -Device.swift in Sources */,
 				EC8A53A425B1BC77004E0802 /* MXCallEventContent.m in Sources */,
 				B14EF2172397E90400758AF0 /* MXMegolmDecryption.m in Sources */,
 				3A23A740256D322C00B9D00F /* MXAes.m in Sources */,
+				652B226127BAAF270056DFDF /* DatabaseReader.swift in Sources */,
 				B14EF2182397E90400758AF0 /* MXEmojiRepresentation.m in Sources */,
 				EC8A53E525B1BCC6004E0802 /* MXThirdPartyUsersResponse.m in Sources */,
+				652B221D27BAAF270056DFDF /* FTS3+QueryInterface.swift in Sources */,
 				32CEEF4C23B0A8170039BA98 /* MXCrossSigningTools.m in Sources */,
 				B14EF21A2397E90400758AF0 /* MXSession.swift in Sources */,
 				B14EF21B2397E90400758AF0 /* MXError.m in Sources */,
 				3AC13805264482A100EE1E74 /* MXExportedOlmDevice.m in Sources */,
+				652B22AF27BAAF270056DFDF /* SerializedDatabase.swift in Sources */,
 				B14EF21D2397E90400758AF0 /* MXEncryptedContentKey.m in Sources */,
 				B14EF21E2397E90400758AF0 /* MXEventDecryptionResult.m in Sources */,
 				EC60EDBF265CFE8600B39A4E /* MXRoomSyncAccountData.m in Sources */,
@@ -5883,6 +6722,7 @@
 				3290293524CB10D000DA7BB6 /* MatrixSDKVersion.m in Sources */,
 				3A7509BC26FC61DF00B85773 /* MXSpaceNotificationCounter.swift in Sources */,
 				B14EF21F2397E90400758AF0 /* MXMyUser.m in Sources */,
+				652B224927BAAF270056DFDF /* Column.swift in Sources */,
 				EC60EDAB265CFE3B00B39A4E /* MXRoomSyncTimeline.m in Sources */,
 				B14EF2202397E90400758AF0 /* (null) in Sources */,
 				B14EF2212397E90400758AF0 /* MX3PID.swift in Sources */,
@@ -5891,28 +6731,37 @@
 				ECBF658826DE3DF800AA3A99 /* MXFileRoomOutgoingMessagesStore.m in Sources */,
 				B14EF2222397E90400758AF0 /* MXMediaScan.m in Sources */,
 				653DD6A727B20F1B00097AE9 /* -Secret.swift in Sources */,
+				652B226727BAAF270056DFDF /* StatementColumnConvertible.swift in Sources */,
 				B14EF2232397E90400758AF0 /* MXEvent.swift in Sources */,
 				B14EF2242397E90400758AF0 /* MXEventScan.m in Sources */,
 				B14EF2252397E90400758AF0 /* MXOutgoingSASTransaction.m in Sources */,
 				B14EF2262397E90400758AF0 /* MXOlmEncryption.m in Sources */,
 				324AAC782399140D00380A66 /* MXKeyVerificationJSONModel.m in Sources */,
+				652B229B27BAAF270056DFDF /* SQL.swift in Sources */,
 				EC60ED74265CFCA500B39A4E /* MXToDeviceSyncResponse.m in Sources */,
 				B14EF2272397E90400758AF0 /* MXOlmDecryption.m in Sources */,
 				B14EF2282397E90400758AF0 /* MXNoStore.m in Sources */,
 				ECF29BD4264194BB0053E6D6 /* MXCallAssertedIdentityEventContent.m in Sources */,
 				EC60EDDD265CFF0600B39A4E /* MXInvitedRoomSync.m in Sources */,
+				652B228327BAAF270056DFDF /* Data.swift in Sources */,
 				B14EF22A2397E90400758AF0 /* MXReplyEventFormattedBodyParts.m in Sources */,
 				ECD2899626EB3B4200F268CF /* MXStoreRoomListDataFetcher.swift in Sources */,
 				324AAC7A2399140D00380A66 /* MXKeyVerificationMac.m in Sources */,
+				652B22DF27BAAF270056DFDF /* FTS3TokenizerDescriptor.swift in Sources */,
+				652B224B27BAAF270056DFDF /* SQLFunctions.swift in Sources */,
 				B14EF22B2397E90400758AF0 /* MXFileStoreMetaData.m in Sources */,
 				EC8A53A825B1BC77004E0802 /* MXCallCapabilitiesModel.m in Sources */,
 				B14EF22C2397E90400758AF0 /* MXAccountData.m in Sources */,
 				1838927B2702F553003F0C4F /* MXSendReplyEventDefaultStringLocalizer.m in Sources */,
 				EC8A539825B1BC77004E0802 /* MXCallReplacesEventContent.m in Sources */,
+				652B22D327BAAF270056DFDF /* Utils.swift in Sources */,
 				B18B0E6825FBDC3000E32151 /* MXSpace.swift in Sources */,
+				652B22E327BAAF270056DFDF /* FTS5Tokenizer.swift in Sources */,
 				B14EF22E2397E90400758AF0 /* MXCryptoTools.m in Sources */,
+				652B225F27BAAF270056DFDF /* DatabaseSchemaCache.swift in Sources */,
 				B14EF22F2397E90400758AF0 /* (null) in Sources */,
 				B14EF2302397E90400758AF0 /* MXDeviceListOperation.m in Sources */,
+				652B222127BAAF270056DFDF /* JoinAssociation.swift in Sources */,
 				32C78B6B256CFC4D008130B1 /* MXCryptoMigration.m in Sources */,
 				B14EF2312397E90400758AF0 /* MX3PidAddSession.m in Sources */,
 				B14EF2322397E90400758AF0 /* MXBugReportRestClient.m in Sources */,
@@ -5927,23 +6776,35 @@
 				B14EF2382397E90400758AF0 /* MXEvent.m in Sources */,
 				EC8A539225B1BC77004E0802 /* MXCallCandidate.m in Sources */,
 				EC1165B727107E330089FA56 /* MXStoreRoomListDataCounts.swift in Sources */,
+				652B229527BAAF270056DFDF /* TransactionObserver.swift in Sources */,
 				B14EF2392397E90400758AF0 /* MXMediaManager.m in Sources */,
 				B14EF23A2397E90400758AF0 /* MXHTTPOperation.m in Sources */,
 				B14EF23B2397E90400758AF0 /* MXKeyBackupData.m in Sources */,
+				652B229927BAAF270056DFDF /* DatabaseRegion.swift in Sources */,
 				B14EF23C2397E90400758AF0 /* MXJSONModels.m in Sources */,
+				652B226B27BAAF270056DFDF /* SchedulingWatchdog.swift in Sources */,
+				652B226927BAAF270056DFDF /* DatabasePool.swift in Sources */,
+				652B227D27BAAF270056DFDF /* NSString.swift in Sources */,
 				EC8A538E25B1BC77004E0802 /* MXCallSessionDescription.m in Sources */,
 				B14EF23D2397E90400758AF0 /* MXCallManager.m in Sources */,
+				652B223F27BAAF270056DFDF /* SQLCollection.swift in Sources */,
 				B14EF23E2397E90400758AF0 /* MXPeekingRoom.m in Sources */,
 				B14EF23F2397E90400758AF0 /* MXEncryptedContentFile.m in Sources */,
+				652B22F127BAAF270056DFDF /* ValueObservationScheduler.swift in Sources */,
 				EC8A539625B1BC77004E0802 /* MXUserModel.m in Sources */,
 				B14EF2402397E90400758AF0 /* MXSessionEventListener.m in Sources */,
 				EC8A53A625B1BC77004E0802 /* MXCallInviteEventContent.m in Sources */,
+				652B221127BAAF270056DFDF /* SQLQueryGenerator.swift in Sources */,
 				653517DF27ADD62600782CEB /* MXGrdbOlmInboundGroupSession.swift in Sources */,
 				ECD2899226EB3B3400F268CF /* MXRoomListDataFetcher.swift in Sources */,
+				652B22E127BAAF270056DFDF /* FTS3Pattern.swift in Sources */,
 				B18B0E5025FB783F00E32151 /* MXSpaceService.swift in Sources */,
+				652B221727BAAF270056DFDF /* TableDefinition.swift in Sources */,
 				B14EF2412397E90400758AF0 /* MXRoomFilter.m in Sources */,
 				EC8A53D925B1BCC6004E0802 /* MXThirdPartyProtocolInstance.m in Sources */,
+				652B221927BAAF270056DFDF /* VirtualTableModule.swift in Sources */,
 				B14EF2422397E90400758AF0 /* MXDeviceInfo.m in Sources */,
+				652B221527BAAF270056DFDF /* ForeignKey.swift in Sources */,
 				B14EF2432397E90400758AF0 /* MXIncomingSASTransaction.m in Sources */,
 				653DD69B27B203FE00097AE9 /* -IncomingRoomKeyRequest.swift in Sources */,
 				B14EF2442397E90400758AF0 /* NSObject+sortedKeys.m in Sources */,
@@ -5952,57 +6813,84 @@
 				B14EF2462397E90400758AF0 /* MXRoomMembers.m in Sources */,
 				32AF927E240EA0190008A0FD /* MXSecretShareManager.m in Sources */,
 				B14EF2472397E90400758AF0 /* MXContentScanEncryptedBody.m in Sources */,
+				652B227B27BAAF270056DFDF /* CGFloat.swift in Sources */,
+				652B224327BAAF270056DFDF /* SQLOrdering.swift in Sources */,
 				32CEEF4623AD2A6C0039BA98 /* MXCrossSigningKey.m in Sources */,
 				B14EF2482397E90400758AF0 /* MXEncryptedAttachments.m in Sources */,
 				EC05478525FF99450047ECD7 /* MXRoomAccountDataUpdater.m in Sources */,
+				652B225327BAAF270056DFDF /* DatabaseBackupProgress.swift in Sources */,
 				ECD289A926EBB0FE00F268CF /* MXRoomListDataFetcherDelegate.swift in Sources */,
 				B14EF24A2397E90400758AF0 /* NSArray+MatrixSDK.m in Sources */,
+				652B222D27BAAF270056DFDF /* HasOneThroughAssociation.swift in Sources */,
 				B19A30A92404257700FB6F35 /* MXSASKeyVerificationStart.m in Sources */,
 				324DD2B9246C21C700377005 /* MXSecretStorageKeyCreationInfo.m in Sources */,
 				B14EF24B2397E90400758AF0 /* MXServiceTermsRestClient.m in Sources */,
 				EC1165C527107E330089FA56 /* MXRoomListDataFilterOptions.swift in Sources */,
+				652B225B27BAAF270056DFDF /* Database+Statements.swift in Sources */,
 				B14EF24C2397E90400758AF0 /* MXCredentials.m in Sources */,
 				B14EF24D2397E90400758AF0 /* MXOutgoingRoomKeyRequest.m in Sources */,
 				B14EF24E2397E90400758AF0 /* MXAllowedCertificates.m in Sources */,
+				652B228127BAAF270056DFDF /* NSNull.swift in Sources */,
+				652B227927BAAF270056DFDF /* DatabaseValueConvertible+Decodable.swift in Sources */,
 				B14EF24F2397E90400758AF0 /* MXLRUCache.m in Sources */,
 				B14EF2502397E90400758AF0 /* MXIncomingRoomKeyRequestManager.m in Sources */,
 				B14EF2512397E90400758AF0 /* MXRoomEventFilter.m in Sources */,
+				652B222B27BAAF270056DFDF /* Association.swift in Sources */,
 				B14EF2522397E90400758AF0 /* MXLoginPolicyData.m in Sources */,
 				B19A30C72404268600FB6F35 /* MXQRCodeDataBuilder.m in Sources */,
+				652B22C727BAAF270056DFDF /* CaseInsensitiveIdentifier.swift in Sources */,
+				652B22D527BAAF270056DFDF /* ReceiveValuesOn.swift in Sources */,
 				653DD68B27B1E1EB00097AE9 /* MXGrdbOutgoingRoomKeyRequest.swift in Sources */,
 				EC8A53C025B1BC77004E0802 /* MXCallRejectReplacementEventContent.m in Sources */,
 				B14EF2532397E90400758AF0 /* MXPushRuleSenderNotificationPermissionConditionChecker.m in Sources */,
 				324AAC752399140D00380A66 /* MXKeyVerificationAccept.m in Sources */,
 				B14EF2542397E90400758AF0 /* MXReceiptData.m in Sources */,
 				32B0E34223A378320054FF1A /* MXEventReference.m in Sources */,
+				652B227127BAAF270056DFDF /* StandardLibrary.swift in Sources */,
 				B105CD9E261E0B70006EB204 /* MXSpaceChildrenSummary.swift in Sources */,
 				B14EF2552397E90400758AF0 /* MXWellKnownBaseConfig.m in Sources */,
 				B14EF2562397E90400758AF0 /* MXLogger.m in Sources */,
 				EC383BB425406894002FBBE6 /* MXSyncResponseFileStore.swift in Sources */,
 				B14EF2572397E90400758AF0 /* MXMegolmExportEncryption.m in Sources */,
 				3A0AF06C2705A11400679D1A /* MXSpaceGraphData.swift in Sources */,
+				652B22F527BAAF270056DFDF /* ValueObservation.swift in Sources */,
+				652B223927BAAF270056DFDF /* SQLForeignKeyRequest.swift in Sources */,
+				652B225727BAAF270056DFDF /* StatementAuthorizer.swift in Sources */,
 				653DD68827B1D0B800097AE9 /* GRDBSchema.swift in Sources */,
+				652B22FD27BAAF270056DFDF /* Trace.swift in Sources */,
 				918D30B8273951F400A16405 /* MXStoreService.swift in Sources */,
 				B14EF2582397E90400758AF0 /* MXFilterObject.m in Sources */,
+				652B227F27BAAF270056DFDF /* Date.swift in Sources */,
+				652B22A327BAAF270056DFDF /* DatabaseWriter.swift in Sources */,
 				EC60EDEB265CFF3100B39A4E /* MXRoomInviteState.m in Sources */,
 				8EC511072568216B00EC4E5B /* MXTaggedEventInfo.m in Sources */,
 				B14EF2592397E90400758AF0 /* MXHTTPClient.m in Sources */,
+				652B22BB27BAAF270056DFDF /* FetchableRecord.swift in Sources */,
 				3251D42025AF01D7001E6E77 /* MXUIKitApplicationStateService.swift in Sources */,
+				652B22C527BAAF270056DFDF /* OnDemandFuture.swift in Sources */,
 				B19A30A72404257700FB6F35 /* MXQRCodeKeyVerificationStart.m in Sources */,
+				652B224D27BAAF270056DFDF /* SQLRelation.swift in Sources */,
 				B14EF25A2397E90400758AF0 /* MXEnumConstants.m in Sources */,
 				B14EF25B2397E90400758AF0 /* MXSession.m in Sources */,
 				ECD289C52701DADB00F268CF /* MXTools.swift in Sources */,
+				652B222F27BAAF270056DFDF /* QueryInterfaceRequest.swift in Sources */,
 				653517D627ADA72700782CEB /* -RoomAlgorithm.swift in Sources */,
 				65160A1327AB152300D48B6B /* -Account.deviceId.swift in Sources */,
 				18C26C3E273C032900805154 /* PollAggregator.swift in Sources */,
 				B14EF25C2397E90400758AF0 /* MXRoomTombStoneContent.m in Sources */,
 				B14EF25D2397E90400758AF0 /* MXImage.swift in Sources */,
 				B14EF25E2397E90400758AF0 /* (null) in Sources */,
+				652B228927BAAF270056DFDF /* UUID.swift in Sources */,
 				32B090E3261F709B002924AA /* MXAsyncTaskQueue.swift in Sources */,
 				B14EF25F2397E90400758AF0 /* MXServerNoticeContent.m in Sources */,
+				652B228727BAAF270056DFDF /* Decimal.swift in Sources */,
+				652B22BF27BAAF270056DFDF /* Record.swift in Sources */,
 				653517D327ADA56A00782CEB /* MXGrdbRoomAlgorithm.swift in Sources */,
+				652B229D27BAAF270056DFDF /* DatabaseRegionObservation.swift in Sources */,
+				652B220B27BAAF270056DFDF /* TableRecord+Association.swift in Sources */,
 				B14EF2602397E90400758AF0 /* MXContentScanResult.m in Sources */,
 				EC383BB72541C518002FBBE6 /* MXBackgroundPushRulesManager.swift in Sources */,
+				652B226D27BAAF270056DFDF /* DatabaseError.swift in Sources */,
 				3259CFE726026A6F00C365DB /* MXRestClient+Extensions.swift in Sources */,
 				653517C027AB7CF600782CEB /* MXGrdbDevice.swift in Sources */,
 				B105CDD9261F54C8006EB204 /* MXSpaceChildContent.m in Sources */,
@@ -6010,39 +6898,61 @@
 				324AAC7C2399140D00380A66 /* MXKeyVerificationStart.m in Sources */,
 				324AAC762399140D00380A66 /* MXKeyVerificationCancel.m in Sources */,
 				32AF928D240EA3880008A0FD /* MXSecretShareSend.m in Sources */,
+				652B22EB27BAAF270056DFDF /* FTS5WrapperTokenizer.swift in Sources */,
 				B14EF2642397E90400758AF0 /* MXKey.m in Sources */,
+				652B227727BAAF270056DFDF /* JSONRequiredEncoder.swift in Sources */,
+				652B230727BAAF270056DFDF /* Migration.swift in Sources */,
 				EC8A53B825B1BC77004E0802 /* MXCallCandidatesEventContent.m in Sources */,
 				B19A30D124042F0800FB6F35 /* MXSelfVerifyingMasterKeyTrustedQRCodeData.m in Sources */,
 				B14EF2652397E90400758AF0 /* MXIdentityServerRestClient.m in Sources */,
 				B14EF2662397E90400758AF0 /* MXSDKOptions.m in Sources */,
+				652B22A527BAAF270056DFDF /* SQLInterpolation.swift in Sources */,
+				652B222527BAAF270056DFDF /* AssociationAggregate.swift in Sources */,
 				EC8A53DF25B1BCC6004E0802 /* MXThirdpartyProtocolsResponse.m in Sources */,
+				652B220F27BAAF270056DFDF /* FTS5+QueryInterface.swift in Sources */,
 				B19A30C32404268600FB6F35 /* MXVerifyingAnotherUserQRCodeData.m in Sources */,
 				B14EF2672397E90400758AF0 /* MXEventsEnumeratorOnArray.m in Sources */,
+				652B22A927BAAF270056DFDF /* Statement.swift in Sources */,
+				652B22E927BAAF270056DFDF /* FTS5.swift in Sources */,
 				B14EF2682397E90400758AF0 /* MXFilterJSONModel.m in Sources */,
 				325AD44223BE3E7500FF5277 /* MXCrossSigningInfo.m in Sources */,
+				652B22B727BAAF270056DFDF /* EncodableRecord.swift in Sources */,
+				652B228D27BAAF270056DFDF /* NSData.swift in Sources */,
+				652B22B327BAAF270056DFDF /* Configuration.swift in Sources */,
 				B14EF2692397E90400758AF0 /* MXMatrixVersions.m in Sources */,
 				B14EF26B2397E90400758AF0 /* MXMegolmBackupCreationInfo.m in Sources */,
 				B14EF26C2397E90400758AF0 /* MXRoom.m in Sources */,
 				B14EF26D2397E90400758AF0 /* NSData+MatrixSDK.m in Sources */,
+				652B22DB27BAAF270056DFDF /* FTS5Pattern.swift in Sources */,
 				EC383BB22540688E002FBBE6 /* MXBackgroundStore.swift in Sources */,
+				652B230527BAAF270056DFDF /* DatabaseMigrator.swift in Sources */,
 				B14EF26E2397E90400758AF0 /* MXFileRoomStore.m in Sources */,
 				EC60ED9D265CFE1700B39A4E /* MXRoomSyncState.m in Sources */,
+				652B230327BAAF270056DFDF /* RemoveDuplicates.swift in Sources */,
 				651609F127A8848500D48B6B /* GRDBCoordinator.swift in Sources */,
 				324676ED25C15F4600EA855B /* MXMemory.swift in Sources */,
+				652B223B27BAAF270056DFDF /* DatabasePromise.swift in Sources */,
 				EC60ED6A265CFC7200B39A4E /* MXPresenceSyncResponse.m in Sources */,
+				652B22D727BAAF270056DFDF /* OrderedDictionary.swift in Sources */,
 				653517DC27ADB12000782CEB /* -OlmSession.swift in Sources */,
 				3A108AA525810FE5005EEBE9 /* MXRawDataKey.m in Sources */,
 				324DD29C246AD2B500377005 /* MXSecretStorage.m in Sources */,
 				EC60EDC9265CFEA800B39A4E /* MXRoomSyncUnreadNotifications.m in Sources */,
+				652B22CF27BAAF270056DFDF /* Inflections+English.swift in Sources */,
 				B14EF26F2397E90400758AF0 /* MXUser.m in Sources */,
 				324AAC772399140D00380A66 /* MXKeyVerificationDone.m in Sources */,
 				B14EF2702397E90400758AF0 /* MXIdentityServerRestClient.swift in Sources */,
+				652B226F27BAAF270056DFDF /* Database+Schema.swift in Sources */,
+				652B229127BAAF270056DFDF /* SQLiteDateParser.swift in Sources */,
+				652B22E727BAAF270056DFDF /* FTS5TokenizerDescriptor.swift in Sources */,
 				B14EF2712397E90400758AF0 /* MXSASTransaction.m in Sources */,
 				B14EF2722397E90400758AF0 /* MXDiscoveredClientConfig.m in Sources */,
 				B19A30A1240424BD00FB6F35 /* MXQRCodeTransaction.m in Sources */,
+				652B226527BAAF270056DFDF /* DatabaseSnapshot.swift in Sources */,
 				EC2EAD00266625170038B61F /* MXRoomLastMessage.m in Sources */,
 				EC60ED88265CFD0700B39A4E /* MXRoomsSyncResponse.m in Sources */,
 				B14EF2742397E90400758AF0 /* MXDeviceListOperationsPool.m in Sources */,
+				652B22B927BAAF270056DFDF /* FetchableRecord+Decodable.swift in Sources */,
 				B18B0E4B25FB783B00E32151 /* MXSpaceCreationParameters.swift in Sources */,
 				B14EF2752397E90400758AF0 /* MXResponse.swift in Sources */,
 				B14EF2772397E90400758AF0 /* MXDecryptionResult.m in Sources */,
@@ -6055,21 +6965,29 @@
 				3AC135DC2640335100EE1E74 /* MXDehydrationService.m in Sources */,
 				B14EF27C2397E90400758AF0 /* MXRestClient.swift in Sources */,
 				32AF929A24115D8B0008A0FD /* MXPendingSecretShareRequest.m in Sources */,
+				652B228F27BAAF270056DFDF /* URL.swift in Sources */,
 				B14EF27D2397E90400758AF0 /* MXKeyBackup.m in Sources */,
+				652B22D127BAAF270056DFDF /* Pool.swift in Sources */,
 				EC1165BD27107E330089FA56 /* MXRoomListDataFetchOptions.swift in Sources */,
 				B14EF27E2397E90400758AF0 /* MXCrypto.m in Sources */,
+				652B225927BAAF270056DFDF /* FetchRequest.swift in Sources */,
 				B14EF27F2397E90400758AF0 /* MXRoomPredecessorInfo.m in Sources */,
 				B14EF2802397E90400758AF0 /* MXServiceTerms.m in Sources */,
 				3229535425A5F7220012FCF0 /* MXBackgroundCryptoStore.m in Sources */,
 				B14EF2812397E90400758AF0 /* MXNotificationCenter.m in Sources */,
+				652B224727BAAF270056DFDF /* SQLOperators.swift in Sources */,
 				EC60ED60265CFC2C00B39A4E /* MXSyncResponse.m in Sources */,
+				652B22AD27BAAF270056DFDF /* DatabaseCollation.swift in Sources */,
 				3A108AB825812995005EEBE9 /* MXKeyProvider.m in Sources */,
 				B14EF2822397E90400758AF0 /* MXDeviceList.m in Sources */,
 				320B3937239FA56900BE2C06 /* MXKeyVerificationByDMRequest.m in Sources */,
 				B14EF2832397E90400758AF0 /* MXRoomCreateContent.m in Sources */,
 				EC8A53B025B1BC77004E0802 /* MXCallAnswerEventContent.m in Sources */,
+				652B224127BAAF270056DFDF /* SQLExpression.swift in Sources */,
+				652B221327BAAF270056DFDF /* SQLGenerationContext.swift in Sources */,
 				651609EB27A8827B00D48B6B /* MXSQLiteCryptoStore.m in Sources */,
 				EC60ED7E265CFCD100B39A4E /* MXDeviceListResponse.m in Sources */,
+				652B223327BAAF270056DFDF /* CommonTableExpression.swift in Sources */,
 				323F879025553D84009E9E67 /* MXTaskProfile.m in Sources */,
 				B14EF2842397E90400758AF0 /* MXUIKitBackgroundModeHandler.m in Sources */,
 				B14EF2852397E90400758AF0 /* (null) in Sources */,
@@ -6092,21 +7010,29 @@
 				EC60ED92265CFD3B00B39A4E /* MXRoomSync.m in Sources */,
 				B14EF28D2397E90400758AF0 /* MXMegolmSessionData.m in Sources */,
 				18121F7E273E837300B68ADF /* PollModels.swift in Sources */,
+				652B22A727BAAF270056DFDF /* DatabaseFunction.swift in Sources */,
 				3259D02626037A7200C365DB /* NSDictionary.swift in Sources */,
 				EC8A53BE25B1BC77004E0802 /* MXCallRejectEventContent.m in Sources */,
+				652B22D927BAAF270056DFDF /* Inflections.swift in Sources */,
 				B1A0270326162110001AADFF /* MXSpaceChildrenResponse.m in Sources */,
 				B14EF28E2397E90400758AF0 /* MXKeyVerificationTransaction.m in Sources */,
 				EC60EE09265CFFF400B39A4E /* MXGroupSyncProfile.m in Sources */,
 				B14EF28F2397E90400758AF0 /* MXEventTimeline.swift in Sources */,
 				B14EF2902397E90400758AF0 /* MXJSONModels.swift in Sources */,
 				653DD68227B0AB7400097AE9 /* -SharedOutboundSession.swift in Sources */,
+				652B229327BAAF270056DFDF /* NSNumber.swift in Sources */,
 				325AF3E424897D9400EF937D /* MXSecretRecoveryResult.m in Sources */,
 				EC8A53A225B1BC77004E0802 /* MXCallSelectAnswerEventContent.m in Sources */,
 				65160A1D27AB322500D48B6B /* -Account.olmAccountData.swift in Sources */,
+				652B226327BAAF270056DFDF /* DatabaseValue.swift in Sources */,
+				652B22C127BAAF270056DFDF /* PersistableRecord.swift in Sources */,
+				652B228B27BAAF270056DFDF /* DatabaseDateComponents.swift in Sources */,
+				652B223127BAAF270056DFDF /* RequestProtocols.swift in Sources */,
 				183892812702F553003F0C4F /* MXRoomNameDefaultStringLocalizer.m in Sources */,
 				B14EF2912397E90400758AF0 /* MXOutgoingRoomKeyRequestManager.m in Sources */,
 				B14EF2922397E90400758AF0 /* MXWellKnown.m in Sources */,
 				B1A026F926161EF5001AADFF /* MXSpaceChildSummaryResponse.m in Sources */,
+				652B22F727BAAF270056DFDF /* SharedValueObservation.swift in Sources */,
 				B14EF2932397E90400758AF0 /* MXRestClient.m in Sources */,
 				EC60EDD3265CFECC00B39A4E /* MXRoomSyncSummary.m in Sources */,
 			);
@@ -6357,7 +7283,11 @@
 				INFOPLIST_FILE = MatrixSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.matrix.$(PRODUCT_NAME:rfc1034identifier)";
@@ -6384,7 +7314,11 @@
 				INFOPLIST_FILE = MatrixSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.matrix.$(PRODUCT_NAME:rfc1034identifier)";
@@ -6411,7 +7345,11 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MatrixSDKTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.matrix.$(PRODUCT_NAME:rfc1034identifier)";
@@ -6436,7 +7374,11 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MatrixSDKTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.matrix.$(PRODUCT_NAME:rfc1034identifier)";
@@ -6461,7 +7403,11 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/MatrixSDK/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = org.matrix.MatrixSDK;
@@ -6488,7 +7434,11 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/MatrixSDK/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = org.matrix.MatrixSDK;
@@ -6518,7 +7468,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MatrixSDKTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -6549,7 +7503,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MatrixSDKTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "matrix.org.MatrixSDKTests-macOS";

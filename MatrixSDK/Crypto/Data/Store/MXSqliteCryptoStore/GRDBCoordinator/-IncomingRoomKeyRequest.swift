@@ -15,7 +15,6 @@
 //
 
 import Foundation
-import GRDB
 
 extension GRDBCoordinator {
   public func storeIncomingRoomKeyRequest(_ request: MXGrdbIncomingRoomKeyRequest) {

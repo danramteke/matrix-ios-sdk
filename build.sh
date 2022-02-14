@@ -3,7 +3,8 @@
 set -e
 set -x
 
-pod install
+bundle
+bundle exec pod install
 
 if [ $1 == 'xcframework' ]	# optionally supports additional arguments for CFBundleShortVersionString and CFBundleVersion
 then

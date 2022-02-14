@@ -15,7 +15,6 @@
 //
 
 import Foundation
-import GRDB
 
 public final class MXGrdbUser: NSObject, Codable, FetchableRecord, PersistableRecord, TableRecord {
   

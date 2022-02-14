@@ -15,7 +15,6 @@
 //
 
 import Foundation
-import GRDB
 
 @objcMembers
 public final class MXGrdbOlmOutboundGroupSession: NSObject, Codable, FetchableRecord, PersistableRecord, TableRecord {

@@ -16,8 +16,6 @@
 
 import Foundation
 
-import GRDB
-
 extension GRDBCoordinator {
   
   public func retrieveCrossSigningKeysDataFor(userId: String) -> Data? {

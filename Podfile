@@ -11,7 +11,6 @@ abstract_target 'MatrixSDK' do
     #pod 'OLMKit', :path => '../olm/OLMKit.podspec'
     
     pod 'libbase58', '~> 0.1.4'
-    pod 'GRDB.swift', '~> 5.19.0'
     
     target 'MatrixSDK-iOS' do
         platform :ios, '11.0'

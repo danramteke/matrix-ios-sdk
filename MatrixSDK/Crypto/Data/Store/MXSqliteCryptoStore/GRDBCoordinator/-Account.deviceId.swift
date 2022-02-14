@@ -15,7 +15,6 @@
 //
 
 import Foundation
-import GRDB
 
 public struct OlmAccountNotFound: Error {
   public let userId: String

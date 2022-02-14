@@ -15,7 +15,6 @@
 //
 
 import Foundation
-import GRDB
 
 extension GRDBCoordinator {
   public func storeSecret(_ secret: MXGrdbSecret) {

@@ -14,8 +14,6 @@
 // limitations under the License.
 //
 
-import GRDB
-
 extension GRDBCoordinator {
   
   public func retrieveGlobalBlacklistUnverifiedDevices(for userId: String) -> Bool {
