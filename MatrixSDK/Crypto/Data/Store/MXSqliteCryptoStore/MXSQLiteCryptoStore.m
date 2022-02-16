@@ -443,7 +443,7 @@
       
       grdbSession.olmInboundGroupSessionData = [NSKeyedArchiver archivedDataWithRootObject:mxSession];
     } else {
-      MXLogError(@"[MXSqliteCryptoStore] performSessionOperationWithGroupSessionWithId. Error: olm group session %@ not found", sessionId);
+      MXLogError(@"[MXSQLiteCryptoStore] performSessionOperationWithGroupSessionWithId. Error: olm group session %@ not found", sessionId);
       block(nil);
     }
   }];
