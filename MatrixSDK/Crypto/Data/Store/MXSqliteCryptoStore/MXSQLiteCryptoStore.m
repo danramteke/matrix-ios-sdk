@@ -439,9 +439,14 @@
     if (grdbSession.olmInboundGroupSessionData) {
       MXOlmInboundGroupSession* mxSession = [NSKeyedUnarchiver unarchiveObjectWithData:grdbSession.olmInboundGroupSessionData];
       
-      block(mxSession);
+      if (mxSession) {
+       block(mxSession);
       
-      grdbSession.olmInboundGroupSessionData = [NSKeyedArchiver archivedDataWithRootObject:mxSession];
+       grdbSession.olmInboundGroupSessionData = [NSKeyedArchiver archivedDataWithRootObject:mxSession];
+      } else {
+        MXLogError(@"[MXSQLiteCryptoStore] performSessionOperationWithGroupSessionWithId. Error: Cannot build MXOlmInboundGroupSession for megolm session %@", sessionId);
+        block(nil);
+      }
     } else {
       MXLogError(@"[MXSQLiteCryptoStore] performSessionOperationWithGroupSessionWithId. Error: olm group session %@ not found", sessionId);
       block(nil);

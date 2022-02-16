@@ -40,7 +40,13 @@ extension GRDBCoordinator {
     do {
       try self.pool.write { db in
         try sessionList.forEach { session in
-          try session.save(db)
+          if let _ = self.retrieveInboundGroupSessionBySessionId(session.id, senderKey: session.senderKey) {
+            MXLog.debug("[\(String(describing: Self.self))] updating Inbound Group Session with sessionId \(session.id) and senderKey \(session.senderKey)")
+            try session.update(db)
+          } else {
+            MXLog.debug("[\(String(describing: Self.self))] inserting Inbound Group Session with sessionId \(session.id) and senderKey \(session.senderKey)")
+            try session.insert(db)
+          }
         }
       }
     } catch {
@@ -94,6 +100,7 @@ extension GRDBCoordinator {
           .filter(MXGrdbOlmInboundGroupSession.CodingKeys.id == sessionId)
           .filter(MXGrdbOlmInboundGroupSession.CodingKeys.senderKey == senderKey)
           .fetchOne(db)
+        MXLog.debug("[\(String(describing: Self.self))] missing OLM inbound group session transaction for Session ID \(sessionId) and sender key \(senderKey)")
         block(maybeSession)
         try maybeSession?.update(db)
       }

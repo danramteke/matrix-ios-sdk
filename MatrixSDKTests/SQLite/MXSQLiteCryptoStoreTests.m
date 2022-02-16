@@ -251,6 +251,7 @@
   
   OLMAccount* aliceAccount = [[OLMAccount alloc] initNewAccount];
   OLMAccount* bobAccount = [[OLMAccount alloc] initNewAccount];
+  OLMAccount* carlosAccount = [[OLMAccount alloc] initNewAccount];
 
   NSError *error;
   
@@ -272,6 +273,10 @@
   XCTAssertEqualObjects(aliceSession.sessionIdentifier, bobSession.sessionIdentifier);
   XCTAssertNil(error);
   
+  OLMInboundGroupSession *carlosSession = [[OLMInboundGroupSession alloc] initInboundGroupSessionWithSessionKey:sessionKey error:&error];
+  XCTAssertEqualObjects(aliceSession.sessionIdentifier, carlosSession.sessionIdentifier);
+  XCTAssertNil(error);
+  
   
   MXMegolmSessionData* aliceSessionData = [[MXMegolmSessionData alloc] init];
   aliceSessionData.senderKey = aliceAccount.identityKeys[@"curve25519"];
@@ -279,22 +284,26 @@
   aliceSessionData.sessionKey = sessionKey;
 
 
-  MXOlmInboundGroupSession* mxInboundGroupSession1 = [[MXOlmInboundGroupSession alloc]      initWithSessionKey:sessionKey];
-  mxInboundGroupSession1.session = bobSession; // TODO: make a test init for these properties
+  MXOlmInboundGroupSession* mxInboundGroupSession1 = [[MXOlmInboundGroupSession alloc] initWithSessionKey:sessionKey];
+  mxInboundGroupSession1.session = bobSession;
   mxInboundGroupSession1.senderKey = bobAccount.identityKeys[@"curve25519"];
+
+  MXOlmInboundGroupSession* mxInboundGroupSession2 = [[MXOlmInboundGroupSession alloc] initWithSessionKey:sessionKey];
+  mxInboundGroupSession2.session = carlosSession;
+  mxInboundGroupSession2.senderKey = carlosAccount.identityKeys[@"curve25519"];
   
   NSArray<MXOlmInboundGroupSession *>* sessions = @[
-    mxInboundGroupSession1,
+    mxInboundGroupSession1, mxInboundGroupSession2
   ];
   
   MXSQLiteCryptoStore* store = [MXSQLiteCryptoStore createStoreWithCredentials:self.credentials];
   [store storeInboundGroupSessions:sessions];
-  XCTAssertEqual(sessions.count, 1);
-  XCTAssertEqual([store inboundGroupSessionsCount:false], 1);
+  XCTAssertEqual(sessions.count, 2);
+  XCTAssertEqual([store inboundGroupSessionsCount:false], 2);
   
   [store storeInboundGroupSessions:sessions];
-  XCTAssertEqual([store inboundGroupSessionsCount:false], 1, @"saving again should not increase count");
-  
+  XCTAssertEqual([store inboundGroupSessionsCount:false], 2, @"saving again should not increase count");
+   
   MXOlmInboundGroupSession* retrievedInboundSession = [store inboundGroupSessionWithId:mxInboundGroupSession1.session.sessionIdentifier andSenderKey:mxInboundGroupSession1.senderKey];
   XCTAssertNotNil(retrievedInboundSession);
   XCTAssertEqualObjects(retrievedInboundSession.senderKey, mxInboundGroupSession1.senderKey);
@@ -309,20 +318,28 @@
   
   //all
   NSArray<MXOlmInboundGroupSession *>* retrievedSessions = [store inboundGroupSessions];
-  XCTAssertEqual(retrievedSessions.count, 1);
+  XCTAssertEqual(retrievedSessions.count, 2);
   XCTAssertEqualObjects(retrievedSessions.firstObject.senderKey, mxInboundGroupSession1.senderKey);
   
   //backup
   NSArray<MXOlmInboundGroupSession *>* retrievedInboundSessionNeedingBackup = [store inboundGroupSessionsToBackup:1];
   XCTAssertEqual(retrievedInboundSessionNeedingBackup.count, 1);
   [store markBackupDoneForInboundGroupSessions:retrievedInboundSessionNeedingBackup];
-  XCTAssertEqual(0, [store inboundGroupSessionsToBackup:1].count);
+  XCTAssertEqual(1, [store inboundGroupSessionsToBackup:2].count);
   [store resetBackupMarkers];
-  XCTAssertEqual(1, [store inboundGroupSessionsToBackup:1].count);
+  XCTAssertEqual(2, [store inboundGroupSessionsToBackup:2].count);
   
   //remove
   [store removeInboundGroupSessionWithId:mxInboundGroupSession1.session.sessionIdentifier andSenderKey:mxInboundGroupSession1.senderKey];
-  XCTAssertEqual([store inboundGroupSessionsCount:false], 0);
+  XCTAssertEqual([store inboundGroupSessionsCount:false], 1);
+  
+  //not found
+  __block BOOL block2DidRun = false;
+  [store performSessionOperationWithGroupSessionWithId:mxInboundGroupSession1.session.sessionIdentifier senderKey:mxInboundGroupSession1.senderKey block:^(MXOlmInboundGroupSession *blockSession) {
+    XCTAssertNil(blockSession);
+    block2DidRun = true;
+  }];
+  XCTAssertTrue(block2DidRun);
 }
 
 -(void)testStoreAndRetrieveOutboundOlmGroupSession {

@@ -28,7 +28,7 @@ final class GRDBSchema {
         t.column("deviceSyncToken", .text)
         t.column("globalBlacklistUnverifiedDevices", .boolean)
         t.column("olmAccountData", .blob)
-        t.primaryKey(["userId"], onConflict: .rollback)
+        t.primaryKey(["userId"])
       }
       
       try db.create(table: "Device") { t in
@@ -36,20 +36,20 @@ final class GRDBSchema {
         t.column("userId", .text).notNull()
         t.column("identityKey", .text)
         t.column("data", .blob)
-        t.primaryKey(["id", "userId"], onConflict: .rollback)
+        t.primaryKey(["id", "userId"])
       }
       
       try db.create(table: "User") { t in
         t.column("id", .text).notNull()
         t.column("crossSigningKeysData", .blob)
-        t.primaryKey(["id"], onConflict: .rollback)
+        t.primaryKey(["id"])
       }
       
       try db.create(table: "RoomAlgorithm") { t in
         t.column("id", .text).notNull()
         t.column("algorithm", .text)
         t.column("blacklistUnverifiedDevices", .boolean)
-        t.primaryKey(["id"], onConflict: .rollback)
+        t.primaryKey(["id"])
       }
       
       try db.create(table: "OlmSession") { t in
@@ -57,15 +57,15 @@ final class GRDBSchema {
         t.column("deviceKey", .text)
         t.column("lastReceivedMessageTs", .double)
         t.column("olmSessionData", .blob)
-        t.primaryKey(["id"], onConflict: .rollback)
+        t.primaryKey(["id"])
       }
       
       try db.create(table: "OlmInboundGroupSession") { t in
         t.column("id", .text).notNull()
-        t.column("senderKey", .text)
+        t.column("senderKey", .text).notNull()
         t.column("olmInboundGroupSessionData", .blob)
         t.column("backedUp", .boolean)
-        t.primaryKey(["id", "senderKey"], onConflict: .rollback)
+        t.primaryKey(["id", "senderKey"])
       }
       
       try db.create(table: "OlmOutboundGroupSession") { t in
@@ -73,7 +73,7 @@ final class GRDBSchema {
         t.column("sessionId", .text).notNull()
         t.column("sessionData", .blob)
         t.column("creationTime", .double)
-        t.primaryKey(["roomId", "sessionId"], onConflict: .rollback)
+        t.primaryKey(["roomId", "sessionId"])
       }
       
       try db.create(table: "SharedOutboundSession") { t in
@@ -82,7 +82,7 @@ final class GRDBSchema {
         t.column("deviceId", .text)
         t.column("userId", .text)
         t.column("messageIndex", .integer)
-        t.primaryKey(["roomId", "sessionId", "deviceId", "userId"], onConflict: .rollback)
+        t.primaryKey(["roomId", "sessionId", "deviceId", "userId"])
       }
       
       try db.create(table: "OutgoingRoomKeyRequest") { t in
@@ -100,7 +100,7 @@ final class GRDBSchema {
         t.column("userId", .text)
         t.column("deviceId", .text)
         t.column("requestBodyData", .blob)
-        t.primaryKey(["id"], onConflict: .rollback)
+        t.primaryKey(["id"])
       }
       
       try db.create(table: "Secret") { t in
@@ -108,7 +108,7 @@ final class GRDBSchema {
         t.column("secret", .text)
         t.column("encryptedSecret", .blob)
         t.column("iv", .blob)
-        t.primaryKey(["id"], onConflict: .rollback)
+        t.primaryKey(["id"])
       }
     }
     return migrator
