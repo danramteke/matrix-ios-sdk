@@ -31,7 +31,7 @@ extension GRDBCoordinator {
           })
       }
     } catch {
-      MXLog.error("[\(String(describing: Self.self))] error retrieving Shared Outbound Session for room ID \(roomId): \(error)")
+      MXLog.error("[\(String(describing: Self.self))] error retrieving Shared Outbound Session for room ID \(roomId) and session ID \(sessionId): \(error)")
       return nil
     }
   }
@@ -52,7 +52,7 @@ extension GRDBCoordinator {
           }
       }
     } catch {
-      MXLog.error("[\(String(describing: Self.self))] error retrieving message index of Shared Outbound Session for room ID \(roomId): \(error)")
+      MXLog.error("[\(String(describing: Self.self))] error retrieving message index of Shared Outbound Session for room ID \(roomId) and session ID \(sessionId): \(error)")
       return nil
     }
   }
@@ -64,12 +64,12 @@ extension GRDBCoordinator {
           for deviceId in devices.deviceIds(forUser: userId) {
             
             guard try MXGrdbDevice.filter(MXGrdbDevice.CodingKeys.id == deviceId).fetchCount(db) > 0 else {
-              MXLog.debug("[\(String(describing: Self.self))] storeSharedDevices cannot find device with the ID \(deviceId)")
+              MXLog.debug("[\(String(describing: Self.self))] storeSharedOutboundSession cannot find device with the ID \(deviceId)")
               continue
             }
             
             guard try MXGrdbUser.filter(MXGrdbUser.CodingKeys.id == userId).fetchCount(db) > 0 else {
-              MXLog.debug("[\(String(describing: Self.self))] storeSharedDevices cannot find user with the ID \(userId)")
+              MXLog.debug("[\(String(describing: Self.self))] storeSharedOutboundSession cannot find user with the ID \(userId)")
               continue
             }
             
@@ -79,7 +79,7 @@ extension GRDBCoordinator {
         }
       }
     } catch {
-      MXLog.error("[\(String(describing: Self.self))] error storing devices for Shared Outbound Session for room ID \(roomId): \(error)")
+      MXLog.error("[\(String(describing: Self.self))] error storing devices for Shared Outbound Session for room ID \(roomId) and session ID \(sessionId): \(error)")
     }
   }
 }
